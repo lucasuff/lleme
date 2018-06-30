@@ -19,8 +19,8 @@ public class main_trabalho {
         /*Simulando recepcionamento cliente 1*/
         Cliente cliente1 = new Cliente("cpf1", "Ana", 52);
         Atendimento atendimentoCliente1 = new Atendimento(cliente1);
-        atendimentoCliente1.IncluirAssunto((TipoAssunto) Atendimentos.getTiposAssuntos().Buscar("BOLETO"), "Cobran�a feita em duplicidade.");
-        atendimentoCliente1.IncluirAssunto((TipoAssunto) Atendimentos.getTiposAssuntos().Buscar("CANCELAMENTO"), "Cancelar todos os servi�os.");
+        atendimentoCliente1.IncluirAssunto((TipoAssunto) Atendimentos.getTiposAssuntos().Buscar("BOLETO"), "Cobrança feita em duplicidade.");
+        atendimentoCliente1.IncluirAssunto((TipoAssunto) Atendimentos.getTiposAssuntos().Buscar("CANCELAMENTO"), "Cancelar todos os serviços.");
         Atendimentos.Recepcionar(atendimentoCliente1);
 
         /*Simulando recepcionamento cliente 2*/
@@ -45,10 +45,10 @@ public class main_trabalho {
         /*Simulando recepcionamento cliente 4*/
         Cliente cliente5 = new Cliente("cpf5", "Bia", 20);
         Atendimento atendimentoCliente5 = new Atendimento(cliente5);
-        atendimentoCliente5.IncluirAssunto((TipoAssunto) Atendimentos.getTiposAssuntos().Buscar("CANCELAMENTO"), "Cobran�a indevida. Quer cancelar o servi�o.");
+        atendimentoCliente5.IncluirAssunto((TipoAssunto) Atendimentos.getTiposAssuntos().Buscar("CANCELAMENTO"), "Cobrança indevida. Quer cancelar o serviço.");
         Atendimentos.Recepcionar(atendimentoCliente5);
 
-        /*pegando o pr�ximo */
+        /*pegando o próximo */
         Atendimento proximoAtendimento = Atendimentos.Atender();
 
         Random rand = new Random();
@@ -58,17 +58,17 @@ public class main_trabalho {
         for (int i = 0; i < proximoAtendimento.getAssuntosTratados().getTamanho(); i++) {
             /*Busca Assunto a ser tratado*/
             Assunto a = (Assunto) proximoAtendimento.getAssuntosTratados().get(i);
-            /*Random usado para definir um tempo aleat�rio de atendimento*/
+            /*Random usado para definir um tempo aleatório de atendimento*/
             int randomTime = rand.nextInt((20 - 10) + 1) + 10; // ((Max - Min) + 1) - Min
-            /* informa dura��o do atendimento para o assunto e provid�ncia tomada*/
+            /* informa duração do atendimento para o assunto e providência tomada*/
             a.setDuracaoAtendimento(randomTime);
-            a.setProvidencias("Provid�ncia_" + Integer.toString(randomTime));
+            a.setProvidencias("Providência_" + Integer.toString(randomTime));
         }
 
         /*Encerrando atendimento*/
         Atendimentos.Encerrar(proximoAtendimento);
 
-        /*pegando o pr�ximo */
+        /*pegando o próximo */
         proximoAtendimento = Atendimentos.Atender();
 
         /**
@@ -77,17 +77,17 @@ public class main_trabalho {
         for (int i = 0; i < proximoAtendimento.getAssuntosTratados().getTamanho(); i++) {
             /*Busca Assunto a ser tratado*/
             Assunto a = (Assunto) proximoAtendimento.getAssuntosTratados().get(i);
-            /*Random usado para definir um tempo aleat�rio de atendimento*/
+            /*Random usado para definir um tempo aleatório de atendimento*/
             int randomTime = rand.nextInt((20 - 10) + 1) + 10; // ((Max - Min) + 1) - Min
-            /* informa dura��o do atendimento para o assunto e provid�ncia tomada*/
+            /* informa duração do atendimento para o assunto e providência tomada*/
             a.setDuracaoAtendimento(randomTime);
-            a.setProvidencias("Provid�ncia_" + Integer.toString(randomTime));
+            a.setProvidencias("Providência_" + Integer.toString(randomTime));
         }
 
         /*Encerrando atendimento*/
         Atendimentos.Encerrar(proximoAtendimento);
 
-        /*pegando o pr�ximo */
+        /*pegando o próximo */
         proximoAtendimento = Atendimentos.Atender();
 
         /**
@@ -96,17 +96,17 @@ public class main_trabalho {
         for (int i = 0; i < proximoAtendimento.getAssuntosTratados().getTamanho(); i++) {
             /*Busca Assunto a ser tratado*/
             Assunto a = (Assunto) proximoAtendimento.getAssuntosTratados().get(i);
-            /*Random usado para definir um tempo aleat�rio de atendimento*/
+            /*Random usado para definir um tempo aleatório de atendimento*/
             int randomTime = rand.nextInt((20 - 10) + 1) + 10; // ((Max - Min) + 1) - Min
-            /* informa dura��o do atendimento para o assunto e provid�ncia tomada*/
+            /* informa duração do atendimento para o assunto e providência tomada*/
             a.setDuracaoAtendimento(randomTime);
-            a.setProvidencias("Provid�ncia_" + Integer.toString(randomTime));
+            a.setProvidencias("Providência_" + Integer.toString(randomTime));
         }
 
         /*Encerrando atendimento*/
         Atendimentos.Encerrar(proximoAtendimento);
 
-        /*pegando o pr�ximo */
+        /*pegando o próximo */
         proximoAtendimento = Atendimentos.Atender();
 
         /**
@@ -115,17 +115,17 @@ public class main_trabalho {
         for (int i = 0; i < proximoAtendimento.getAssuntosTratados().getTamanho(); i++) {
             /*Busca Assunto a ser tratado*/
             Assunto a = (Assunto) proximoAtendimento.getAssuntosTratados().get(i);
-            /*Random usado para definir um tempo aleat�rio de atendimento*/
+            /*Random usado para definir um tempo aleatório de atendimento*/
             int randomTime = rand.nextInt((20 - 10) + 1) + 10; // ((Max - Min) + 1) - Min
-            /* informa dura��o do atendimento para o assunto e provid�ncia tomada*/
+            /* informa duração do atendimento para o assunto e providência tomada*/
             a.setDuracaoAtendimento(randomTime);
-            a.setProvidencias("Provid�ncia_" + Integer.toString(randomTime));
+            a.setProvidencias("Providência_" + Integer.toString(randomTime));
         }
 
         /*Encerrando atendimento*/
         Atendimentos.Encerrar(proximoAtendimento);
 
-        /*pegando o pr�ximo */
+        /*pegando o próximo */
         proximoAtendimento = Atendimentos.Atender();
 
         /**
@@ -134,17 +134,17 @@ public class main_trabalho {
         for (int i = 0; i < proximoAtendimento.getAssuntosTratados().getTamanho(); i++) {
             /*Busca Assunto a ser tratado*/
             Assunto a = (Assunto) proximoAtendimento.getAssuntosTratados().get(i);
-            /*Random usado para definir um tempo aleat�rio de atendimento*/
+            /*Random usado para definir um tempo aleatório de atendimento*/
             int randomTime = rand.nextInt((20 - 10) + 1) + 10; // ((Max - Min) + 1) - Min
-            /* informa dura��o do atendimento para o assunto e provid�ncia tomada*/
+            /* informa duração do atendimento para o assunto e providência tomada*/
             a.setDuracaoAtendimento(randomTime);
-            a.setProvidencias("Provid�ncia_" + Integer.toString(randomTime));
+            a.setProvidencias("Providência_" + Integer.toString(randomTime));
         }
 
         /*Encerrando atendimento*/
         Atendimentos.Encerrar(proximoAtendimento);
 
-        /*Gerando estat�sticas para o dia */
+        /*Gerando estatísticas para o dia */
         estatisticas.GerarEstatistica(hoje);
 
     }

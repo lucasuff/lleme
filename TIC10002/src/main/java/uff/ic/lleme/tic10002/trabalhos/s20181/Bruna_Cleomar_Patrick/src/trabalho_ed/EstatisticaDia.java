@@ -1,9 +1,9 @@
-package trabalho_ed;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed;
 
 /*
- * Classe EstatisticaDia È uma classe associada a classe Estatistica.
- * Foi criada pois a classe Estatistica j· estende HashTable, e n„o poderia tambÈm
- * estender ObjetoBase para permitir o seu armazenamento tambÈm em uma HashTable.
+ * Classe EstatisticaDia √© uma classe associada a classe Estatistica.
+ * Foi criada pois a classe Estatistica j√° estende HashTable, e n√£o poderia tamb√©m
+ * estender ObjetoBase para permitir o seu armazenamento tamb√©m em uma HashTable.
  * */
 
 public class EstatisticaDia extends ObjetoBase {

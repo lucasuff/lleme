@@ -1,23 +1,23 @@
-package trabalho_ed;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import trabalho_ed.Estatistica.Metrica;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed.Estatistica.Metrica;
 
-/* Classe Estatisticas herda de HashTable. É usada para armazenar uma  lista de
+/* Classe Estatisticas herda de HashTable. ï¿½ usada para armazenar uma  lista de
  * objetos EstatisticaDia (que representam um conjunto de estatisticasde um dia)
 
-EXEMPLO DE ACESSO ÀS ESTATISTICAS EM O(1)
+EXEMPLO DE ACESSO ï¿½S ESTATISTICAS EM O(1)
 ==================================
- * // Acesso em O(1) através da chave da data
+ * // Acesso em O(1) atravÃ©s da chave da data
 	EstatisticaDia estatDia = Estatisticas.Buscar("20180624");
-	// Acesso em O(1) a metrica através da chave do tipo de assunto
+	// Acesso em O(1) a metrica atravÃ©s da chave do tipo de assunto
 	Metrica metrica = estatDia.Estatistica.Buscar("TIPO1");
 
-	//Acesso às estatísticas
+	//Acesso Ã s estatÃ­sticas
 	metrica.quantidade = 10; 
 	metrica.tempoAtendimento  = 20;
-	//calculo da média
+	//calculo da mÃ©dia
 	float med = metrica.getMedia();
  * */
 
@@ -58,17 +58,17 @@ public class Estatisticas extends HashTable{
 	public void GerarEstatistica(Date data) {
 		
 		System.out.println("");
-		System.out.println("Gerando Estatísticas ...");
+		System.out.println("Gerando EstatÃ­sticas ...");
 
 		EstatisticaDia estatDia = this.Buscar(data);
 		
 		Estatistica est = estatDia.getEstatistica();
 		
-		//Acesso aos elementos mantidos no hashtable atraves da lista estática auxiliar
+		//Acesso aos elementos mantidos no hashtable atraves da lista estï¿½tica auxiliar
 		//evitando assim varrer todo o hash table. Varre-se somente a lista estatica auxiliar
 		for(int i = 0; i < est.lista.getTamanho(); i++) {
 			Metrica m = (Metrica)est.lista.get(i);
-			System.out.println("Assunto: " + m.getChave() + ", média:" + m.getMedia());
+			System.out.println("Assunto: " + m.getChave() + ", mÃ©dia:" + m.getMedia());
 		}
 		
 	}

@@ -1,17 +1,17 @@
-package trabalho_ed;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed;
 
 import java.util.Date;
 /*
  * Classe Estatistica armazena objetos da classe Metrica
- * Uma Metrica contém um conjunto  de contatores para um tipo de assunto.
- * O acesso a uma métrica de um tipo é feito em O(1)
+ * Uma Metrica contÃ©m um conjunto  de contatores para um tipo de assunto.
+ * O acesso a uma mÃ©trica de um tipo Ã© feito em O(1)
  * */
 
 
 public class Estatistica extends HashTable{
-	//Lista estática auxiliar que guarda os objetos mantidos no hashtable
+	//Lista estÃ¡tica auxiliar que guarda os objetos mantidos no hashtable
 	// evitando que eu tenha que acessar elementos vazios quando quiser
-	// imprimir as estatísticas
+	// imprimir as estatÃ­sticas
 	
 	ListaEstatica lista;
 	
@@ -47,12 +47,12 @@ public class Estatistica extends HashTable{
 	public void AtualizarMetrica(Date dataChegada, String tipo, int tempoAtendimento) {
 		
 		/*
-		 * Busca em O(1) na hashtable, a métrica para o tipo requerido.
+		 * Busca em O(1) na hashtable, a mï¿½trica para o tipo requerido.
 		 * Se encontrar, atualiza os contadores.
-		 * Caso contrário, cria um novo objeto Metrica e insere no hash
+		 * Caso contrï¿½rio, cria um novo objeto Metrica e insere no hash
 		 * */
 		
-		System.out.println("Atualizando métricas: tipo '" + tipo + ", Duração Atendimento: " + tempoAtendimento);
+		System.out.println("Atualizando mÃ©tricas: tipo '" + tipo + ", DuraÃ§Ã£o Atendimento: " + tempoAtendimento);
 		
 		Metrica metrica = (Metrica)this.Buscar(tipo);
 		

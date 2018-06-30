@@ -1,11 +1,11 @@
-package trabalho_ed;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed;
 
 
 
-/*  A classe Assuntos representa uma coleção de Assuntos tratados durante um Atendimento a um Cliente
+/*  A classe Assuntos representa uma coleï¿½ï¿½o de Assuntos tratados durante um Atendimento a um Cliente
  *  Herda de ListaEstatica.
- *  Optamos por uma Lista Estatica pois durante um atendimento cada Assunto precisa ser acessado de forma linear para ter a providência
- *  e a duração do atendimento informados.
+ *  Optamos por uma Lista Estatica pois durante um atendimento cada Assunto precisa ser acessado de forma linear para ter a providï¿½ncia
+ *  e a duraï¿½ï¿½o do atendimento informados.
  *  */
 
 public class Assuntos extends ListaEstatica {
