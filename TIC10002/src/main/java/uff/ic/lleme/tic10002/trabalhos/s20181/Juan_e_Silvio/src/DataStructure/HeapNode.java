@@ -8,7 +8,7 @@ package DataStructure;
 import Objects.Atendimento;
 
 public class HeapNode {
-  
+
     public Atendimento atendimento = null;
     public float prioridade = 0;
 
@@ -17,12 +17,12 @@ public class HeapNode {
         this.prioridade = atendimento.getPrioridade();
     }
 
-    public void recalculaPrioridade(){
+    public void recalculaPrioridade() {
         this.prioridade = atendimento.getPrioridade();
     }
 
-    public Atendimento getAtendimento(){
+    public Atendimento getAtendimento() {
         return atendimento;
     }
-        
+
 }

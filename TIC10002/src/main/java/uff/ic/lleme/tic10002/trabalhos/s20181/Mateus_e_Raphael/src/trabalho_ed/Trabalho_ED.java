@@ -10,7 +10,7 @@ public class Trabalho_ED {
 
         FilaPrioridade fila = new FilaPrioridade();
         fila.atendimento();
-        
+
     }
-    
+
 }

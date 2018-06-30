@@ -5,22 +5,23 @@ package trabalho_ed;
  * @author mateu
  */
 public class PilhaEncerrados {
-    
-    public class No{
-        private Atendimento atendimento;
-        private No proximo;        
 
-        public No(Atendimento atendimento){
+    public class No {
+
+        private Atendimento atendimento;
+        private No proximo;
+
+        public No(Atendimento atendimento) {
             this.atendimento = atendimento;
         }
-        
-        public No getProximo(){
+
+        public No getProximo() {
             return this.proximo;
         }
-        
-        public void setProximo(No no){
+
+        public void setProximo(No no) {
             this.proximo = no;
-        } 
+        }
 
         public Atendimento getAtendimento() {
             return atendimento;
@@ -30,72 +31,70 @@ public class PilhaEncerrados {
             this.atendimento = atendimento;
         }
     }
-    
-    private No primeiro = null; 
+
+    private No primeiro = null;
     private int tamanhoPilha;
-    
-    public int getTamanhoPilha(){
+
+    public int getTamanhoPilha() {
         return tamanhoPilha;
     }
-    
-    public void setTamanhoPilha(int i){
+
+    public void setTamanhoPilha(int i) {
         this.tamanhoPilha = i;
     }
-    
-    public No getPrimeiro(){
+
+    public No getPrimeiro() {
         return this.primeiro;
     }
-    
-    public void setPrimeiro(Atendimento atend){
+
+    public void setPrimeiro(Atendimento atend) {
         this.primeiro = new No(atend);
     }
-    
+
     public void incluir(Atendimento atendimento) {
-        if (primeiro == null){ 
-            primeiro = new No(atendimento);            
+        if (primeiro == null) {
+            primeiro = new No(atendimento);
             tamanhoPilha++;
-        }else{
+        } else {
             incluir(atendimento, primeiro);
             tamanhoPilha++;
         }
     }
 
     private void incluir(Atendimento atendimento, No no) {
-        if (no.proximo == null){   
-            no.proximo = new No(atendimento);    
-        }else{
+        if (no.proximo == null)
+            no.proximo = new No(atendimento);
+        else
             incluir(atendimento, no.proximo);
-        }
     }
- 
-    public Atendimento remover(){
-        if(tamanhoPilha>0){
+
+    public Atendimento remover() {
+        if (tamanhoPilha > 0) {
             No curr_node = primeiro;
             No pai = null;
 
-            while(curr_node.getProximo()!=null){
+            while (curr_node.getProximo() != null) {
                 pai = curr_node;
                 curr_node = curr_node.getProximo();
-            }    
+            }
 
-            if(pai == null){
+            if (pai == null) {
                 primeiro = null;
-                tamanhoPilha --;
-            }else{                
-                pai.setProximo(null);            
-                tamanhoPilha --;
+                tamanhoPilha--;
+            } else {
+                pai.setProximo(null);
+                tamanhoPilha--;
             }
             return curr_node.getAtendimento();
-        }
-        else
+        } else
             return null;
-    }     
-    
-    public void imprimir(){
-        No curr_node = primeiro;        
-        while(curr_node != null){
-           System.out.println(curr_node.getAtendimento().getCliente().getNome());
-           curr_node = curr_node.getProximo();
-       }      
+    }
+
+    public void imprimir() {
+        No curr_node = primeiro;
+        while (curr_node != null) {
+            System.out.println(curr_node.getAtendimento().getCliente().getNome());
+            curr_node = curr_node.getProximo();
+        }
     }
 }

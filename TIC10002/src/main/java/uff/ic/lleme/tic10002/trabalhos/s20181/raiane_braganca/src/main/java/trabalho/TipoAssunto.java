@@ -1,6 +1,7 @@
 package trabalho;
 
 public class TipoAssunto {
+
     public int tipo;
     public String titulo;
     private int urgencia;
@@ -16,10 +17,9 @@ public class TipoAssunto {
     }
 
     public void setUrgencia(int urgencia) {
-        if (urgencia < 0 || urgencia > 10) {
+        if (urgencia < 0 || urgencia > 10)
             throw new IllegalArgumentException("O grau de urgência deve ser de 0 a 10.");
-        } else {
+        else
             this.urgencia = urgencia;
-        }
-    }    
+    }
 }

@@ -3,14 +3,16 @@ package uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.src.ed.trabalho201
 public class HeapAtendimento {
 
     public class Priorizacao {
+
         public Atendimento objeto = null;
         public float prioridade = 0;
+
         public Priorizacao(Atendimento objeto, float prioridade) {
             this.objeto = objeto;
             this.prioridade = prioridade;
         }
     }
-    
+
     private Priorizacao[] heap = new Priorizacao[100];
     private int n = 0;
 
@@ -22,7 +24,7 @@ public class HeapAtendimento {
         } else
             System.out.println("Limite excedido");
     }
-    
+
     public Atendimento remover() {
         Atendimento t = heap[0].objeto;
         heap[0] = heap[--n]; // passa o ultimo para primeiro
@@ -66,28 +68,28 @@ public class HeapAtendimento {
                 System.out.print(String.format("[%s -> %.4f] ", (h.objeto).getCliente().getNome(), h.prioridade));
         System.out.println("}");
     }
-    
+
     private Priorizacao[] recalcularPrioridades() {
         HeapAtendimento recalculado = new HeapAtendimento();
-        for(int i=0; i<n; i++) {
+        for (int i = 0; i < n; i++) {
             Atendimento a = heap[i].objeto;
             // a prioridade é recalculada e inserida em um novo heap
             recalculado.incluirSemRecalcular(a, a.calcularPrioridade());
         }
-        return  recalculado.heap;
+        return recalculado.heap;
     }
-    
+
     private void incluirSemRecalcular(Atendimento o, float p) {
-        if (n< heap.length-1) {
+        if (n < heap.length - 1) {
             heap[n++] = new Priorizacao(o, p);
-            subir(n-1);
+            subir(n - 1);
         }
     }
-    
+
     public int getTamanho() {
         return n;
     }
-    
+
     public Atendimento acessar(int i) {
         return heap[i].objeto;
     }

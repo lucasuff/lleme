@@ -10,6 +10,7 @@ package uff.ic.lleme.tic10002.trabalhos.s20181.PabloMoreira.trabalhoed;
  * @author pablomoreira
  */
 public class TipoAssunto {
+
     private int tipo;
     private String título;
     private int urgencia;
@@ -43,6 +44,5 @@ public class TipoAssunto {
     public void setUrgencia(int urgencia) {
         this.urgencia = urgencia;
     }
-    
-    
+
 }

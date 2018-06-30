@@ -1,28 +1,25 @@
 package trabalho_ed;
-import java.time.Instant;
 
 /**
  *
  * @author mateu
  */
-
-
 public class Assunto {
-    
+
     public TipoAssunto tipo;
-    private String descricao ;
+    private String descricao;
     private String providencia;
     private int duracaoAtendimento;
-        
+
     //método construtor com inicialização
-    public Assunto(TipoAssunto tipo, String descricao){ 
+    public Assunto(TipoAssunto tipo, String descricao) {
         this.tipo = tipo;
         this.descricao = descricao;
         this.providencia = null;
         this.duracaoAtendimento = -1;
     }
-    
-    public Assunto(TipoAssunto tipo, String descricao, String providencia, int duracaoAtendimento){ 
+
+    public Assunto(TipoAssunto tipo, String descricao, String providencia, int duracaoAtendimento) {
         this.tipo = tipo;
         this.descricao = descricao;
         this.providencia = providencia;
@@ -60,8 +57,8 @@ public class Assunto {
     public void setDuracaoAtendimento(int duracaoAtendimento) {
         this.duracaoAtendimento = duracaoAtendimento;
     }
-    
-    public void finalizarAssunto(String providencia, int duracao){
+
+    public void finalizarAssunto(String providencia, int duracao) {
         this.providencia = providencia;
         this.duracaoAtendimento = duracao;
     }

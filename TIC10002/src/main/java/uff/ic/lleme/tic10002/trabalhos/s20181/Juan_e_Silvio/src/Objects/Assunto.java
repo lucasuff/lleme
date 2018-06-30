@@ -5,9 +5,9 @@ Os assuntos informados são registrados
 com o seu tipo, a descrição fornecida pelo cliente, as providências tomadas e a duração do
 atendimento para aquele assunto (Assunto {tipo, descrição, providências,
 duraçãoAtendimento}).
-*/
+ */
 public class Assunto {
-    
+
     private TipoAssunto tipo;
     private String descricao;
     private String providencias;
@@ -18,7 +18,7 @@ public class Assunto {
         this.tipo = tipo;
         this.descricao = descricao;
     }
-    
+
     //Abordagem hardcoded
     public Assunto(TipoAssunto tipo, String descricao, String providencias, int duracaoAtendimento) {
         this.tipo = tipo;
@@ -26,7 +26,6 @@ public class Assunto {
         this.providencias = providencias;
         this.duracaoAtendimento = duracaoAtendimento;
     }
-
 
     public void setProvidencias(String providencias) {
         this.providencias = providencias;
@@ -51,14 +50,13 @@ public class Assunto {
     public int getDuracaoAtendimento() {
         return duracaoAtendimento;
     }
-    
-    public int getUrgencia(){
+
+    public int getUrgencia() {
         return tipo.getUrgencia();
     }
-    
-    public String toShortString(){
-        return "T:"+tipo.getTipo()+"|U:"+tipo.getUrgencia()+"|D:"+duracaoAtendimento;
+
+    public String toShortString() {
+        return "T:" + tipo.getTipo() + "|U:" + tipo.getUrgencia() + "|D:" + duracaoAtendimento;
     }
-    
-    
+
 }

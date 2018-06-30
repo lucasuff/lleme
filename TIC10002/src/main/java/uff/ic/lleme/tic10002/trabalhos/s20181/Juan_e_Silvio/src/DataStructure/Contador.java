@@ -10,7 +10,7 @@ package DataStructure;
  * @author juan__000
  */
 public class Contador {
-    
+
     private float[] soma;
     private int[] quantidade;
 
@@ -18,18 +18,17 @@ public class Contador {
         soma = new float[numContadores];
         quantidade = new int[numContadores];
     }
-    
-    public void adiciona(int tipo, float duracao){
+
+    public void adiciona(int tipo, float duracao) {
         soma[tipo - 1] += duracao;
         quantidade[tipo - 1]++;
     }
-    
-    public float getMedia(int tipo){
-        if(soma[tipo - 1] > 0){
+
+    public float getMedia(int tipo) {
+        if (soma[tipo - 1] > 0)
             return soma[tipo - 1] / quantidade[tipo - 1];
-        } else {
+        else
             return 0;
-        }
     }
-    
+
 }

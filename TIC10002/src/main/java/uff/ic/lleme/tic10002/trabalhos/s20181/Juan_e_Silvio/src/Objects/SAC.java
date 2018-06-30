@@ -1,6 +1,5 @@
 package Objects;
 
-import DataStructure.HeapNode;
 import DataStructure.Contador;
 import DataStructure.HashTable;
 import DataStructure.Heap;
@@ -11,10 +10,10 @@ import java.util.GregorianCalendar;
 import javax.naming.LimitExceededException;
 
 /*
-O fluxo de processo do serviço de atendimento ao cliente é 
-1) recepcionar atendimento, 
-2) recuperar dados do atendimento mais prioritário, 
-3) registrar providências e duração de atendimento e, quando solicitado a qualquer tempo, 
+O fluxo de processo do serviço de atendimento ao cliente é
+1) recepcionar atendimento,
+2) recuperar dados do atendimento mais prioritário,
+3) registrar providências e duração de atendimento e, quando solicitado a qualquer tempo,
 4) gerar estatística.
  */
 public class SAC {
@@ -36,9 +35,8 @@ public class SAC {
     public void recepcionar(Cliente c, Assunto[] assuntos) {
         try {
             filaDePrioridade.inserir(new Atendimento(c, assuntos));
-            if (debug) {
+            if (debug)
                 filaDePrioridade.printHeap();
-            }
         } catch (LimitExceededException e) {
             System.err.println("Fila cheia!");
         }
@@ -51,14 +49,12 @@ public class SAC {
      */
     public Atendimento atender() {
         try {
-            if (debug) {
+            if (debug)
                 filaDePrioridade.printHeap();
-            }
             atual = filaDePrioridade.getNext();
             atual.inicioAtendimento();
-            if (debug) {
+            if (debug)
                 System.out.println("Início do atendimento: " + atual.getCliente().getNome());
-            }
             return atual;
         } catch (LimitExceededException ex) {
             System.err.println("Nenhum atendimento na fila!");
@@ -75,9 +71,8 @@ public class SAC {
         de atendimento encerrados.
      */
     public void gerarEstatistica(String data) {
-        if(debug){
+        if (debug)
             System.out.println(atendimentosEncerrados.toString());
-        }
         //Pega atendimentos do dia especificado
         Atendimento[] encerradosDoDia = atendimentosEncerrados.get(data);
         if (encerradosDoDia.length > 0) {
@@ -93,13 +88,11 @@ public class SAC {
             System.out.println("-----------------------------------------------------------------");
             System.out.println("Estatísticas (" + data.substring(8, 10) + "/" + data.substring(5, 7) + "/" + data.substring(0, 4) + "):");
             System.out.println("-----------------------------------------------------------------");
-            for (int i = 1; i <= QTD_TIPOS; i++) {
+            for (int i = 1; i <= QTD_TIPOS; i++)
                 System.out.println("Tipo " + i + ": " + cont.getMedia(i));
-            }
             System.out.println("-----------------------------------------------------------------");
-        } else {
+        } else
             System.out.println("ERRO! - Nenhum atendimento foi realizado no dia informado");
-        }
     }
 
     /*
@@ -136,10 +129,10 @@ public class SAC {
         System.out.println("-----------------------------------------------------------------");
         Assunto[] assuntosResolvidos = atendimento.getAssuntos();
         for (int i = 0; i < assuntosResolvidos.length; i++) {
-            System.out.println("Assunto " + (i+1) + ": | TIPO: "+assuntosResolvidos[i].getTipoAssunto().toString() +"\n\t"
-                    +assuntosResolvidos[i].getDescricao());
-            System.out.println("\tProvidência: "+assuntosResolvidos[i].getProvidencias() +
-                    "| TEMPO: "+assuntosResolvidos[i].getDuracaoAtendimento());
+            System.out.println("Assunto " + (i + 1) + ": | TIPO: " + assuntosResolvidos[i].getTipoAssunto().toString() + "\n\t"
+                    + assuntosResolvidos[i].getDescricao());
+            System.out.println("\tProvidência: " + assuntosResolvidos[i].getProvidencias()
+                    + "| TEMPO: " + assuntosResolvidos[i].getDuracaoAtendimento());
         }
         System.out.println("-----------------------------------------------------------------");
     }

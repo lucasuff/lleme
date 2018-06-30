@@ -10,6 +10,7 @@ package uff.ic.lleme.tic10002.trabalhos.s20181.PabloMoreira.trabalhoed;
  * @author pablomoreira
  */
 public class ParDeEspera {
+
     private Atendimento atendimento;
     private float prioridade;
 
@@ -17,17 +18,10 @@ public class ParDeEspera {
         this.atendimento = atendimento;
         this.prioridade = prioridade;
     }
-    
-    
-    
-    
-    
 
     public float getPrioridade() {
         return prioridade;
     }
-
-    
 
     public Atendimento getAtendimento() {
         return atendimento;
@@ -36,7 +30,5 @@ public class ParDeEspera {
     void setPrioridade(int novaPrioridade) {
         this.prioridade = novaPrioridade;
     }
-    
-    
-    
+
 }

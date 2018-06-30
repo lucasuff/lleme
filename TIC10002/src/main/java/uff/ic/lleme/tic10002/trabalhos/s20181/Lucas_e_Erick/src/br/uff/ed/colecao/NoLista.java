@@ -4,32 +4,33 @@ import java.io.Serializable;
 
 @SuppressWarnings("rawtypes")
 public class NoLista<T extends Comparable> extends No<T> implements Serializable {
-	private static final long serialVersionUID = -8818893711843410556L;
-	No<T> proxNo;
-	private int chave;
 
-	public NoLista() {
-	}
+    private static final long serialVersionUID = -8818893711843410556L;
+    No<T> proxNo;
+    private int chave;
 
-	public NoLista(T conteudo, int chave) {
-		this.conteudo = conteudo;
-		this.chave = chave;
-	}
+    public NoLista() {
+    }
 
-	public No<T> getProxNo() {
-		return proxNo;
-	}
+    public NoLista(T conteudo, int chave) {
+        this.conteudo = conteudo;
+        this.chave = chave;
+    }
 
-	public void setProxNo(No<T> proxNo) {
-		this.proxNo = proxNo;
-	}
+    public No<T> getProxNo() {
+        return proxNo;
+    }
 
-	public int getChave() {
-		return chave;
-	}
+    public void setProxNo(No<T> proxNo) {
+        this.proxNo = proxNo;
+    }
 
-	public void setChave(int chave) {
-		this.chave = chave;
-	}
+    public int getChave() {
+        return chave;
+    }
+
+    public void setChave(int chave) {
+        this.chave = chave;
+    }
 
 }

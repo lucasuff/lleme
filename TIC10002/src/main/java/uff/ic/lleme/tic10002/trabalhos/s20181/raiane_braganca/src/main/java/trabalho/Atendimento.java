@@ -2,8 +2,8 @@ package trabalho;
 
 import java.util.Date;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Atendimento {
 
@@ -12,16 +12,16 @@ public class Atendimento {
     public ListaLigada<Assunto> assuntos;
     public Date horaChegada;
     public Date horaIncioAtendimento;
-    
+
     public static double PRIORIDADE_CLIENTE_IDADE = 65.0;
     public static double PRIORIDADE_CLIENTE_ESPERA = 15.0;
     public static double PRIORIDADE_CLIENTE_URGENCIA = 10.0;
-    
+
     public Atendimento(int id) {
         this.id = id;
         this.assuntos = new ListaLigada<>();
     }
-    
+
     public void importaCliente(Cliente c, ListaLigada<Assunto> a) {
         this.cliente = c;
         this.horaChegada = new Date();
@@ -99,7 +99,7 @@ public class Atendimento {
     }
 
     /**
-     * Exibe o tempo médio, por tipo de assunto, dos atendimento encerrados 
+     * Exibe o tempo médio, por tipo de assunto, dos atendimento encerrados
      *
      * @param atendimentosRealizados
      */
@@ -113,9 +113,9 @@ public class Atendimento {
             for (int j = 0; j < atendimentoRealizado.assuntos.tamanho(); j++) {
                 assunto = atendimentoRealizado.assuntos.obtem(j);
                 objEstatisticaTipoAssunto = EstatisticaTipoAssunto.buscaElemento(assunto.tipoAssunto.tipo, listaPorTipoAssuntos);
-                if (objEstatisticaTipoAssunto != null) {
+                if (objEstatisticaTipoAssunto != null)
                     objEstatisticaTipoAssunto.atualizaTempo(assunto.duracaoAtendimento);
-                } else {
+                else {
                     objEstatisticaTipoAssunto = new EstatisticaTipoAssunto(assunto.tipoAssunto.tipo, assunto.duracaoAtendimento);
                     //listaPorTipoAssuntos.adiciona(objEstatisticaTipoAssunto);
                     listaPorTipoAssuntos.adicionaComPrioridade(objEstatisticaTipoAssunto, new EstatisticaTipoAssuntoComparator());
@@ -127,9 +127,9 @@ public class Atendimento {
         System.out.println("****************** ESTATÍSTICAS DO SISTEMA ******************");
         System.out.println("*************************************************************");
 
-        if (listaPorTipoAssuntos.estaVazia()) {
+        if (listaPorTipoAssuntos.estaVazia())
             System.out.println("Não existe valores para serem exibidos!");
-        } else {
+        else {
             System.out.println("Tempo médio e total de atendimentos para cada tipo de assunto");
             EstatisticaTipoAssunto listaPorTipoAssunto;
             for (int i = 0; i < listaPorTipoAssuntos.tamanho(); i++) {
@@ -165,18 +165,17 @@ public class Atendimento {
     public void adicionarAssuntos(TipoAssunto tiposDeAssuntos[]) {
         System.out.println("*************************************************************");
         System.out.println("Selecione o tipo de assunto do cliente");
-        for (int i = 0; i < tiposDeAssuntos.length; i++) {
+        for (int i = 0; i < tiposDeAssuntos.length; i++)
             System.out.println(
                     "["
                     + Integer.toString(i)
                     + "] "
                     + tiposDeAssuntos[i].titulo
             );
-        }
 
         String adicionarNovoAssunto = "S";
         int idTipoAssunto;
-        do {
+        do
             try {
                 Scanner entrada = new Scanner(System.in);
                 System.out.printf("\nCodigo do assunto: ");
@@ -198,12 +197,11 @@ public class Atendimento {
                 System.out.printf("Deseja adicionar um novo assunto [S/N]? R.: ");
                 entrada = new Scanner(System.in);
                 adicionarNovoAssunto = entrada.next();
-                
+
             } catch (InputMismatchException e) {
                 System.out.println("Opção inválida!");
             }
-            
-        } while (adicionarNovoAssunto.toUpperCase().equals("S"));
+        while (adicionarNovoAssunto.toUpperCase().equals("S"));
 
     }
 

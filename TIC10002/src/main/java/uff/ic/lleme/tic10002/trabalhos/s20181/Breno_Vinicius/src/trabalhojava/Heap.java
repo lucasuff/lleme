@@ -10,14 +10,13 @@ package trabalhojava;
  * @author Breno
  */
 public class Heap {
-    
+
     //int nmax = ClientesEsperando.nmax;
     //public ClientesEsperando.Cliente[] heap = new ClientesEsperando.Cliente[nmax];
-    
 //    private void subir(int i){
-//    
+//
 //       int pai= i/2;
-//        
+//
 //        if(pai>=1){
 //            //Atualizar prioridade pai
 //            if (heap[i].prioridade>heap[pai].prioridade){
@@ -26,7 +25,6 @@ public class Heap {
 //            }
 //        }
 //    }
-    
 //    private void descer(int i){
 //       int filho=2*i+1;
 //       if (filho<n){
@@ -36,16 +34,14 @@ public class Heap {
 //                }
 //           if(heap[i].prioridade<heap[filho].prioridade){
 //                    trocar(i,filho);
-//                    descer(filho);           
+//                    descer(filho);
 //           }
 //       }
 //    }
-//    
+//
 //    public void trocar(int i, int j){
 //       Priorizacao aux= heap[i];
 //       heap[i]= heap[j];
 //       heap[j]= aux;
 //    }
-    
-    
 }

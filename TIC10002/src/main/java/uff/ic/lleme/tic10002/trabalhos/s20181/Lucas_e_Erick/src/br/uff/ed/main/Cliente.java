@@ -1,114 +1,112 @@
 package br.uff.ed.main;
 
+import br.uff.ed.colecao.Lista;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-import br.uff.ed.colecao.Lista;
-
 @SuppressWarnings("rawtypes")
 public class Cliente implements Comparable, Priorizavel {
-	private int cpf;
-	private int idade;
-	private String nome;
-	private Lista<Assunto> listaAssuntos;
-	private LocalDateTime tempoChegada;
-	private LocalDateTime tempoAtendimento;
-	private double prioridade;
 
-	public Cliente(int cpf, int idade, String nome, Lista<Assunto> listaAssuntos, LocalDateTime tempoChegada) {
-		this.cpf = cpf;
-		this.idade = idade;
-		this.nome = nome;
-		this.listaAssuntos = listaAssuntos;
-		this.tempoChegada = tempoChegada;
-		this.tempoAtendimento = null;
-		this.prioridade = this.priorizar(tempoChegada);
-	}
+    private int cpf;
+    private int idade;
+    private String nome;
+    private Lista<Assunto> listaAssuntos;
+    private LocalDateTime tempoChegada;
+    private LocalDateTime tempoAtendimento;
+    private double prioridade;
 
-	public LocalDateTime getTempoChegada() {
-		return tempoChegada;
-	}
+    public Cliente(int cpf, int idade, String nome, Lista<Assunto> listaAssuntos, LocalDateTime tempoChegada) {
+        this.cpf = cpf;
+        this.idade = idade;
+        this.nome = nome;
+        this.listaAssuntos = listaAssuntos;
+        this.tempoChegada = tempoChegada;
+        this.tempoAtendimento = null;
+        this.prioridade = this.priorizar(tempoChegada);
+    }
 
-	public void setTempoChegada(LocalDateTime tempoChegada) {
-		this.tempoChegada = tempoChegada;
-	}
+    public LocalDateTime getTempoChegada() {
+        return tempoChegada;
+    }
 
-	public double getPrioridade() {
-		return prioridade;
-	}
+    public void setTempoChegada(LocalDateTime tempoChegada) {
+        this.tempoChegada = tempoChegada;
+    }
 
-	public void setPrioridade(double prioridade) {
-		this.prioridade = prioridade;
-	}
+    public double getPrioridade() {
+        return prioridade;
+    }
 
-	public Lista<Assunto> getListaAssuntos() {
-		return listaAssuntos;
-	}
+    public void setPrioridade(double prioridade) {
+        this.prioridade = prioridade;
+    }
 
-	public void setListaAssuntos(Lista<Assunto> listaAssuntos) {
-		this.listaAssuntos = listaAssuntos;
-	}
+    public Lista<Assunto> getListaAssuntos() {
+        return listaAssuntos;
+    }
 
-	public int getCpf() {
-		return cpf;
-	}
+    public void setListaAssuntos(Lista<Assunto> listaAssuntos) {
+        this.listaAssuntos = listaAssuntos;
+    }
 
-	public void setCpf(int cpf) {
-		this.cpf = cpf;
-	}
+    public int getCpf() {
+        return cpf;
+    }
 
-	public int getIdade() {
-		return idade;
-	}
+    public void setCpf(int cpf) {
+        this.cpf = cpf;
+    }
 
-	public void setIdade(int idade) {
-		this.idade = idade;
-	}
+    public int getIdade() {
+        return idade;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public LocalDateTime getTempoAtendimento() {
-		return tempoAtendimento;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setTempoAtendimento(LocalDateTime tempoAtendimento) {
-		this.tempoAtendimento = tempoAtendimento;
-	}
+    public LocalDateTime getTempoAtendimento() {
+        return tempoAtendimento;
+    }
 
-	@Override
-	public int compareTo(Object cliente) {
-		if (this.prioridade < ((Cliente) cliente).prioridade) {
-			return -1;
-		} else if (this.prioridade == ((Cliente) cliente).prioridade) {
-			return 0;
-		} else {
-			return 1;
-		}
-	}
+    public void setTempoAtendimento(LocalDateTime tempoAtendimento) {
+        this.tempoAtendimento = tempoAtendimento;
+    }
 
-	@Override
-	public double priorizar(LocalDateTime atual) {
-		double idadenormalizada = idade / 65.0;
-		double temponormalizado = (Duration.between(tempoChegada, atual).toMinutes()) / 15.0;
-		double mediaassuntonormalizado = 0.0;
-		Assunto[] assuntos = Arrays.copyOf(this.getListaAssuntos().toArray(), this.listaAssuntos.getTamanho(),
-				Assunto[].class);
-		for (int i = 0; i < assuntos.length; i++) {
-			mediaassuntonormalizado += (double) assuntos[i].getTipoAssunto().getUrgencia().getValor();
-		}
-		mediaassuntonormalizado = (mediaassuntonormalizado / listaAssuntos.getTamanho()) / 10.0;
-		return prioridade = (idadenormalizada + temponormalizado + mediaassuntonormalizado) / 3;
-	}
+    @Override
+    public int compareTo(Object cliente) {
+        if (this.prioridade < ((Cliente) cliente).prioridade)
+            return -1;
+        else if (this.prioridade == ((Cliente) cliente).prioridade)
+            return 0;
+        else
+            return 1;
+    }
 
-	@Override
-	public LocalDateTime getPriorizador() {
-		return tempoChegada;
-	}
+    @Override
+    public double priorizar(LocalDateTime atual) {
+        double idadenormalizada = idade / 65.0;
+        double temponormalizado = (Duration.between(tempoChegada, atual).toMinutes()) / 15.0;
+        double mediaassuntonormalizado = 0.0;
+        Assunto[] assuntos = Arrays.copyOf(this.getListaAssuntos().toArray(), this.listaAssuntos.getTamanho(),
+                Assunto[].class);
+        for (int i = 0; i < assuntos.length; i++)
+            mediaassuntonormalizado += (double) assuntos[i].getTipoAssunto().getUrgencia().getValor();
+        mediaassuntonormalizado = (mediaassuntonormalizado / listaAssuntos.getTamanho()) / 10.0;
+        return prioridade = (idadenormalizada + temponormalizado + mediaassuntonormalizado) / 3;
+    }
+
+    @Override
+    public LocalDateTime getPriorizador() {
+        return tempoChegada;
+    }
 }

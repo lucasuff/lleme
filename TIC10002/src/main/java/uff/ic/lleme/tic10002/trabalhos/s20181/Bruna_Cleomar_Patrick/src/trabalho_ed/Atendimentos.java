@@ -11,7 +11,7 @@ public class Atendimentos {
     MaxHeap fila;
 
     public Atendimentos(int maxsize, Estatisticas estatisticas) {
-        
+
         this.fila = new MaxHeap(maxsize);
         this.estatisticas = estatisticas;
         this.tiposAssuntos = new TiposAssuntos(System.getProperty("user.dir") + "\\src\\main\\java\\uff\\ic\\lleme\\tic10002\\trabalhos\\s20181\\Bruna_Cleomar_Patrick\\data\\TipoAssunto.txt");

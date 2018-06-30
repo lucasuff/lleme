@@ -11,8 +11,8 @@ import java.util.Date;
  *
  * @author pablomoreira
  */
-
 public class Atendimento {
+
     public final static int MAX_ASSUNTOS = 10;
     private Cliente cliente;
     private Assunto[] assunto;
@@ -25,7 +25,7 @@ public class Atendimento {
         this.horaChegada = horaChegada;
         this.horaAtendimento = horaAtendimento;
     }
-    
+
     public Atendimento(Cliente cliente, Assunto[] assunto) {
         this.cliente = cliente;
         this.assunto = assunto;
@@ -64,7 +64,5 @@ public class Atendimento {
     public void setHoraAtendimento(Date horaAtendimento) {
         this.horaAtendimento = horaAtendimento;
     }
-    
-    
-            
+
 }

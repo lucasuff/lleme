@@ -1,9 +1,9 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano;
 
 /**
- * Classe na qual os objetos representam cada assunto a ser tratado em um 
+ * Classe na qual os objetos representam cada assunto a ser tratado em um
  * atendimento de um cliente
- * 
+ *
  * @author Nilson e Fabiano
  */
 public class Assunto {
@@ -15,8 +15,9 @@ public class Assunto {
 
     /**
      * Contrutor
-     * @param tipo 
-     * @param descricao 
+     *
+     * @param tipo
+     * @param descricao
      */
     public Assunto(TipoAssunto tipo, String descricao) {
         this.tipo = tipo;
@@ -24,11 +25,11 @@ public class Assunto {
     }
 
     /**
-     * Registra qual a providencia será tomada para resolver o assunto
-     * bem como a duracao do atendimento para esse assunto.
-     * 
-     * @param providencia   Providencia a ser tomada
-     * @param duracao       duracao do atendimento em minutos
+     * Registra qual a providencia será tomada para resolver o assunto bem como
+     * a duracao do atendimento para esse assunto.
+     *
+     * @param providencia Providencia a ser tomada
+     * @param duracao duracao do atendimento em minutos
      */
     public void registrar(String providencia, int duracao) {
         this.providencia = providencia;
@@ -51,7 +52,7 @@ public class Assunto {
 
     /**
      * Retorna o tempo necessário para resolver o assunto
-     * 
+     *
      */
     public int getDuracao() {
         return duracao;

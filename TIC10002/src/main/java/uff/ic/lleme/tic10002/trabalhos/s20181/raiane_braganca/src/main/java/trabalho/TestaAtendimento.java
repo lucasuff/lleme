@@ -24,9 +24,8 @@ public class TestaAtendimento {
         ListaLigada<Atendimento> atendimentosRealizados = new ListaLigada<>();
 
         TipoAssunto[] tiposDeAssuntos = new TipoAssunto[11];
-        for (int i = 0; i <= 10; i++) {
+        for (int i = 0; i <= 10; i++)
             tiposDeAssuntos[i] = new TipoAssunto(i, "Assunto " + (i + 1), i);
-        }
         // Importa dados do XML
         codigoAtendimento = CarregaDados.lerXML("dados.xml", codigoAtendimento, listaDeEspera, tiposDeAssuntos);
 
@@ -52,12 +51,12 @@ public class TestaAtendimento {
                 case 2:
                     Date horaIncioAtendimento = new Date();
                     int idProximo = Atendimento.buscaClienteMaiorPrioridade(listaDeEspera, horaIncioAtendimento);
-                    if (listaDeEspera.estaVazia()) {
+                    if (listaDeEspera.estaVazia())
                         System.out.println("Não existe nenhum cliente na fila de espera.");
-                    } else if(filaEmAtendimento.tamanho() == NUM_MAX_ATENDIMENTO_SIMULTANEOS) {
+                    else if (filaEmAtendimento.tamanho() == NUM_MAX_ATENDIMENTO_SIMULTANEOS)
                         System.out.println("Por favor, aguarde. Todos os nossos operadores estão ocupados.");
-                    } else {
-                        objAtendimento = listaDeEspera.obtem(idProximo);                        
+                    else {
+                        objAtendimento = listaDeEspera.obtem(idProximo);
                         objAtendimento.atender(horaIncioAtendimento);
                         filaEmAtendimento.adicionaNoFinal(objAtendimento);
                         listaDeEspera.remove(idProximo);
@@ -65,9 +64,9 @@ public class TestaAtendimento {
                     break;
 
                 case 3:
-                    if (filaEmAtendimento.estaVazia()) {
+                    if (filaEmAtendimento.estaVazia())
                         System.out.println("Não existe nenhum atendimento em andamento.");
-                    } else {
+                    else {
                         objAtendimento = filaEmAtendimento.removePrimeiro();
                         objAtendimento.encerrarAtendimento();
                         atendimentosRealizados.adiciona(objAtendimento);

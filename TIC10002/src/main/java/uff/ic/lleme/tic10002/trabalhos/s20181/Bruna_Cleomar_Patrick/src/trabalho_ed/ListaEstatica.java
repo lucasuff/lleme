@@ -32,25 +32,25 @@ public class ListaEstatica {
     }
 
     public Object Remover(int index) {
-    	Object item = null;
+        Object item = null;
         if (index < indice) {
-        	item = ((Object[]) this.lista)[index];
+            item = ((Object[]) this.lista)[index];
             indice--;
         }
         return item;
     }
 
     public Object get(int index) {
-    	Object item = null;
+        Object item = null;
         if (index < indice)
             item = ((Object[]) this.lista)[index];
         return item;
     }
 
     public Object set(int index, Object novoItem) {
-    	Object item = null;
+        Object item = null;
         if (index < indice)
-        	item = ((Object[]) this.lista)[index] = novoItem;
+            item = ((Object[]) this.lista)[index] = novoItem;
         return item;
     }
 

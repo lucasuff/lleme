@@ -23,9 +23,8 @@ public class EstatisticaTipoAssunto {
         EstatisticaTipoAssunto tipoAssunto;
         for (int i = 0; i < listaPorTipoAssuntos.tamanho(); i++) {
             tipoAssunto = listaPorTipoAssuntos.obtem(i);
-            if (tipoAssunto.idTipo == tipo) {
+            if (tipoAssunto.idTipo == tipo)
                 return tipoAssunto;
-            }
         }
         return null;
     }

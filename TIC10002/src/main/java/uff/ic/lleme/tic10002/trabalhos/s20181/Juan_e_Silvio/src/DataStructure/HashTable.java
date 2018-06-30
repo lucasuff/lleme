@@ -9,16 +9,14 @@ public class HashTable {
     private EntryList[] entries = new EntryList[INITIAL_SIZE];
 
     public HashTable() {
-        for (int i = 0; i < entries.length; i++) {
+        for (int i = 0; i < entries.length; i++)
             entries[i] = new EntryList(i);
-        }
     }
 
     public void put(String key, Atendimento value) throws ParseException {
         int hash = 0;
-        if (entries[0] != null) {
+        if (entries[0] != null)
             hash = getHash(key);
-        }
         final EntryListNode hashEntry = new EntryListNode(value);
         if (hash > entries.length) {
             System.out.println("DEBUG EXPANSION: Hash " + hash);
@@ -35,9 +33,8 @@ public class HashTable {
      */
     public Atendimento[] get(String key) {
         int hash = getHash(key);
-        if (entries[hash] != null) {
+        if (entries[hash] != null)
             return entries[hash].toArray();
-        }
         return null;
     }
 
@@ -81,7 +78,7 @@ public class HashTable {
     private static void log(String msg) {
         System.out.println(msg);
     }
-    
+
     public static class EntryList {
 
         int slotNumber;
@@ -93,15 +90,14 @@ public class HashTable {
         }
 
         public void add(EntryListNode e) {
-            if (first == null){
+            if (first == null)
                 //Insere primeiro
                 first = e;
-            } else {
+            else {
                 //Insere no final
                 EntryListNode actual = first;
-                while (actual.next != null) {
+                while (actual.next != null)
                     actual = actual.next;
-                }
                 actual.next = e;
             }
             size++;
@@ -133,7 +129,7 @@ public class HashTable {
                 String s = "";
                 while (actual.next != null) {
                     Atendimento a = actual.getValue();
-                    s += "["+a.toShortString()+"] -> ";
+                    s += "[" + a.toShortString() + "] -> ";
                     actual = actual.next;
                     i++;
                 }

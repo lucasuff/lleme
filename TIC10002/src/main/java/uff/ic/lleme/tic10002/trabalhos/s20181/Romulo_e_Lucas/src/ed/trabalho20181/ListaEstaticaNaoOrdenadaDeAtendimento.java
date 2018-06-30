@@ -18,8 +18,10 @@ public class ListaEstaticaNaoOrdenadaDeAtendimento {
     // public Atendimento buscar(int chave) {}
     // public Atendimento obter(int pos) {}
     public void incluir(Atendimento objeto) {
-        if (tamanho < lista.length - 1) this.lista[tamanho++] = objeto;
-        else expandir();
+        if (tamanho < lista.length - 1)
+            this.lista[tamanho++] = objeto;
+        else
+            expandir();
     }
 
     public void excluir(int chave) {
@@ -29,12 +31,11 @@ public class ListaEstaticaNaoOrdenadaDeAtendimento {
 
     private Atendimento[] expandir() {
         Atendimento[] novaLista = new Atendimento[this.lista.length + delta];
-        for (int i = 0; i < this.lista.length; i++) {
+        for (int i = 0; i < this.lista.length; i++)
             novaLista[i] = this.lista[i];
-        }
         return novaLista;
     }
-    
+
     public Atendimento acessar(int pos) {
         return this.lista[pos];
     }

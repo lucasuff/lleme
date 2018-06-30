@@ -2,45 +2,48 @@ package clientWaitingRoom;
 
 //import java.util.ArrayList;
 //import java.util.List;
+public class Subject {
 
+    protected int type;
+    protected String title;
+    protected double urgency;
 
-public class Subject{
-	protected int type;
-	protected String title;
-	protected double urgency;
-	
-	//constructor
+    //constructor
     public void Subject(int type, String title, double urgency) {
-    	this.type = type;
-    	this.title = title;
-    	this.urgency = urgency;
+        this.type = type;
+        this.title = title;
+        this.urgency = urgency;
     }
-    
+
     //setter
     public void setType(int type) {
-    	this.type = type;
+        this.type = type;
     }
+
     public void setTitle(String title) {
-    	this.title = title;
-    	//this.title = "******";
+        this.title = title;
+        //this.title = "******";
     }
+
     public void setUrgency(double urgency) {
-    	this.urgency = urgency / 10;
+        this.urgency = urgency / 10;
     }
-    
+
     //getter
     public int getType() {
-    	return this.type;
+        return this.type;
     }
+
     public String getTitle() {
-    	return this.title;
+        return this.title;
     }
+
     public double getUrgency() {
-    	return this.urgency;
+        return this.urgency;
     }
-    
+
     public boolean authenticate(int urgency) {
-        if (0 <= urgency && urgency <= 10 ) {
+        if (0 <= urgency && urgency <= 10) {
             System.out.println("Acesso Permitido!");
             return true;
         } else {
@@ -70,7 +73,7 @@ public class TypeSubject extends Subject {
     	this.duration = duration / 15;
     	super.Subject( sub.getType(), sub.getTitle(), sub.getUrgency());
     }
-    
+
     //setter
     public void setDescription(String description){
     	this.description = description;
@@ -84,7 +87,7 @@ public class TypeSubject extends Subject {
     public void setSubject(Subject sub) {
     	super.Subject( sub.getType(), sub.getTitle(), sub.getUrgency());
     }
-    
+
     //getter
     public String getDescription() {
     	return this.description;
@@ -99,6 +102,6 @@ public class TypeSubject extends Subject {
     public double getUrgency() {
     	return this.urgency;
     }
-    
+
     // methods ...
 }*/

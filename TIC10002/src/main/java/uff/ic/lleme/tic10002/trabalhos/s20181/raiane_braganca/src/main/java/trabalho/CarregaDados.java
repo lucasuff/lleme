@@ -5,9 +5,9 @@ import java.util.Random;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.Element;
 
 public class CarregaDados {
 
@@ -62,7 +62,7 @@ public class CarregaDados {
                 objAtendimento.importaCliente(cliente, assuntos);
                 listaDeEspera.adiciona(objAtendimento);
                 codigoAtendimento++;
-                
+
                 // Atrasa a importação em alguns segundos
                 atrasoRandomico();
             }
@@ -71,7 +71,7 @@ public class CarregaDados {
 
         return codigoAtendimento;
     }
-    
+
     public static void atrasoRandomico() throws InterruptedException {
         Random r = new Random();
         int low = 100;

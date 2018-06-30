@@ -88,8 +88,9 @@ public class ServicoDeAtendimento {
         // situação onde o atendimento se encerrou após o dia de início
         if ((endDay > startDay) || (endMonth >= startMonth))
             /**
-             * Para simplificação da lógica, caso um atendimento tenha sido encerrado X dias após o dia em que
-             * o mesmo foi iniciado, assume-se sempre o valor 1 para X.
+             * Para simplificação da lógica, caso um atendimento tenha sido
+             * encerrado X dias após o dia em que o mesmo foi iniciado,
+             * assume-se sempre o valor 1 para X.
              */
             endHour += 24;
 

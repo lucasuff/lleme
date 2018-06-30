@@ -45,12 +45,10 @@ public class Atendimento {
                 Date atendimento = sdf.parse(inicioAtendimento);
                 long epochAtendimento = atendimento.getTime();
                 tempoEspera = epochAtendimento - epochChegada;
-            } else {
+            } else
                 tempoEspera = System.currentTimeMillis() - epochChegada;
-            }
-            if (debug) {
+            if (debug)
                 System.out.println("DEBUG GET TEMPO ESPERA:" + tempoEspera);
-            }
             return tempoEspera;
         } catch (ParseException e) {
             System.err.println("Erro na conversão de datas!");
@@ -80,28 +78,25 @@ public class Atendimento {
     public float getPrioridade() {
         int idade = cliente.getIdade();
         int somaUrgencias = 0;
-        for (int i = 0; i < assuntos.length; i++) {
+        for (int i = 0; i < assuntos.length; i++)
             somaUrgencias += assuntos[i].getUrgencia();
-        }
         float mediaUrgencias = somaUrgencias / assuntos.length;
         long minutosDeEspera = getTempoDeEspera() / 60000; //Converte de millis para minutos
         float prioridade = ((idade / 65f) + (minutosDeEspera / 15f) + (mediaUrgencias / 10f)) / 3;
-        if (debug) {
+        if (debug)
             System.out.println(String.format("DEBUG Prioridade: %s [IDADE:%f,ESPERA:%f,URGENCIAS:%f] ", cliente.getNome(), (idade / 65f), (minutosDeEspera / 15f), (mediaUrgencias / 10f)));
-        }
         return prioridade;
     }
 
     public String getHoraAtendimento() {
         return inicioAtendimento;
     }
-    
-    public String toShortString(){
+
+    public String toShortString() {
         StringBuilder atendSTR = new StringBuilder();
         atendSTR.append("[C:").append(cliente.getNome()).append("|A:[");
-        for (int i = 0; i < assuntos.length; i++) {
+        for (int i = 0; i < assuntos.length; i++)
             atendSTR.append("{").append(assuntos[i].toShortString()).append("}");
-        }
         atendSTR.append("]");
         return atendSTR.toString();
     }

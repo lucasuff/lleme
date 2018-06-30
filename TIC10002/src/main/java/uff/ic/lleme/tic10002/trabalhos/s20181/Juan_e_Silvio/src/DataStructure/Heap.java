@@ -14,22 +14,19 @@ public class Heap {
 
     private void subir(int i) {
         int pai = (i - 1) / 2;
-        if (pai >= 0) {
+        if (pai >= 0)
             if (fila[i].prioridade > fila[pai].prioridade) {
                 trocar(i, pai);
                 subir(pai);
             }
-        }
     }
 
     private void descer(int i) {
         int j = (2 * i) + 1;
         if (j < n) {
-            if (j < n - 1) {
-                if (fila[j + 1].prioridade > fila[j].prioridade) {
+            if (j < n - 1)
+                if (fila[j + 1].prioridade > fila[j].prioridade)
                     j = j + 1;
-                }
-            }
             if (fila[i].prioridade < fila[j].prioridade) {
                 trocar(i, j);
                 descer(j);
@@ -43,12 +40,11 @@ public class Heap {
         if (n < fila.length - 1) {
             fila[n++] = no;
             subir(n - 1); // Insere na posição n anterior, pois incrementou no passo acima
-        } else {
+        } else
             throw new LimitExceededException();
-        }
     }
-    
-    public int getSize(){
+
+    public int getSize() {
         return n;
     }
 
@@ -59,15 +55,13 @@ public class Heap {
             fila[n] = null;
             descer(0);
             return t;
-        } else {
+        } else
             throw new LimitExceededException();
-        }
     }
 
     public void reorganizaHeap() {
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++)
             alterarPrioridade(i);
-        }
     }
 
     /*
@@ -87,12 +81,9 @@ public class Heap {
 
     public void printHeap() {
         System.out.print("HEAP = {");
-        for (int i = 0; i < fila.length; i++) {
-            if (fila[i] != null) {
+        for (int i = 0; i < fila.length; i++)
+            if (fila[i] != null)
                 System.out.print(String.format("[%d,%s,%f],", i, fila[i].atendimento.getCliente().getNome(), fila[i].prioridade));
-                
-            }
-        }
         System.out.println("}");
     }
 }

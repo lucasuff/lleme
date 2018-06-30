@@ -12,9 +12,9 @@ import java.util.Calendar;
  * @author Luiz Antonio
  */
 public class ServicoDeAtendimentoTest {
-    
+
     public static void main(String[] args) {
-        
+
         // cria clientes com id, nome, idade
         Cliente cliente1 = new Cliente(1, "John", 40);
         Cliente cliente2 = new Cliente(2, "Paul", 75);
@@ -134,36 +134,35 @@ public class ServicoDeAtendimentoTest {
         System.out.println(cliente2);
         System.out.println(cliente3);
         System.out.println(cliente4);
-        */
+         */
 
-        /*
+ /*
         System.out.println(tipo1);
         System.out.println(tipo2);
         System.out.println(tipo3);
         System.out.println(tipo4);
         System.out.println(tipo5);
-        */
+         */
 
-        /*
+ /*
         System.out.println(assunto1);
         System.out.println(assunto2);
         System.out.println(assunto3);
         System.out.println(assunto4);
         System.out.println(assunto5);
         System.out.println(assunto6);
-        */
+         */
 
-        /*
+ /*
         System.out.println(atendimento1);
         System.out.println(atendimento2);
         System.out.println(atendimento3);
         System.out.println(atendimento4);
-        */
+         */
 
-        /*
+ /*
         System.out.println(horaAtendimento);
-        */
-
+         */
         ListaDeAtendimentos atendimentos = new ListaDeAtendimentos();
 
         testaIncluirAtendimentos(atendimentos, atendimento1, atendimento3);
@@ -183,11 +182,10 @@ public class ServicoDeAtendimentoTest {
         testaInsereHeap(heap, atendimento1, atendimento2, atendimento3, atendimento4);
 
         testaRemoveHeap(heap, horaAtendimento);
-        
+
     }
-	
-    public static void testaIncluirAtendimentos( ListaDeAtendimentos atendimentos, Atendimento atendimento1, Atendimento atendimento3 )
-    {
+
+    public static void testaIncluirAtendimentos(ListaDeAtendimentos atendimentos, Atendimento atendimento1, Atendimento atendimento3) {
         System.out.println("\nIncluindo atendimentos ...");
         // insere os clientes que estão sendo atendidos
         atendimentos.incluir(atendimento1);
@@ -196,9 +194,8 @@ public class ServicoDeAtendimentoTest {
         // exibe os clientes que estão sendo atendidos
         atendimentos.print();
     }
-	
-    public static void testaRemoverAtendimentos( ListaDeAtendimentos atendimentos )
-    {
+
+    public static void testaRemoverAtendimentos(ListaDeAtendimentos atendimentos) {
         System.out.println("\nRemovendo atendimentos para seu encerramento ...");
         // remove clientes da lista para indicar o encerramento de seu atendimento
         System.out.println(atendimentos.buscar(1));
@@ -209,11 +206,10 @@ public class ServicoDeAtendimentoTest {
         O método buscar(id) retorna null quando o id passado não é encontrado.
         Quando o id é encontrado, o método retorna o elemento e o remove da lista de atendimentos.
         Quando a lista não possui elementos, uma mensagem informa o usuário que a lista está vazia.
-        */
+         */
     }
-	
-    public static void testaIncluirAtendimentosEncerrados( ListaDeAtendimentosEncerrados encerrados, Atendimento atendimento1, Atendimento atendimento2, Atendimento atendimento3, Atendimento atendimento4 )
-    {
+
+    public static void testaIncluirAtendimentosEncerrados(ListaDeAtendimentosEncerrados encerrados, Atendimento atendimento1, Atendimento atendimento2, Atendimento atendimento3, Atendimento atendimento4) {
         System.out.println("\nIncluindo atendimentos na lista de encerrados ...");
         // insere os clientes que tiveram seu atendimento encerrado
         encerrados.incluir(atendimento2);
@@ -224,9 +220,8 @@ public class ServicoDeAtendimentoTest {
         // exibe clientes que encerraram seu atendimento
         encerrados.print();
     }
-	
-    public static void testaBuscarAtendimentosEncerrados( ListaDeAtendimentosEncerrados encerrados )
-    {
+
+    public static void testaBuscarAtendimentosEncerrados(ListaDeAtendimentosEncerrados encerrados) {
         System.out.println("\nBuscando por atendimentos encerrados ...");
         // exibe clientes específicos da lista de clientes com atendimentos encerrados
         System.out.println(encerrados.buscar(1));
@@ -235,20 +230,18 @@ public class ServicoDeAtendimentoTest {
         System.out.println(encerrados.buscar(4));
         System.out.println(encerrados.buscar(5));// retorna null quando id não existe
     }
-	
-    public static void testaCalculaTempoMedioDeAtendimento( ListaDeAtendimentosEncerrados encerrados, Calendar horaAtendimento, TipoAssunto tipoA, TipoAssunto tipoB, TipoAssunto tipoC, TipoAssunto tipoD, TipoAssunto tipoE )
-    {
+
+    public static void testaCalculaTempoMedioDeAtendimento(ListaDeAtendimentosEncerrados encerrados, Calendar horaAtendimento, TipoAssunto tipoA, TipoAssunto tipoB, TipoAssunto tipoC, TipoAssunto tipoD, TipoAssunto tipoE) {
         System.out.println("\nCalculando tempo médio de atendimento para os 5 tipos da lista de encerrados. Hora de atendimento utilizada: " + horaAtendimento.getTime());
         // gera estatísticas para cada tipo de atendimento, para uma determinada data
-        System.out.println(encerrados.calculaTempoMedioDeAtendimento(tipoA, horaAtendimento));// 16.5 = 66 / 4 
+        System.out.println(encerrados.calculaTempoMedioDeAtendimento(tipoA, horaAtendimento));// 16.5 = 66 / 4
         System.out.println(encerrados.calculaTempoMedioDeAtendimento(tipoB, horaAtendimento));// 34 = 34 / 1
         System.out.println(encerrados.calculaTempoMedioDeAtendimento(tipoC, horaAtendimento));// 5 = 15 / 3
-        System.out.println(encerrados.calculaTempoMedioDeAtendimento(tipoD, horaAtendimento));// 57 = 114 / 2 
+        System.out.println(encerrados.calculaTempoMedioDeAtendimento(tipoD, horaAtendimento));// 57 = 114 / 2
         System.out.println(encerrados.calculaTempoMedioDeAtendimento(tipoE, horaAtendimento));// 48 = 96 / 2
     }
-	
-    public static void testaInsereHeap( Heap heap, Atendimento atendimento1, Atendimento atendimento2, Atendimento atendimento3, Atendimento atendimento4 )
-    {
+
+    public static void testaInsereHeap(Heap heap, Atendimento atendimento1, Atendimento atendimento2, Atendimento atendimento3, Atendimento atendimento4) {
         System.out.println("\nInserindo atendimentos na lista de prioridades ...");
         // insere os clientes na fila de prioridades para aguardar o momento do atendimento
         heap.insert(atendimento1);
@@ -258,9 +251,8 @@ public class ServicoDeAtendimentoTest {
 
         heap.print();
     }
-	
-    public static void testaRemoveHeap( Heap heap, Calendar horaAtendimento )
-    {
+
+    public static void testaRemoveHeap(Heap heap, Calendar horaAtendimento) {
         System.out.println("\nRemovendo os atendimentos de maior prioridade da lista (um por um) ...");
         // remove os clientes do heap para serem atendidos
         Atendimento atendimento = heap.remove(horaAtendimento);
@@ -278,5 +270,5 @@ public class ServicoDeAtendimentoTest {
         atendimento = heap.remove(horaAtendimento);
         System.out.println("Atendimento de maior prioridade do momento: " + atendimento.getCliente().toString());
         heap.print();
-    }    
+    }
 }

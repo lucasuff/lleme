@@ -6,15 +6,16 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.src.ed.trabalho20181;
 
 public class ParametrosGlobais {
+
     Long espera2min = 120000L;
     Long espera1min = 60000L;
     Long espera3min = 180000L;
-    
+
     HeapAssunto assuntosCliente1 = null;
     HeapAssunto assuntosCliente2 = null;
     HeapAssunto assuntosCliente3 = null;
     HeapAssunto assuntosCliente4 = null;
-    
+
     // instanciando clientes
     Cliente c1 = new Cliente(1, "c1_idade21", 21, "060.434.432-02");
     Cliente c2 = new Cliente(2, "c2_idade89", 89, "070.542.742-02");

@@ -27,15 +27,13 @@ public class Assunto {
         String output = "Tipo de Assunto: " + this.tipoAssunto.tipo
                 + "  |  Urgência: " + this.tipoAssunto.getUrgencia()
                 + "  |  Descrição: " + this.descricao;
-        if (this.providencia != null) {
+        if (this.providencia != null)
             output += "  |  Providência: " + this.providencia;
-        }
-        if (this.duracaoAtendimento != null) {
+        if (this.duracaoAtendimento != null)
             output += "  |  Duração do Atendimento: " + df.format(this.duracaoAtendimento);
-        }
         return output;
     }
-    
+
     public static Double calculaMediaAssuntos(ListaLigada<Assunto> assuntos) {
         double soma = 0.0;
         Assunto assunto;
@@ -43,10 +41,10 @@ public class Assunto {
             assunto = assuntos.obtem(i);
             soma += assunto.tipoAssunto.getUrgencia();
         }
-        
+
         return soma / (double) assuntos.tamanho();
     }
-    
+
     public static void imprimeAssuntos(ListaLigada<Assunto> assuntos) {
         Assunto assunto;
         for (int i = 0; i < assuntos.tamanho(); i++) {

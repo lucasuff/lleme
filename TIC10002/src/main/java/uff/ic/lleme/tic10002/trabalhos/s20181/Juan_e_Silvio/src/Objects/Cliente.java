@@ -1,7 +1,7 @@
 package Objects;
 
 public class Cliente {
-    
+
     private String cpf;
     private String nome;
     private int idade;
@@ -23,5 +23,5 @@ public class Cliente {
     public int getIdade() {
         return idade;
     }
-    
+
 }

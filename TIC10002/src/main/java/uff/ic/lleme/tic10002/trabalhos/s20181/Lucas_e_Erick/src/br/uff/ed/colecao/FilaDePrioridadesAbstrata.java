@@ -4,101 +4,98 @@ import java.io.Serializable;
 
 @SuppressWarnings("rawtypes")
 public abstract class FilaDePrioridadesAbstrata<T extends Comparable> implements Serializable {
-	private static final long serialVersionUID = 6236712988335433421L;
-	protected Object[] heapMAX;
-	protected int qtdElementosNNulos;
-	protected int tamanhodafila;
 
-	protected FilaDePrioridadesAbstrata(int tamanhodafila) {
-		this.tamanhodafila = tamanhodafila;
-		this.heapMAX = new Object[tamanhodafila];
-	}
+    private static final long serialVersionUID = 6236712988335433421L;
+    protected Object[] heapMAX;
+    protected int qtdElementosNNulos;
+    protected int tamanhodafila;
 
-	public int getTamanhoFila() {
-		return this.qtdElementosNNulos;
-	}
+    protected FilaDePrioridadesAbstrata(int tamanhodafila) {
+        this.tamanhodafila = tamanhodafila;
+        this.heapMAX = new Object[tamanhodafila];
+    }
 
-	/*
-	 * cada fila específica tem um custo para essa função. Ver as implementações
+    public int getTamanhoFila() {
+        return this.qtdElementosNNulos;
+    }
+
+    /*
+	 * cada fila especï¿½fica tem um custo para essa funï¿½ï¿½o. Ver as implementaï¿½ï¿½es
 	 * filhas.
-	 */
-	public abstract void add(T t);
+     */
+    public abstract void add(T t);
 
-	/*
-	 * por estarmos utilizando heapmax, o elemento de maior prioridade sempre está
-	 * no topo, o que permite que a remoção tenha custo de O1, ou seja, custo
-	 * constante. No entanto, é necessário o uso da função descer para manter as
+    /*
+	 * por estarmos utilizando heapmax, o elemento de maior prioridade sempre estï¿½
+	 * no topo, o que permite que a remoï¿½ï¿½o tenha custo de O1, ou seja, custo
+	 * constante. No entanto, ï¿½ necessï¿½rio o uso da funï¿½ï¿½o descer para manter as
 	 * propriedades do heap, esta por sua vez tem custo O(log n) tornando o custo
-	 * total para remoção do elemento com maior prioridade O(log n).
-	 */
-	@SuppressWarnings("unchecked")
-	public T remove() {
-		if (qtdElementosNNulos != 0) {
-			T t = (T) this.heapMAX[1];
-			this.heapMAX[1] = this.heapMAX[qtdElementosNNulos];
-			qtdElementosNNulos--;
-			descer(1, qtdElementosNNulos);
-			return t;
-		}
-		return null;
-	}
+	 * total para remoï¿½ï¿½o do elemento com maior prioridade O(log n).
+     */
+    @SuppressWarnings("unchecked")
+    public T remove() {
+        if (qtdElementosNNulos != 0) {
+            T t = (T) this.heapMAX[1];
+            this.heapMAX[1] = this.heapMAX[qtdElementosNNulos];
+            qtdElementosNNulos--;
+            descer(1, qtdElementosNNulos);
+            return t;
+        }
+        return null;
+    }
 
-	/*
-	 * Como um heap pode ser representado como uma árvore binária completa, então a
-	 * complexidade desta função é a complexidade de encontrar um percurso em uma
-	 * árvore deste tipo onde a altura é (1+(piso(log n)). Desta forma, a
-	 * complexidade da função é O(log n).
-	 */
-	@SuppressWarnings("unchecked")
-	protected void subir(int no) {
-		int pai = Math.floorDiv(no, 2);
-		if (pai >= 1) {
-			if (((T) (heapMAX[no])).compareTo(((T) heapMAX[pai])) == 1) {
-				swap(no, pai);
-				subir(pai);
-			}
-		}
-	}
+    /*
+	 * Como um heap pode ser representado como uma ï¿½rvore binï¿½ria completa, entï¿½o a
+	 * complexidade desta funï¿½ï¿½o ï¿½ a complexidade de encontrar um percurso em uma
+	 * ï¿½rvore deste tipo onde a altura ï¿½ (1+(piso(log n)). Desta forma, a
+	 * complexidade da funï¿½ï¿½o ï¿½ O(log n).
+     */
+    @SuppressWarnings("unchecked")
+    protected void subir(int no) {
+        int pai = Math.floorDiv(no, 2);
+        if (pai >= 1)
+            if (((T) (heapMAX[no])).compareTo(((T) heapMAX[pai])) == 1) {
+                swap(no, pai);
+                subir(pai);
+            }
+    }
 
-	/*
-	 * Como um heap pode ser representado como uma árvore binária completa, então a
-	 * complexidade desta função é a complexidade de encontrar um percurso em uma
-	 * árvore deste tipo onde a altura é (1+(piso(log n)). Desta forma, a
-	 * complexidade da função é O(log n).
-	 */
-	@SuppressWarnings("unchecked")
-	protected void descer(int index, int qtdElementosNNulos) {
-		int filho = 2 * index;
+    /*
+	 * Como um heap pode ser representado como uma ï¿½rvore binï¿½ria completa, entï¿½o a
+	 * complexidade desta funï¿½ï¿½o ï¿½ a complexidade de encontrar um percurso em uma
+	 * ï¿½rvore deste tipo onde a altura ï¿½ (1+(piso(log n)). Desta forma, a
+	 * complexidade da funï¿½ï¿½o ï¿½ O(log n).
+     */
+    @SuppressWarnings("unchecked")
+    protected void descer(int index, int qtdElementosNNulos) {
+        int filho = 2 * index;
 
-		if (filho <= qtdElementosNNulos) {
-			if (filho < qtdElementosNNulos) {
-				if (((T) heapMAX[filho + 1]).compareTo(((T) heapMAX[filho])) == 1) {
-					filho = filho + 1;
-				}
-			}
-			if (((T) heapMAX[index]).compareTo(((T) heapMAX[filho])) == -1) {
-				swap(index, filho);
-				descer(filho, qtdElementosNNulos);
-			}
-		}
-	}
+        if (filho <= qtdElementosNNulos) {
+            if (filho < qtdElementosNNulos)
+                if (((T) heapMAX[filho + 1]).compareTo(((T) heapMAX[filho])) == 1)
+                    filho = filho + 1;
+            if (((T) heapMAX[index]).compareTo(((T) heapMAX[filho])) == -1) {
+                swap(index, filho);
+                descer(filho, qtdElementosNNulos);
+            }
+        }
+    }
 
-	/*
-	 * Esta função unicamente troca a posição de um "nó pai" com um de seus "filhos"
-	 * ou "um de seus filhos" com o "nó pai", logo seu custo é O1 (constante).
-	 */
-	private void swap(int index1, int index2) {
-		Object noTMP = heapMAX[index1];
-		heapMAX[index1] = heapMAX[index2];
-		heapMAX[index2] = noTMP;
-	}
+    /*
+	 * Esta funï¿½ï¿½o unicamente troca a posiï¿½ï¿½o de um "nï¿½ pai" com um de seus "filhos"
+	 * ou "um de seus filhos" com o "nï¿½ pai", logo seu custo ï¿½ O1 (constante).
+     */
+    private void swap(int index1, int index2) {
+        Object noTMP = heapMAX[index1];
+        heapMAX[index1] = heapMAX[index2];
+        heapMAX[index2] = noTMP;
+    }
 
-	protected void aumentaHEAP() {
-		Object[] tmp = new Object[2 * tamanhodafila];
-		// (T[]) Array.newInstance(classe, 2 * tamanhodafila);
-		for (int i = 0; i < tamanhodafila; i++) {
-			tmp[i] = heapMAX[i];
-		}
-		this.heapMAX = tmp;
-	}
+    protected void aumentaHEAP() {
+        Object[] tmp = new Object[2 * tamanhodafila];
+        // (T[]) Array.newInstance(classe, 2 * tamanhodafila);
+        for (int i = 0; i < tamanhodafila; i++)
+            tmp[i] = heapMAX[i];
+        this.heapMAX = tmp;
+    }
 }

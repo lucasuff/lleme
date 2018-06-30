@@ -5,127 +5,124 @@ import java.io.Serializable;
 @SuppressWarnings("rawtypes")
 public class Lista<T extends Comparable> implements Serializable {
 
-	private static final long serialVersionUID = -3593322284541883689L;
-	private NoLista<T> noInicio;
-	private int tamanho;
+    private static final long serialVersionUID = -3593322284541883689L;
+    private NoLista<T> noInicio;
+    private int tamanho;
 
-	public Lista() {
-	}
+    public Lista() {
+    }
 
-	/*
+    /*
 	 * Por se tratar de uma lista encadeada, podemos sempre inserir um novo elemento
-	 * no início da lista e atualizar os ponteiros. Dessa forma o custo para
-	 * inserção de um novo elemento é O1, ou seja, custo constante.
-	 */
-	public void add(T conteudo, int chave) {
-		if (noInicio == null) {
-			noInicio = new NoLista<T>(conteudo, chave);
-			tamanho++;
-		} else {
-			NoLista<T> noNovo = new NoLista<T>(conteudo, chave);
-			noNovo.setProxNo(noInicio);
-			noInicio = noNovo;
-			tamanho++;
-		}
-	}
+	 * no inï¿½cio da lista e atualizar os ponteiros. Dessa forma o custo para
+	 * inserï¿½ï¿½o de um novo elemento ï¿½ O1, ou seja, custo constante.
+     */
+    public void add(T conteudo, int chave) {
+        if (noInicio == null) {
+            noInicio = new NoLista<T>(conteudo, chave);
+            tamanho++;
+        } else {
+            NoLista<T> noNovo = new NoLista<T>(conteudo, chave);
+            noNovo.setProxNo(noInicio);
+            noInicio = noNovo;
+            tamanho++;
+        }
+    }
 
-/*
-* O metodo de busca, por se tratar de uma lista encadeada no pior caso tem complexidade O(n) já que percorrer toda a lista.
-*/
-	public NoLista busca(int chave) {
-		return buscaPrivada(chave)[0];
-	}
+    /*
+* O metodo de busca, por se tratar de uma lista encadeada no pior caso tem complexidade O(n) jï¿½ que percorrer toda a lista.
+     */
+    public NoLista busca(int chave) {
+        return buscaPrivada(chave)[0];
+    }
 
-	private NoLista[] buscaPrivada(int chave) {
-		NoLista ant = null;
-		NoLista prox = null;
-		NoLista aux = this.noInicio;
-		if (aux != null) {
-			if (aux.getChave() == chave) {
-				ant = null;
-				prox = (NoLista) aux.getProxNo();
-				NoLista[] arrayNo = new NoLista[3];
-				arrayNo[0] = aux;
-				arrayNo[1] = ant;
-				arrayNo[2] = prox;
-				return arrayNo;
-			} else {
-				while (aux.getProxNo() != null) {
-					ant = aux;
-					aux = (NoLista) aux.getProxNo();
-					prox = (NoLista) aux.getProxNo();
-					if (aux.getChave() == chave) {
-						NoLista[] arrayNo = new NoLista[3];
-						arrayNo[0] = aux;
-						arrayNo[1] = ant;
-						arrayNo[2] = prox;
-						return arrayNo;
-					}
-				}
-			}
-		}
-		return null;
-	}
+    private NoLista[] buscaPrivada(int chave) {
+        NoLista ant = null;
+        NoLista prox = null;
+        NoLista aux = this.noInicio;
+        if (aux != null)
+            if (aux.getChave() == chave) {
+                ant = null;
+                prox = (NoLista) aux.getProxNo();
+                NoLista[] arrayNo = new NoLista[3];
+                arrayNo[0] = aux;
+                arrayNo[1] = ant;
+                arrayNo[2] = prox;
+                return arrayNo;
+            } else
+                while (aux.getProxNo() != null) {
+                    ant = aux;
+                    aux = (NoLista) aux.getProxNo();
+                    prox = (NoLista) aux.getProxNo();
+                    if (aux.getChave() == chave) {
+                        NoLista[] arrayNo = new NoLista[3];
+                        arrayNo[0] = aux;
+                        arrayNo[1] = ant;
+                        arrayNo[2] = prox;
+                        return arrayNo;
+                    }
+                }
+        return null;
+    }
 
-/*
-* esse método tem a mesma complexidade do metodo buscar, já que para remover um elemento é necessário acha-lo na lista, o que no pior caso terá complexidade de O(n).
-*/
-	@SuppressWarnings({ "unchecked", "unused" })
-	public T remove(int chave) {
-		NoLista[] aux = this.buscaPrivada(chave);
-		NoLista busc = aux[0];
-		NoLista ant = aux[1];
-		NoLista prox = aux[2];
+    /*
+* esse mï¿½todo tem a mesma complexidade do metodo buscar, jï¿½ que para remover um elemento ï¿½ necessï¿½rio acha-lo na lista, o que no pior caso terï¿½ complexidade de O(n).
+     */
+    @SuppressWarnings({"unchecked", "unused"})
+    public T remove(int chave) {
+        NoLista[] aux = this.buscaPrivada(chave);
+        NoLista busc = aux[0];
+        NoLista ant = aux[1];
+        NoLista prox = aux[2];
 
-		if (aux != null) {
-			if (ant != null && prox != null) {
-				ant.setProxNo(prox);
-			} else if (ant == null && prox != null) {
-				this.noInicio = prox;
-			} else if (ant != null && prox == null) {
-				ant.setProxNo(null);
-			}
-			this.tamanho--;
-			return (T) busc.getConteudo();
-		}
-		return null;
-	}
+        if (aux != null) {
+            if (ant != null && prox != null)
+                ant.setProxNo(prox);
+            else if (ant == null && prox != null)
+                this.noInicio = prox;
+            else if (ant != null && prox == null)
+                ant.setProxNo(null);
+            this.tamanho--;
+            return (T) busc.getConteudo();
+        }
+        return null;
+    }
 
-/*
+    /*
 * complexidade constante
-*/
-	public NoLista<T> getNoInicio() {
-		return noInicio;
-	}
+     */
+    public NoLista<T> getNoInicio() {
+        return noInicio;
+    }
 
-	public int getTamanho() {
-		return tamanho;
-	}
+    public int getTamanho() {
+        return tamanho;
+    }
 
-	public void setTamanho(int tamanho) {
-		this.tamanho = tamanho;
-	}
+    public void setTamanho(int tamanho) {
+        this.tamanho = tamanho;
+    }
 
-	public void setNoInicio(NoLista<T> noInicio) {
-		this.noInicio = noInicio;
-	}
+    public void setNoInicio(NoLista<T> noInicio) {
+        this.noInicio = noInicio;
+    }
 
-/*
-* esse método transforma a lista em um array de objects para facilitar a iteração em outras classes que venham a usar uma lista. Por necessitar percorrer toda a lista sua complexidade é O(n).
-*/
-	public Object[] toArray() {
-		if (this.noInicio != null) {
-			Object[] o = new Object[this.tamanho];
-			NoLista<T> aux = this.noInicio;
-			int i = 0;
-			while (aux != null) {
-				o[i] = aux.getConteudo();
-				aux = ((NoLista<T>) aux.proxNo);
-				i++;
-			}
-			return o;
-		}
-		return null;
-	}
+    /*
+* esse mï¿½todo transforma a lista em um array de objects para facilitar a iteraï¿½ï¿½o em outras classes que venham a usar uma lista. Por necessitar percorrer toda a lista sua complexidade ï¿½ O(n).
+     */
+    public Object[] toArray() {
+        if (this.noInicio != null) {
+            Object[] o = new Object[this.tamanho];
+            NoLista<T> aux = this.noInicio;
+            int i = 0;
+            while (aux != null) {
+                o[i] = aux.getConteudo();
+                aux = ((NoLista<T>) aux.proxNo);
+                i++;
+            }
+            return o;
+        }
+        return null;
+    }
 
 }

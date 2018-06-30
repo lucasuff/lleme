@@ -42,11 +42,10 @@ public class ListaLigada<E> {
         final No<E> f = primeiro;
         final No<E> novoNo = new No<>(null, e, f);
         primeiro = novoNo;
-        if (f == null) {
+        if (f == null)
             ultimo = novoNo;
-        } else {
+        else
             f.anterior = novoNo;
-        }
         tamanho++;
     }
 
@@ -57,11 +56,10 @@ public class ListaLigada<E> {
         final No<E> l = ultimo;
         final No<E> novoNo = new No<>(l, e, null);
         ultimo = novoNo;
-        if (l == null) {
+        if (l == null)
             primeiro = novoNo;
-        } else {
+        else
             l.proximo = novoNo;
-        }
         tamanho++;
     }
 
@@ -72,11 +70,10 @@ public class ListaLigada<E> {
         final No<E> pred = succ.anterior;
         final No<E> novoNo = new No<>(pred, e, succ);
         succ.anterior = novoNo;
-        if (pred == null) {
+        if (pred == null)
             primeiro = novoNo;
-        } else {
+        else
             pred.proximo = novoNo;
-        }
         tamanho++;
     }
 
@@ -89,11 +86,10 @@ public class ListaLigada<E> {
         f.item = null;
         f.proximo = null;
         primeiro = proximo;
-        if (proximo == null) {
+        if (proximo == null)
             ultimo = null;
-        } else {
+        else
             proximo.anterior = null;
-        }
         tamanho--;
         return element;
     }
@@ -107,11 +103,10 @@ public class ListaLigada<E> {
         l.item = null;
         l.anterior = null;
         ultimo = anterior;
-        if (anterior == null) {
+        if (anterior == null)
             primeiro = null;
-        } else {
+        else
             anterior.proximo = null;
-        }
         tamanho--;
         return element;
     }
@@ -124,16 +119,16 @@ public class ListaLigada<E> {
         final No<E> proximo = x.proximo;
         final No<E> anterior = x.anterior;
 
-        if (anterior == null) {
+        if (anterior == null)
             primeiro = proximo;
-        } else {
+        else {
             anterior.proximo = proximo;
             x.anterior = null;
         }
 
-        if (proximo == null) {
+        if (proximo == null)
             ultimo = anterior;
-        } else {
+        else {
             proximo.anterior = anterior;
             x.proximo = null;
         }
@@ -151,9 +146,8 @@ public class ListaLigada<E> {
      */
     public E obtemPrimeiro() {
         final No<E> f = primeiro;
-        if (f == null) {
+        if (f == null)
             throw new NoSuchElementException();
-        }
         return f.item;
     }
 
@@ -165,9 +159,8 @@ public class ListaLigada<E> {
      */
     public E obtemUltimo() {
         final No<E> l = ultimo;
-        if (l == null) {
+        if (l == null)
             throw new NoSuchElementException();
-        }
         return l.item;
     }
 
@@ -179,9 +172,8 @@ public class ListaLigada<E> {
      */
     public E removePrimeiro() {
         final No<E> f = primeiro;
-        if (f == null) {
+        if (f == null)
             throw new NoSuchElementException();
-        }
         return desvinculaPrimeiro(f);
     }
 
@@ -193,9 +185,8 @@ public class ListaLigada<E> {
      */
     public E removeUltimo() {
         final No<E> l = ultimo;
-        if (l == null) {
+        if (l == null)
             throw new NoSuchElementException();
-        }
         return desvinculaUltimo(l);
     }
 
@@ -243,13 +234,12 @@ public class ListaLigada<E> {
     public void adicionaNumaPosicaoEspecifica(int indice, E elemento) {
         verificaPosicao(indice);
 
-        if (indice == tamanho) {
+        if (indice == tamanho)
             vinculaUltimo(elemento);
-        } else {
+        else
             vinculaAntes(elemento, no(indice));
-        }
     }
-    
+
     /**
      * Insere um elemento na lista utilizando um comparator.
      *
@@ -259,9 +249,9 @@ public class ListaLigada<E> {
      */
     public int adicionaComPrioridade(E a, Comparator c) {
         E b;
-        if (estaVazia()){
+        if (estaVazia())
             adiciona(a);
-        } else {
+        else {
             for (int i = 0; i < tamanho; i++) {
                 b = obtem(i);
                 if (c.compare(a, b) < 0) {
@@ -351,6 +341,7 @@ public class ListaLigada<E> {
 
     /**
      * Verifica se a lista está vazia.
+     *
      * @return boolean
      */
     public boolean estaVazia() {
@@ -377,29 +368,25 @@ public class ListaLigada<E> {
     }
 
     private void verifiqueIndice(int indice) {
-        if (!indiceValido(indice)) {
+        if (!indiceValido(indice))
             throw new IndexOutOfBoundsException(outOfBoundsMsg(indice));
-        }
     }
 
     private void verificaPosicao(int indice) {
-        if (!posicaoValida(indice)) {
+        if (!posicaoValida(indice))
             throw new IndexOutOfBoundsException(outOfBoundsMsg(indice));
-        }
     }
 
     No<E> no(int indice) {
         if (indice < (tamanho >> 1)) {
             No<E> x = primeiro;
-            for (int i = 0; i < indice; i++) {
+            for (int i = 0; i < indice; i++)
                 x = x.proximo;
-            }
             return x;
         } else {
             No<E> x = ultimo;
-            for (int i = tamanho - 1; i > indice; i--) {
+            for (int i = tamanho - 1; i > indice; i--)
                 x = x.anterior;
-            }
             return x;
         }
     }

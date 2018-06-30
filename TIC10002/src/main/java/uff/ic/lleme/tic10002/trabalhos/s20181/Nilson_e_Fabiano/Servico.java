@@ -14,11 +14,10 @@ public class Servico {
 
     private final int minDuracao = 2; // Duracao minima de um atendimento
     private Random gerador;
-    
 
     Pendentes pendentes = new Pendentes();
     Atendidos atendidos = new Atendidos();
-    
+
     /**
      * Método recepcionar, conforme a especificação.
      *
@@ -31,49 +30,49 @@ public class Servico {
     }
 
     /**
-     * Permite a preparação para gerar uma sequencia de tempos
-     * de atendimento dos assuntos. Usado principalmente para testes.
+     * Permite a preparação para gerar uma sequencia de tempos de atendimento
+     * dos assuntos. Usado principalmente para testes.
      */
     private void iniciaAtendimentoDosAssuntos() {
         gerador = new Random();
     }
-    
+
     /**
-     * Informa o tempo de atendimento para um assunto de um atendimento.
-     * No momento gera valores aleatorios independentemente do tipo de assunto,
-     * mas pode ser alterado para gerar valores de acordo com o tipo de assunto
+     * Informa o tempo de atendimento para um assunto de um atendimento. No
+     * momento gera valores aleatorios independentemente do tipo de assunto, mas
+     * pode ser alterado para gerar valores de acordo com o tipo de assunto
      * Usado principalmente para testes.
      */
     private int getTempoAtendimentoDoAssunto(Assunto a) {
         return minDuracao + gerador.nextInt(100);
     }
-    
+
     /**
-     * Informa a providencia a ser tomada para um assunto de um atendimento.
-     * No momento retorna a mesma string independentemente do tipo de assunto,
-     * mas pode ser alterado para gerar valores de acordo com o tipo de assunto
+     * Informa a providencia a ser tomada para um assunto de um atendimento. No
+     * momento retorna a mesma string independentemente do tipo de assunto, mas
+     * pode ser alterado para gerar valores de acordo com o tipo de assunto
      * Usado principalmente para testes.
      */
     private String getProvidenciaParaAssunto(Assunto a) {
-        return  "Alguma providência";
+        return "Alguma providência";
     }
-    
-    
+
     /**
      * Método atender, conforme a especificação.
      *
      * @return Atendimento
      */
     public Atendimento atender() {
-        
+
         long horaAtendimento = DateTime.getTime();
-        
-        // localiza o proximo atendimento a ser realizado de acordo com a 
+
+        // localiza o proximo atendimento a ser realizado de acordo com a
         // prioridade, considerando a hora em que o atendimento está iniciando.
         Atendimento atendimento = pendentes.pegaPrioritario(horaAtendimento);
-        
+
         // Nao tem ninguem para atender? Simplesmente sai
-        if (atendimento == null) {  return null; }
+        if (atendimento == null)
+            return null;
 
         // Registra a hora em que o atendimento foi iniciado
         atendimento.setHoraAtendimento(horaAtendimento);
@@ -81,17 +80,17 @@ public class Servico {
         // Se prepara para iniciar o atendimento dos assuntos
         iniciaAtendimentoDosAssuntos();
         Assuntos as = atendimento.getAssuntos();
-        
+
         System.out.println("Cliente: " + atendimento.getCliente().getNome());
         System.out.println("Assuntos: ");
-        
+
         // Realiza o atendimento para cada assunto na lista de assuntos
         for (Assunto a = as.getPrimeiro(); a != null; a = as.getProximo()) {
             a.registrar(
-                    getProvidenciaParaAssunto(a), 
+                    getProvidenciaParaAssunto(a),
                     getTempoAtendimentoDoAssunto(a)
             );
-            
+
             System.out.println("  " + a.getDescricao() + " - tipo: " + a.getTipo().getTitulo());
         }
 
@@ -104,11 +103,10 @@ public class Servico {
      * @param atendimento
      */
     public void encerrar(Atendimento atendimento) {
-        
+
         // Nao existe ninguem sendo atendido? retorna
-        if (atendimento == null) {
+        if (atendimento == null)
             return;
-        }
 
         // Coloca o atendimento corrente na lista de atendidos
         atendidos.insere(atendimento);
@@ -119,21 +117,20 @@ public class Servico {
      */
     public void gerarEstatistica() {
 
-        // cria uma "lista" que conterá celulas estatisticas chamadas de 
+        // cria uma "lista" que conterá celulas estatisticas chamadas de
         // Estatistica sendo uma para cada tipo de assunto
         Estatisticas es = new Estatisticas(TiposAssunto.count());
 
         // cria uma celula Estatistica para cada tipo de assunto
         for (TipoAssunto ta = TiposAssunto.pegaPrimeiro();
                 ta != null;
-                ta = TiposAssunto.pegaProximo()) {
-            
+                ta = TiposAssunto.pegaProximo())
+
             // cria a celula estatistica conforme o tipo de assunto
             es.criaEstatistica(ta.getTipo());
-        }
 
         // Computa as estatisticas para o dia de hoje
-        long dia = DateTime.getTime(); // data base 
+        long dia = DateTime.getTime(); // data base
         atendidos.computaEstatisticas(es, dia);
 
         // calcula as medias para os tipos de assunto

@@ -35,9 +35,8 @@ class Estatistica {
      * atendimentos registrados
      */
     public double getMedia() {
-        if (quantidade == 0) {
+        if (quantidade == 0)
             return 0;
-        }
         return (double) duracao / quantidade;
     }
 
@@ -74,10 +73,10 @@ public class Estatisticas {
 
     /**
      * Construtor
-     * 
-     * Inicializa o Hash tomando como base o numero de tipos de assunto 
-     * 
-     * @param numTiposAssunto  Número de Tipos de Assunto cadastrados
+     *
+     * Inicializa o Hash tomando como base o numero de tipos de assunto
+     *
+     * @param numTiposAssunto Número de Tipos de Assunto cadastrados
      */
     public Estatisticas(int numTiposAssunto) {
         hashSize = numTiposAssunto * 2;
@@ -112,13 +111,12 @@ public class Estatisticas {
                     hash[pos] = e;
                     return;
 
-                } else if (h.getId() == e.getId()) {
+                } else if (h.getId() == e.getId())
                     // ja estava inserido
                     return;
-                }
                 pos++;
             }
-            // nao existia? 
+            // nao existia?
             // entao tenta inserir a partir do inicio
             top = p0;
             p0 = 0;
@@ -140,9 +138,8 @@ public class Estatisticas {
             Estatistica h;
             while (pos < top) {
                 h = hash[pos];
-                if (h.getId() == id) {
+                if (h.getId() == id)
                     return h;
-                }
                 pos++;
             }
             // tenta novamente a partir do inicio

@@ -16,10 +16,10 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente ID: " + this.id 
-            + " - Nome: " + this.nome 
-            + " - CPF: " + this.cpf 
-            + " - Idade: " + this.idade;
+        return "Cliente ID: " + this.id
+                + " - Nome: " + this.nome
+                + " - CPF: " + this.cpf
+                + " - Idade: " + this.idade;
     }
 
 }

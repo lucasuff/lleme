@@ -10,7 +10,7 @@ package uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_CarlosMuniz;
  * @author Luiz Antonio
  */
 public class TestServicoDeAtendimento {
-    
+
     public static void main(String[] args) {
         ServicoDeAtendimento service = new ServicoDeAtendimento();
 
@@ -78,5 +78,5 @@ public class TestServicoDeAtendimento {
 
         System.out.println("\nFim dos testes");
     }
-    
+
 }

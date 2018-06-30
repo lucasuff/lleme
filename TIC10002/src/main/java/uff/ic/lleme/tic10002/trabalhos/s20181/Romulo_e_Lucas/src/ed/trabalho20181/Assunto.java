@@ -1,9 +1,9 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.src.ed.trabalho20181;
 
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 public class Assunto {
+
     private TipoAssunto tipoAssunto;
     private String descricao;
     private String providencias;

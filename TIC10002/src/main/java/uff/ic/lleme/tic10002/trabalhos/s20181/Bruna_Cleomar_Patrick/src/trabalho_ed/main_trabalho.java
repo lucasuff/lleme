@@ -53,7 +53,8 @@ public class main_trabalho {
 
         Random rand = new Random();
         /**
-         * * Simulando Atendente varrendo lista de assuntos e resolvendo um a um **
+         * * Simulando Atendente varrendo lista de assuntos e resolvendo um a
+         * um **
          */
         for (int i = 0; i < proximoAtendimento.getAssuntosTratados().getTamanho(); i++) {
             /*Busca Assunto a ser tratado*/
@@ -72,7 +73,8 @@ public class main_trabalho {
         proximoAtendimento = Atendimentos.Atender();
 
         /**
-         * * Simulando Atendente varrendo lista de assuntos e resolvendo um a um **
+         * * Simulando Atendente varrendo lista de assuntos e resolvendo um a
+         * um **
          */
         for (int i = 0; i < proximoAtendimento.getAssuntosTratados().getTamanho(); i++) {
             /*Busca Assunto a ser tratado*/
@@ -91,7 +93,8 @@ public class main_trabalho {
         proximoAtendimento = Atendimentos.Atender();
 
         /**
-         * * Simulando Atendente varrendo lista de assuntos e resolvendo um a um **
+         * * Simulando Atendente varrendo lista de assuntos e resolvendo um a
+         * um **
          */
         for (int i = 0; i < proximoAtendimento.getAssuntosTratados().getTamanho(); i++) {
             /*Busca Assunto a ser tratado*/
@@ -110,7 +113,8 @@ public class main_trabalho {
         proximoAtendimento = Atendimentos.Atender();
 
         /**
-         * * Simulando Atendente varrendo lista de assuntos e resolvendo um a um **
+         * * Simulando Atendente varrendo lista de assuntos e resolvendo um a
+         * um **
          */
         for (int i = 0; i < proximoAtendimento.getAssuntosTratados().getTamanho(); i++) {
             /*Busca Assunto a ser tratado*/
@@ -129,7 +133,8 @@ public class main_trabalho {
         proximoAtendimento = Atendimentos.Atender();
 
         /**
-         * * Simulando Atendente varrendo lista de assuntos e resolvendo um a um **
+         * * Simulando Atendente varrendo lista de assuntos e resolvendo um a
+         * um **
          */
         for (int i = 0; i < proximoAtendimento.getAssuntosTratados().getTamanho(); i++) {
             /*Busca Assunto a ser tratado*/

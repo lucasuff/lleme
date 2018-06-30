@@ -118,7 +118,7 @@ public class AVL {
             return false;
         else if (no.conteudo.idnum > conteudo.idnum)
             if (no.direita == null) {
-                no.direita = new No(conteudo);             
+                no.direita = new No(conteudo);
                 no.saldoAltura++;
                 return true;
             } else {
@@ -142,7 +142,6 @@ public class AVL {
                     if (Math.abs(no.saldoAltura) > 1)
                         balancearADireita(no, delta1, delta2);
                 }
-              
 
                 return inserido;
             }
@@ -150,19 +149,15 @@ public class AVL {
             if (no.esquerda == null) {
                 no.esquerda = new No(conteudo);
 
-               
                 no.saldoAltura--;
-             
 
                 return true;
             } else {
 
-               
                 int saldoAnteriorZ = no.esquerda.saldoAltura;
                 int saldoAnteriorY = 0;
                 if (no.esquerda.direita != null)
                     saldoAnteriorY = no.esquerda.direita.saldoAltura;
-               
 
                 boolean inserido = inserir(no.esquerda, conteudo);
 
@@ -179,7 +174,7 @@ public class AVL {
                     if (Math.abs(no.saldoAltura) > 1)
                         balancearAEsquerda(no, delta1, delta2);
                 }
-              
+
                 return inserido;
             }
         else

@@ -2,51 +2,53 @@ package br.uff.ed.main;
 
 @SuppressWarnings("rawtypes")
 public class Assunto implements Comparable {
-private TipoAssunto tipoAssunto;
-private String descricao;
-private String providencia;
-private int duracao;
 
-public Assunto(TipoAssunto tipoAssunto, String descricao, String providencia, int duracao) {
-	this.tipoAssunto = tipoAssunto;
-	this.descricao = descricao;
-	this.providencia = providencia;
-	this.duracao = duracao;
-}
+    private TipoAssunto tipoAssunto;
+    private String descricao;
+    private String providencia;
+    private int duracao;
 
-public TipoAssunto getTipoAssunto() {
-	return tipoAssunto;
-}
+    public Assunto(TipoAssunto tipoAssunto, String descricao, String providencia, int duracao) {
+        this.tipoAssunto = tipoAssunto;
+        this.descricao = descricao;
+        this.providencia = providencia;
+        this.duracao = duracao;
+    }
 
-public void setTipoAssunto(TipoAssunto tipoAssunto) {
-	this.tipoAssunto = tipoAssunto;
-}
+    public TipoAssunto getTipoAssunto() {
+        return tipoAssunto;
+    }
 
-public String getDescricao() {
-	return descricao;
-}
+    public void setTipoAssunto(TipoAssunto tipoAssunto) {
+        this.tipoAssunto = tipoAssunto;
+    }
 
-public void setDescricao(String descricao) {
-	this.descricao = descricao;
-}
+    public String getDescricao() {
+        return descricao;
+    }
 
-public String getProvidencia() {
-	return providencia;
-}
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
-public void setProvidencia(String providencia) {
-	this.providencia = providencia;
-}
+    public String getProvidencia() {
+        return providencia;
+    }
 
-public int getDuracao() {
-	return duracao;
-}
+    public void setProvidencia(String providencia) {
+        this.providencia = providencia;
+    }
 
-public void setDuracao(int duracao) {
-	this.duracao = duracao;
-}
-@Override
-public int compareTo(Object assunto){
-	return 0;
-}
+    public int getDuracao() {
+        return duracao;
+    }
+
+    public void setDuracao(int duracao) {
+        this.duracao = duracao;
+    }
+
+    @Override
+    public int compareTo(Object assunto) {
+        return 0;
+    }
 }

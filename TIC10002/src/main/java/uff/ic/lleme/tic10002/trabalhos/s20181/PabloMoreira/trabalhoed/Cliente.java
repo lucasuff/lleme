@@ -10,7 +10,7 @@ package uff.ic.lleme.tic10002.trabalhos.s20181.PabloMoreira.trabalhoed;
  * @author pablomoreira
  */
 public class Cliente {
-    
+
     private String cpf;
     private String nome;
     private int idade;
@@ -44,7 +44,5 @@ public class Cliente {
     public void setIdade(int idade) {
         this.idade = idade;
     }
-    
-    
-    
+
 }

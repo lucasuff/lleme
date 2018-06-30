@@ -10,22 +10,23 @@ package trabalhojava;
  * @author Breno
  */
 public class Resumo {
-    
+
     //int[] alldays;
     dias[] dia;
     //Cliente[] ClienteAtendidos;
-    
-    public Resumo(int Qdias){
+
+    public Resumo(int Qdias) {
         this.dia = new dias[Qdias];
     }
-    
-    public void resumofinal(){
+
+    public void resumofinal() {
         int totalDias = dia.length;
         System.out.println("_________________________________________________");
-        System.out.println("Total de dias: " + dia.length);   
+        System.out.println("Total de dias: " + dia.length);
     }
-    
-    class dias{
+
+    class dias {
+
         Cliente[] clientes;
     }
 }

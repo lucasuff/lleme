@@ -5,30 +5,22 @@
  */
 package trabalhojava;
 
-import java.util.Random;
-import java.util.stream.IntStream;
-
 /**
  *
- * @author Breno
- * Atendimento: Eliminar o Prioritario da Lista de Espera
- * 
+ * @author Breno Atendimento: Eliminar o Prioritario da Lista de Espera
+ *
  */
 public class Atendimento {
-    
-    
-    public void Atendimento(Cliente atendimento){
+
+    public void Atendimento(Cliente atendimento) {
         //ClientesEsperando.MakeHeap.remover();
     }
-            
-           
-    
-    
+
     public void simAtendimento(String[] assuntos) {
-        
+
         //int[] tempo = IntStream.generate(() -> new Random().nextInt(11)).limit(n).toArray();
 //        for (int i = 0; i<assuntos.length; i++)
-//            tempo[i] = IntStream.generate(() -> new Random().nextInt(11)).limit(n).toArray();; 
+//            tempo[i] = IntStream.generate(() -> new Random().nextInt(11)).limit(n).toArray();;
     }
-    
+
 }

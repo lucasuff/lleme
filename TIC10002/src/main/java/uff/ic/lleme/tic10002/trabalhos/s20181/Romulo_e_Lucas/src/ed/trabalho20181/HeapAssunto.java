@@ -1,6 +1,7 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.src.ed.trabalho20181;
 
 public class HeapAssunto {
+
     private Assunto[] heap = new Assunto[100];
     private int n = 0;
 
@@ -11,7 +12,7 @@ public class HeapAssunto {
         } else
             System.out.println("Limite excedido");
     }
-    
+
     public Assunto remover() {
         Assunto t = heap[0];
         heap[0] = heap[--n]; // passa o ultimo para primeiro
@@ -55,11 +56,11 @@ public class HeapAssunto {
                 System.out.print(String.format("[%s -> %.4f] ", h.getDescricao(), h.getTipoAssunto().getUrgencia()));
         System.out.println("}");
     }
-    
+
     public int getTamanho() {
         return n;
     }
-    
+
     public Assunto acessar(int i) {
         return heap[i];
     }
