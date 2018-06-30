@@ -1,4 +1,4 @@
-package trabalho_ed;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed;
 
 //maxheap
 public class MaxHeap
@@ -56,7 +56,7 @@ public class MaxHeap
     public void inserir(Atendimento atendimento) throws Exception {
         if (n < Heap.length - 1) {
         	Heap[n++] = atendimento;
-        	//Reorganização do heap agora é feita na remoção
+        	//ReorganizacÃ£o do heap agora Ã© feita na remoÃ§Ã£o
             //subir(n - 1);
         } else
             throw new Exception("Overflow");
@@ -64,7 +64,7 @@ public class MaxHeap
  
     public Atendimento remover()
     {
-    	//Arranja o heap na remoção para garantir que eventuais mudanças de prioridade
+    	//Arranja o heap na remoÃ§Ã£o para garantir que eventuais mudanÃ§as de prioridade
     	//sejam contabilizadas.
     	this.arranjar();
     	Atendimento item = Heap[0];

@@ -11,9 +11,10 @@ public class Atendimentos {
     MaxHeap fila;
 
     public Atendimentos(int maxsize, Estatisticas estatisticas) {
+        
         this.fila = new MaxHeap(maxsize);
         this.estatisticas = estatisticas;
-        this.tiposAssuntos = new TiposAssuntos(System.getProperty("user.dir") + "\\data\\TipoAssunto.txt");
+        this.tiposAssuntos = new TiposAssuntos(System.getProperty("user.dir") + "\\src\\main\\java\\uff\\ic\\lleme\\tic10002\\trabalhos\\s20181\\Bruna_Cleomar_Patrick\\data\\TipoAssunto.txt");
         // TODO Auto-generated constructor stub
     }
 
@@ -36,7 +37,7 @@ public class Atendimentos {
         //Remove o pr�ximo item do heap
         Atendimento atendimento = this.fila.remover();
         atendimento.setTimestampAtendimento();
-        System.out.println("Pr�ximo cliente-> Nome: " + atendimento.getCliente().getNome() + ", idade: " + atendimento.getCliente().getIdade());
+        System.out.println("Próximo cliente-> Nome: " + atendimento.getCliente().getNome() + ", idade: " + atendimento.getCliente().getIdade());
         return atendimento;
     }
 
@@ -50,7 +51,7 @@ public class Atendimentos {
 
         for (int i = 0; i < atendimento.getAssuntosTratados().getTamanho(); i++) {
             Assunto a = (Assunto) atendimento.getAssuntosTratados().get(i);
-            System.out.println("Descri��o Assunto " + i + ": " + a.getDescricao() + ", Provid�ncia:" + a.getProvidencias());
+            System.out.println("Descrição Assunto " + i + ": " + a.getDescricao() + ", Providência:" + a.getProvidencias());
 
             //atualiza as estat�sticas
             estatDia.getEstatistica().AtualizarMetrica(atendimento.getTimestampChegada(), a.getChave(), a.getDuracaoAtendimento());

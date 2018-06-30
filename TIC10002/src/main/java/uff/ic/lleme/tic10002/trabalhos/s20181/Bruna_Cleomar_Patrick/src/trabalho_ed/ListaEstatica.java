@@ -1,4 +1,4 @@
-package trabalho_ed;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed;
 
 public class ListaEstatica {
 
@@ -9,7 +9,7 @@ public class ListaEstatica {
     //... construtor.
     public ListaEstatica(int tamanho) {
         if (tamanho < 0)
-            throw new IllegalArgumentException("Tamanho não pode ser zero.");
+            throw new IllegalArgumentException("Tamanho nÃ£o pode ser zero.");
 
         this.tamanho = tamanho;
         this.lista = new Object[tamanho];
