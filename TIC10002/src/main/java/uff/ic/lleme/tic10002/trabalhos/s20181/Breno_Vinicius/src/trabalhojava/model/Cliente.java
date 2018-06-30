@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package trabalhojava;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Breno_Vinicius.src.trabalhojava.model;
 
 import java.time.LocalTime;
 
@@ -13,18 +13,18 @@ import java.time.LocalTime;
  */
 public class Cliente {
 
-    String nome;
-    String id;
-    String dia;
-    int idade;
-    String[] assuntos;
-    LocalTime chegada = LocalTime.parse("00:00:00");
+    public String nome;
+    public String id;
+    public String dia;
+    public int idade;
+    public String[] assuntos;
+    public LocalTime chegada = LocalTime.parse("00:00:00");
     //int pos;
-    double prioridade;
-    LocalTime saida = LocalTime.parse("00:00:00");
-    int[] tempoAssuntos;
-    String[] providencia;
-    long idnum;
+    public double prioridade;
+    public LocalTime saida = LocalTime.parse("00:00:00");
+    public int[] tempoAssuntos;
+    public String[] providencia;
+    public long idnum;
 
     public Cliente(String[] novocliente) {
         //Heap newclient = new Heap();

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package trabalhojava;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Breno_Vinicius.src.trabalhojava.model;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -18,12 +18,12 @@ import java.util.List;      //         Somente impressao ou leituras de arquivos
  */
 public class Assuntos {
 
-    int n;
-    int pos;
-    int[] urgencia;
-    int[] tempo;
-    String[] assuntos;
-    String[] providencias;
+    public int n;
+    public int pos;
+    public int[] urgencia;
+    public int[] tempo;
+    public String[] assuntos;
+    public String[] providencias;
 
     public Assuntos(String aqruivoassuntos, String providencia) throws FileNotFoundException {
         List<String> ListaAssuntos = lerAssuntos(aqruivoassuntos);

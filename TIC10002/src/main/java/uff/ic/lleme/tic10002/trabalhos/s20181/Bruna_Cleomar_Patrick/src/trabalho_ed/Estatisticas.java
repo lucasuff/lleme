@@ -1,8 +1,9 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed;
 
+import uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed.model.Estatistica;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed.Estatistica.Metrica;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed.model.Estatistica.Metrica;
 
 /* Classe Estatisticas herda de HashTable. � usada para armazenar uma  lista de
  * objetos EstatisticaDia (que representam um conjunto de estatisticasde um dia)

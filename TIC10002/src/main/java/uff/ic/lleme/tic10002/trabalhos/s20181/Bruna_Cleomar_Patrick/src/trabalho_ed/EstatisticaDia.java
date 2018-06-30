@@ -1,5 +1,8 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed;
 
+import uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed.model.ObjetoBase;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed.model.Estatistica;
+
 /*
  * Classe EstatisticaDia é uma classe associada a classe Estatistica.
  * Foi criada pois a classe Estatistica já estende HashTable, e não poderia também

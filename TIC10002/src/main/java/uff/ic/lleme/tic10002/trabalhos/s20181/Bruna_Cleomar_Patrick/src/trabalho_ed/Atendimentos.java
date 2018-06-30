@@ -1,5 +1,8 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed;
 
+import uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed.model.TiposAssuntos;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed.model.Assunto;
+
 /* A classe Atendimentos representa a fila de Atendimentos enfileirados por prioridade.
  * Herda de MaxHeap, mas tem uma implementa��o espec�fica do m�todo remover, que solicita reorganiza��o do heap antes da remo��o de um item.
  * Esta reorganiza��o � necess�ria p/ que eventuais mudan�as de prioridade em fun��o do tempo possam ser contabilizadas.

@@ -5,6 +5,8 @@
  */
 package uff.ic.lleme.tic10002.trabalhos.s20181.Breno_Vinicius.src.trabalhojava;
 
+import uff.ic.lleme.tic10002.trabalhos.s20181.Breno_Vinicius.src.trabalhojava.model.Assuntos;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Breno_Vinicius.src.trabalhojava.model.Cliente;
 import java.io.*;
 import java.time.*;
 import java.util.*;

@@ -1,5 +1,7 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed;
 
+import uff.ic.lleme.tic10002.trabalhos.s20181.Bruna_Cleomar_Patrick.src.trabalho_ed.model.ObjetoBase;
+
 public class ListaEncadeada {
 
     int tamanho = 0;

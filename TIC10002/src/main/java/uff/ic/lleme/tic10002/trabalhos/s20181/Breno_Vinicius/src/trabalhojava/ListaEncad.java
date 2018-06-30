@@ -7,7 +7,9 @@
  *
  * @author vinib
  */
-package trabalhojava;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Breno_Vinicius.src.trabalhojava;
+
+import uff.ic.lleme.tic10002.trabalhos.s20181.Breno_Vinicius.src.trabalhojava.model.Cliente;
 
 public class ListaEncad {
 
