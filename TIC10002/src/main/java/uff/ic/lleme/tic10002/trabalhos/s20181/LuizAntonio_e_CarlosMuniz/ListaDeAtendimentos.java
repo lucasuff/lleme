@@ -5,6 +5,8 @@
  */
 package uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_CarlosMuniz;
 
+import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_CarlosMuniz.model.Atendimento;
+
 /**
  *
  * @author Luiz Antonio

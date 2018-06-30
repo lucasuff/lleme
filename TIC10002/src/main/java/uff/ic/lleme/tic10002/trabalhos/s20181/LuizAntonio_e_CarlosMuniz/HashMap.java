@@ -6,6 +6,11 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_CarlosMuniz;
 // encadeada de todos os atendimentos encerrados que possuem assuntos daquele tipo.
 
+import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_CarlosMuniz.model.TipoAssunto;
+import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_CarlosMuniz.model.Atendimento;
+import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_CarlosMuniz.model.Assunto;
+
+
 /**
  *
  * @author Carlos Muniz
