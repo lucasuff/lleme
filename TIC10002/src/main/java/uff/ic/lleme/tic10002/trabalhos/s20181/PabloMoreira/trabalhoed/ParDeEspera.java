@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package trabalhoed;
+package uff.ic.lleme.tic10002.trabalhos.s20181.PabloMoreira.trabalhoed;
 
 /**
  *
@@ -31,6 +31,10 @@ public class ParDeEspera {
 
     public Atendimento getAtendimento() {
         return atendimento;
+    }
+
+    void setPrioridade(int novaPrioridade) {
+        this.prioridade = novaPrioridade;
     }
     
     
