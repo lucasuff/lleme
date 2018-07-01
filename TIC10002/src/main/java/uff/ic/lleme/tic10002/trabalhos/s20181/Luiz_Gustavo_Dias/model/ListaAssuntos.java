@@ -1,13 +1,10 @@
-package uff.ic.lleme.tic10002.trabalhos.s20181.Luiz_Gustavo_Dias;
-
-import uff.ic.lleme.tic10002.trabalhos.s20181.Luiz_Gustavo_Dias.model.Assunto;
-
+package uff.ic.lleme.tic10002.trabalhos.s20181.Luiz_Gustavo_Dias.model;
 
 public class ListaAssuntos {
 
-    int qtdAssuntos;
-    Assunto primeiroAssunto;
-    Assunto ultimoAssunto;
+    public int qtdAssuntos;
+    public Assunto primeiroAssunto;
+    public Assunto ultimoAssunto;
 
     //inicializando a lista de assuntos vazia
     public ListaAssuntos() {
