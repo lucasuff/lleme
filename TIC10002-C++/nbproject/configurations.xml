@@ -12,6 +12,28 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <logicalFolder name="f1" displayName="trabalhos" projectFiles="true">
+        <logicalFolder name="f1" displayName="s20181" projectFiles="true">
+          <logicalFolder name="JordanSalas_JoseHuillca"
+                         displayName="JordanSalas_JoseHuillca"
+                         projectFiles="true">
+            <logicalFolder name="doc" displayName="doc" projectFiles="true">
+              <itemPath>trabalhos/s20181/JordanSalas_JoseHuillca/doc/Apresentação do trabalho.pdf</itemPath>
+              <itemPath>trabalhos/s20181/JordanSalas_JoseHuillca/doc/readme.md</itemPath>
+            </logicalFolder>
+            <logicalFolder name="Estructuras" displayName="Estructuras" projectFiles="true">
+              <itemPath>trabalhos/s20181/JordanSalas_JoseHuillca/Estructuras/myhash.h</itemPath>
+              <itemPath>trabalhos/s20181/JordanSalas_JoseHuillca/Estructuras/myheap.h</itemPath>
+              <itemPath>trabalhos/s20181/JordanSalas_JoseHuillca/Estructuras/mylist.h</itemPath>
+            </logicalFolder>
+            <itemPath>trabalhos/s20181/JordanSalas_JoseHuillca/assunto.h</itemPath>
+            <itemPath>trabalhos/s20181/JordanSalas_JoseHuillca/atendimento.h</itemPath>
+            <itemPath>trabalhos/s20181/JordanSalas_JoseHuillca/cliente.h</itemPath>
+            <itemPath>trabalhos/s20181/JordanSalas_JoseHuillca/main</itemPath>
+            <itemPath>trabalhos/s20181/JordanSalas_JoseHuillca/servicioatendimiento.h</itemPath>
+          </logicalFolder>
+        </logicalFolder>
+      </logicalFolder>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -26,6 +48,9 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>trabalhos/s20181/JordanSalas_JoseHuillca</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="Debug" type="1">
@@ -37,6 +62,56 @@
       <compileType>
       </compileType>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/Estructuras/myhash.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/Estructuras/myheap.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/Estructuras/mylist.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/assunto.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/atendimento.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/cliente.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/doc/Apresentação do trabalho.pdf"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/doc/readme.md"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/main"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/servicioatendimiento.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -60,6 +135,56 @@
         </asmTool>
       </compileType>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/Estructuras/myhash.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/Estructuras/myheap.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/Estructuras/mylist.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/assunto.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/atendimento.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/cliente.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/doc/Apresentação do trabalho.pdf"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/doc/readme.md"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/main"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="trabalhos/s20181/JordanSalas_JoseHuillca/servicioatendimiento.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
     </conf>
   </confs>
