@@ -1,4 +1,4 @@
-package clientWaitingRoom;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan;
 
 //Lista encadeada usada para armazenar as chaves UTILIZADAS ATÉ O MOMENTO
 public class LinkedListStrings {

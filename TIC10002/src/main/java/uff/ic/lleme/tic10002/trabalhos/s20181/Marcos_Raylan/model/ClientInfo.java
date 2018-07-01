@@ -1,10 +1,15 @@
+package uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model;
+
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.HashTable;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.SubjectList;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.TypeSubject;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.Subject;
+
 /*Name: Marcos Raylan Sousa Matos
  Class: PatientInfo
  Due Date: 10/05/2018
  Date Submitted: 14/06/2018
  */
-package clientWaitingRoom;
-
 //import java.util.ArrayList;
 //import java.util.List;
 public class ClientInfo {

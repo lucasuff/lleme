@@ -1,11 +1,14 @@
+package uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan;
+
 /*Name: Marcos Raylan Sousa Matos
  Class: MenuOption
  Due Date: 10/05/2018
  Date Submitted: 14/06/2018
  */
-package Menu;
-
-import clientWaitingRoom.*;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.Statistic;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.util.CSVReader;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.ClientInfo;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.TypeSubject;
 import java.util.Scanner;
 
 public class MenuOption {

@@ -1,4 +1,6 @@
-package clientWaitingRoom;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model;
+
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.Subject;
 
 public class TypeSubject extends Subject {
 

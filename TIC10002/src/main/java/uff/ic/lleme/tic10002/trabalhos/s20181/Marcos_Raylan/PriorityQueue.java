@@ -1,10 +1,12 @@
+package uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan;
+
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.ClientInfo;
+
 /*Name: Marcos Raylan Sousa Matos
  Class: PriorityQueue
  Due Date: 10/05/2018
  Date Submitted: 14/06/2018
  */
-package clientWaitingRoom;
-
 public class PriorityQueue {
 
     private int heapSize;
