@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model;
 
+import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.HeapAssunto;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model.Assunto;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model.Cliente;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model.TipoAssunto;

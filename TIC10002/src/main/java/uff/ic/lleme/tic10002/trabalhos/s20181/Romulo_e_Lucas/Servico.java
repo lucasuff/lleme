@@ -5,6 +5,7 @@
  */
 package uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas;
 
+import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model.ParametrosGlobais;
 import java.util.Date;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model.Assunto;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model.Atendimento;
