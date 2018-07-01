@@ -1,15 +1,15 @@
-package uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.model;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.model;
 
-import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.model.Cliente;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.model.Assunto;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.model.Cliente;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.model.Assunto;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.AssuntoComparator;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.EstatisticaTipoAssunto;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.EstatisticaTipoAssuntoComparator;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.ListaLigada;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.AssuntoComparator;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.EstatisticaTipoAssunto;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.EstatisticaTipoAssuntoComparator;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.ListaLigada;
 
 public class Atendimento {
 

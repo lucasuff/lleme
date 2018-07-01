@@ -1,7 +1,7 @@
-package uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.model;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.model;
 
 import java.text.DecimalFormat;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.ListaLigada;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.ListaLigada;
 
 public class Assunto {
 

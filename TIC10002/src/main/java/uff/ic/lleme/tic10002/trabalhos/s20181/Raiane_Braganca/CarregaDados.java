@@ -1,9 +1,9 @@
-package uff.ic.lleme.tic10002.trabalhos.s20181.Raiane;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca;
 
-import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.model.TipoAssunto;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.model.Atendimento;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.model.Cliente;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.model.Assunto;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.model.TipoAssunto;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.model.Atendimento;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.model.Cliente;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.model.Assunto;
 import java.io.File;
 import java.util.Random;
 import javax.xml.parsers.DocumentBuilder;
