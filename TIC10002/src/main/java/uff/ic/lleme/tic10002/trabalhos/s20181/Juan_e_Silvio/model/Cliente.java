@@ -1,4 +1,4 @@
-package uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.src.model;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.model;
 
 public class Cliente {
 

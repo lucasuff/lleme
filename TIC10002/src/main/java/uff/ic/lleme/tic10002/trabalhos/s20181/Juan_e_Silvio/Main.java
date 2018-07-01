@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.src;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio;
 
-import uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.src.model.TipoAssunto;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.src.model.Assunto;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.src.model.Atendimento;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.src.model.Cliente;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.src.model.SAC;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.model.TipoAssunto;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.model.Assunto;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.model.Atendimento;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.model.Cliente;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.model.SAC;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

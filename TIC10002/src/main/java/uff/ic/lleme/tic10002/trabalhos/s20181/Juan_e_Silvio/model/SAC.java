@@ -1,12 +1,12 @@
-package uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.src.model;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.naming.LimitExceededException;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.src.HashTable;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.src.Heap;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.HashTable;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Juan_e_Silvio.Heap;
 
 /*
 O fluxo de processo do serviço de atendimento ao cliente é
