@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.SubjectList;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.SubjectList;
 //import clientWaitingRoom.*;
 
 public class CSVReader {

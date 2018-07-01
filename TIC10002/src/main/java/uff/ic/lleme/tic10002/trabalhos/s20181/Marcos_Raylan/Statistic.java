@@ -1,7 +1,8 @@
-package uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan;
 
 import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.HashTable;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.LinkedListStrings;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.ClientInfo;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.ClientInfo;
 
 public class Statistic {

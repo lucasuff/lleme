@@ -1,5 +1,6 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Mateus_e_Raphael;
 
+import uff.ic.lleme.tic10002.trabalhos.s20181.Mateus_e_Raphael.model.Atendimento;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Mateus_e_Raphael.model.TipoAssunto;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Mateus_e_Raphael.model.Cliente;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Mateus_e_Raphael.model.Assunto;

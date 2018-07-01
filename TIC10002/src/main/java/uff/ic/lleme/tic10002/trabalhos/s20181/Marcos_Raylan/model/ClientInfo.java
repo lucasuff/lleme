@@ -1,7 +1,6 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model;
 
 import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.HashTable;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.SubjectList;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.TypeSubject;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.Subject;
 

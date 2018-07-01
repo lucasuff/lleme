@@ -1,8 +1,9 @@
-package uff.ic.lleme.tic10002.trabalhos.s20181.Mateus_e_Raphael;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Mateus_e_Raphael.model;
 
 import uff.ic.lleme.tic10002.trabalhos.s20181.Mateus_e_Raphael.model.Cliente;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Mateus_e_Raphael.ListaAssuntos;
 
 /**
  *
