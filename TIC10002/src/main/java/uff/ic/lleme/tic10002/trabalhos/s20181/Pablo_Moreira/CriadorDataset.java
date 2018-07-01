@@ -3,7 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uff.ic.lleme.tic10002.trabalhos.s20181.Pablo_Moreira.trabalhoed;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Pablo_Moreira;
+
+import uff.ic.lleme.tic10002.trabalhos.s20181.Pablo_Moreira.model.TipoAssunto;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Pablo_Moreira.model.Assunto;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Pablo_Moreira.model.Cliente;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Pablo_Moreira.model.Atendimento;
 
 /**
  *
