@@ -1,0 +1,5 @@
+C:\Users\mario\documents\visual studio 2017\Projects\Atendimento\Atendimento\bin\Release\Atendimento.exe.config
+C:\Users\mario\documents\visual studio 2017\Projects\Atendimento\Atendimento\bin\Release\Atendimento.exe
+C:\Users\mario\documents\visual studio 2017\Projects\Atendimento\Atendimento\bin\Release\Atendimento.pdb
+C:\Users\mario\documents\visual studio 2017\Projects\Atendimento\Atendimento\obj\Release\Atendimento.exe
+C:\Users\mario\documents\visual studio 2017\Projects\Atendimento\Atendimento\obj\Release\Atendimento.pdb
