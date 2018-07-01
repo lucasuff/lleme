@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uff.ic.lleme.tic10002.trabalhos.s20181.Breno_Vinicius.src.trabalhojava;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Breno_Vinicius;
 
-import uff.ic.lleme.tic10002.trabalhos.s20181.Breno_Vinicius.src.trabalhojava.model.Cliente;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Breno_Vinicius.model.Cliente;
 
 /**
  *
