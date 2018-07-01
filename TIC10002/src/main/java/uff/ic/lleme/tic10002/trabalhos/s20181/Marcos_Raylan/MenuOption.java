@@ -5,11 +5,11 @@ package uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan;
  Due Date: 10/05/2018
  Date Submitted: 14/06/2018
  */
-import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.SubjectList;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.util.CSVReader;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.ClientInfo;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.TypeSubject;
 import java.util.Scanner;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.ClientInfo;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.SubjectList;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.model.TypeSubject;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Marcos_Raylan.util.CSVReader;
 
 public class MenuOption {
 

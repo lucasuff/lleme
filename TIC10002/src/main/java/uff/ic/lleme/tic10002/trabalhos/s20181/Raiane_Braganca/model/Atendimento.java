@@ -1,15 +1,13 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.model;
 
-import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.model.Cliente;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.model.Assunto;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.AssuntoComparator;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.EstatisticaTipoAssunto;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.EstatisticaTipoAssuntoComparator;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.ListaLigada;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.util.EstatisticaTipoAssuntoComparator;
 
 public class Atendimento {
 

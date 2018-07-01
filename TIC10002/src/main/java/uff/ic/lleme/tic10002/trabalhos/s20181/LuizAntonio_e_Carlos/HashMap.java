@@ -6,10 +6,9 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_Carlos;
 // encadeada de todos os atendimentos encerrados que possuem assuntos daquele tipo.
 
-import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_Carlos.model.TipoAssunto;
-import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_Carlos.model.Atendimento;
 import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_Carlos.model.Assunto;
-
+import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_Carlos.model.Atendimento;
+import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_Carlos.model.TipoAssunto;
 
 /**
  *

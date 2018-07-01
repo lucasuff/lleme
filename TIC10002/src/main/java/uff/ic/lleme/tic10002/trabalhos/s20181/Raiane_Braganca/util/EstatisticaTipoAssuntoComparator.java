@@ -1,6 +1,7 @@
-package uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.util;
 
 import java.util.Comparator;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane_Braganca.EstatisticaTipoAssunto;
 
 public class EstatisticaTipoAssuntoComparator implements Comparator<EstatisticaTipoAssunto> {
 

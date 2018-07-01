@@ -1,10 +1,9 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Luiz_Gustavo_Dias;
 
+import uff.ic.lleme.tic10002.trabalhos.s20181.Luiz_Gustavo_Dias.model.Assunto;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Luiz_Gustavo_Dias.model.Cliente;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Luiz_Gustavo_Dias.model.ListaAssuntos;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Luiz_Gustavo_Dias.model.TipoAssunto;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Luiz_Gustavo_Dias.model.Cliente;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Luiz_Gustavo_Dias.model.Assunto;
-
 
 public class Principal {
 
