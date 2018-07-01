@@ -1,4 +1,7 @@
-package uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano.model;
+
+import uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano.Assuntos;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano.model.Cliente;
 
 /**
  * Armazena os dados de atendimento do cliente bem como algumas das informações

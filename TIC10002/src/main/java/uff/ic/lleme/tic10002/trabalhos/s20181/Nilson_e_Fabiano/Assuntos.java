@@ -1,5 +1,7 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano;
 
+import uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano.model.Assunto;
+
 /**
  * Estrutura auxiliar para implementação da lista de Assuntos.
  *

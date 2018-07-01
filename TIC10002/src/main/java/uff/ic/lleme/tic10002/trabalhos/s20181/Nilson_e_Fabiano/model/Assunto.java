@@ -1,4 +1,6 @@
-package uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano.model;
+
+import uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano.TipoAssunto;
 
 /**
  * Classe na qual os objetos representam cada assunto a ser tratado em um

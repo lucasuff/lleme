@@ -1,5 +1,8 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano;
 
+import uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano.model.DateTime;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano.model.Atendimento;
+
 /**
  *
  * Estrutura de dados que armazena todos os atendimentos pendentes.

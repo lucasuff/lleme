@@ -1,5 +1,8 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano;
 
+import uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano.model.Atendimento;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano.model.Cliente;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano.model.Assunto;
 import java.util.Random;
 
 /**

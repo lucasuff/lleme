@@ -1,4 +1,4 @@
-package uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Nilson_e_Fabiano.model;
 
 /**
  * Clase que gera os objetos Cliente tal como descritos na especificação do
