@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 class No(object):
 
     def __init__(self, cliente, horaChegada):
@@ -12,6 +13,7 @@ class No(object):
     def calcularPrioridade(self):
         self.espera = (datetime.now() - self.horaChegada).total_seconds()
         self.prioridade = ((self.cliente.idade / 65) + (self.espera / 15) + (self.cliente.urgencia / 10)) / 3
+
 
 class Heap(object):
 
@@ -67,8 +69,8 @@ class Heap(object):
 
     def estadoHeap(self):
         self.reconstruirHeap()
-        print(f'Heap em {datetime.now().strftime("%Y-%m-%d %H:%M")}')
-        print('-'*50)
+        print('Heap em {datetime.now().strftime("%Y-%m-%d %H:%M")}')
+        print('-' * 50)
         for i in range(0, self.n):
             print('{} --> {:.2f}'.format(self.vetor[i].cliente.nome, self.vetor[i].prioridade))
-        print('-'*50)
+        print('-' * 50)
