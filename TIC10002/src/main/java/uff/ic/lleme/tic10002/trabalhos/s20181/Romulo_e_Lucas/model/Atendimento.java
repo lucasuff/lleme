@@ -6,10 +6,10 @@ import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.HeapAssunto;
 
 public class Atendimento {
 
-    Cliente cliente;
-    HeapAssunto assuntos;
-    Date horaChegada;
-    Date horaAtendimento;
+    public Cliente cliente;
+    public HeapAssunto assuntos;
+    public Date horaChegada;
+    public Date horaAtendimento;
 
     public HeapAssunto getAssuntos() {
         return assuntos;

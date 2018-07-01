@@ -1,6 +1,5 @@
 package uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas;
 
-import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model.Servico;
 import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model.Atendimento;
 
 public class EdTrabalho20181 {

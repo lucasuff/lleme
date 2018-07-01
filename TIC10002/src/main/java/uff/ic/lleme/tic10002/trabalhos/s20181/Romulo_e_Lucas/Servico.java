@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas;
 
-import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model.Cliente;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model.Atendimento;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model.Assunto;
 import java.util.Date;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.HashAtendimento;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.HeapAssunto;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.HeapAtendimento;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.ListaEstaticaNaoOrdenadaDeAtendimento;
-import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.ParametrosGlobais;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model.Assunto;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model.Atendimento;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model.Cliente;
 
 public class Servico {
 
