@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_CarlosMuniz;
+package uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_Carlos;
 // encadeada de todos os atendimentos encerrados que possuem assuntos daquele tipo.
 
-import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_CarlosMuniz.model.TipoAssunto;
-import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_CarlosMuniz.model.Atendimento;
-import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_CarlosMuniz.model.Assunto;
+import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_Carlos.model.TipoAssunto;
+import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_Carlos.model.Atendimento;
+import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_Carlos.model.Assunto;
 
 
 /**

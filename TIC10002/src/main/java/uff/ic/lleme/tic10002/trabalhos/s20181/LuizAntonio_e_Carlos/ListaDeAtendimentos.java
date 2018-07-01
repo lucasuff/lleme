@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_CarlosMuniz;
+package uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_Carlos;
 
-import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_CarlosMuniz.model.Atendimento;
+import uff.ic.lleme.tic10002.trabalhos.s20181.LuizAntonio_e_Carlos.model.Atendimento;
 
 /**
  *
