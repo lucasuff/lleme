@@ -7,9 +7,9 @@
  *
  * @author vinib
  */
-package uff.ic.lleme.tic10002.trabalhos.s20181.Breno_Vinicius;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Breno_e_Vinicius;
 
-import uff.ic.lleme.tic10002.trabalhos.s20181.Breno_Vinicius.model.Cliente;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Breno_e_Vinicius.model.Cliente;
 
 public class ListaEncad {
 

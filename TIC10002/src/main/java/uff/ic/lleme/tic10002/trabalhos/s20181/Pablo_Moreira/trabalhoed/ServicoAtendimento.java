@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uff.ic.lleme.tic10002.trabalhos.s20181.PabloMoreira.trabalhoed;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Pablo_Moreira.trabalhoed;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
