@@ -1,6 +1,7 @@
-package trabalho;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.model;
 
 import java.text.DecimalFormat;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.ListaLigada;
 
 public class Assunto {
 

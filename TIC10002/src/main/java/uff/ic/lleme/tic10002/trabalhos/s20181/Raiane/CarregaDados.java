@@ -1,5 +1,9 @@
-package trabalho;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Raiane;
 
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.model.TipoAssunto;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.model.Atendimento;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.model.Cliente;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Raiane.model.Assunto;
 import java.io.File;
 import java.util.Random;
 import javax.xml.parsers.DocumentBuilder;
