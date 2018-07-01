@@ -1,7 +1,8 @@
-package uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.src.ed.trabalho20181;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.HeapAssunto;
 
 public class Atendimento {
 

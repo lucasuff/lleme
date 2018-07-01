@@ -1,4 +1,6 @@
-package uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.src.ed.trabalho20181;
+package uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas;
+
+import uff.ic.lleme.tic10002.trabalhos.s20181.Romulo_e_Lucas.model.Assunto;
 
 public class HeapAssunto {
 
