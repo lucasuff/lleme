@@ -1,15 +1,14 @@
-package uff.ic.lleme.tic10002.trabalhos.s20181.Luiz_Gustavo_Dias;
-
+package uff.ic.lleme.tic10002.trabalhos.s20181.Luiz_Gustavo_Dias.model;
 
 public class Assunto {
 
-    TipoAssunto tipoAssunto;
-    String descricao;
-    String providencia;
-    int duracaoAtendimentoAssunto;
-    Assunto proximoAssunto;
-    int tempoMedio;
-    int cont;
+    public TipoAssunto tipoAssunto;
+    public String descricao;
+    public String providencia;
+    public int duracaoAtendimentoAssunto;
+    public Assunto proximoAssunto;
+    public int tempoMedio;
+    public int cont;
 
     public void setTipoAssunto(TipoAssunto tipoAssunto) {
         this.tipoAssunto = tipoAssunto;
