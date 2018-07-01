@@ -1,11 +1,12 @@
-from classHashNo import Hash, No
+from uff.ic.lleme.tic10002.trabalhos.s20181.Carolina_Veiga.classHashNo import Hash, No
+
 
 class Estatisticas(object):
 
     def __init__(self):
         self.h = Hash()
-        self.tempos = [0]*5
-        self.cont = [0]*5
+        self.tempos = [0] * 5
+        self.cont = [0] * 5
         self.no1 = No('tipo1')
         self.no2 = No('tipo2')
         self.no3 = No('tipo3')
@@ -33,7 +34,7 @@ class Estatisticas(object):
     def construirHash(self):
 
         for i in range(0, 5):
-            media = self.tempos[i]/self.cont[i]
+            media = self.tempos[i] / self.cont[i]
             if i == 0:
                 self.no1.mediaTempos = media
                 self.h.inserir(self.no1)

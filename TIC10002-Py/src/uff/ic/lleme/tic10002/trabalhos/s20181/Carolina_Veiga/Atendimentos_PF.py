@@ -1,6 +1,6 @@
 
-from uff.ic.lleme.tic10002.trabalhos.s20181.Carolina_Veiga.classCliente import Cliente
 from uff.ic.lleme.tic10002.trabalhos.s20181.Carolina_Veiga.classPF_sc import PF
+from uff.ic.lleme.tic10002.trabalhos.s20181.Carolina_Veiga.model.classCliente import Cliente
 
 cliente1 = Cliente(124, 'Carolina', 28, ['informacoes', 'cancelar agendamento', 'requerimento de passaporte eletronico'])
 cliente2 = Cliente(12890937763, 'Clara', 27, ['emissao de GRU', 'emissao de certidao de antecedentes criminais'])

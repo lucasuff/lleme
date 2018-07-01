@@ -1,7 +1,9 @@
 class No(object):
+
     def __init__(self, tipo):
         self.tipo = tipo
         self.mediaTempos = 0
+
 
 class Hash(object):
 
@@ -28,7 +30,7 @@ class Hash(object):
 
     def inserir(self, novo):
         if self.isFull() == True:
-            print(f'Hash cheio. {novo} nao incluido')
+            print('Hash cheio. {novo} nao incluido')
             pass
         else:
             i = self.funcaoHash(novo)
@@ -50,7 +52,7 @@ class Hash(object):
             pass
         i = self.funcaoHash(no)
         if self.hash[i] == no:
-            print(f'i = {i}')
+            print('i = {i}')
             return i
         else:
             j = self.n - 1
@@ -60,7 +62,7 @@ class Hash(object):
                 if j == -1:
                     j = None
                     break
-            print(f'i = {i}, j = {j}')
+            print('i = {i}, j = {j}')
             return j
 
     def remover(self, no):

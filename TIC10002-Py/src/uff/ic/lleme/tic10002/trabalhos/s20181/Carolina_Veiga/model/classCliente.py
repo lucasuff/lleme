@@ -1,4 +1,4 @@
-from  uff.ic.lleme.tic10002.trabalhos.s20181.Carolina_Veiga.classAssunto import Assunto
+from  uff.ic.lleme.tic10002.trabalhos.s20181.Carolina_Veiga.model.classAssunto import Assunto
 
 
 class Cliente(object):
