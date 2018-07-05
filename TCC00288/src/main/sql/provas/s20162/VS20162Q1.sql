@@ -1,58 +1,65 @@
-CREATE TABLE country(
-  code TEXT NOT NULL,
-  "name" TEXT NOT NULL,
+drop table if exists pais cascade;
+CREATE TABLE pais(
+  codigo TEXT NOT NULL primary key,
+  nome TEXT NOT NULL,
   capital TEXT NOT NULL,
-  population TEXT NOT NULL,
-  CONSTRAINT country_pk PRIMARY KEY
-  (code)
-;
+  populacao TEXT NOT NULL);
 
-CREATE TABLE province(
-  "name" TEXT NOT NULL,
-  country TEXT NOT NULL,
+drop table if exists provincia cascade;
+CREATE TABLE provincia(
+  nome TEXT NOT NULL primary key,
+  pais TEXT NOT NULL,
   area REAL NOT NULL,
-  population INTEGER NOT NULL,
+  populacao INTEGER NOT NULL,
   capital TEXT NOT NULL,
-  CONSTRAINT province_pk PRIMARY KEY
-  ("name"),
-  CONSTRAINT province_country_fk FOREIGN
-  KEY (country) REFERENCES country (code)
+  CONSTRAINT provincia_pais_fk FOREIGN
+  KEY (pais) REFERENCES pais(codigo)
 );
 
-CREATE OR REPLACE FUNCTION computeMedianArea(p_country VARCHAR) RETURNS NUMERIC AS $$
+INSERT INTO pais values ('BR','Brasil','Brasilia','200M');
+INSERT INTO provincia values ('Rio','BR',10.0,8,'Rio');
+INSERT INTO provincia values ('sao paulo','BR',9.0,8,'sao paulo');
+INSERT INTO provincia values ('Minas','BR',8.0,7,'BH');
+INSERT INTO provincia values ('Espirito Santo','BR',7.0,7,'Vitoria');
+
+drop function if exists computeMedianArea(VARCHAR) cascade;
+CREATE OR REPLACE FUNCTION computeMedianArea(p_pais VARCHAR) RETURNS NUMERIC AS $$
     DECLARE
         r1 RECORD;
         r2 RECORD;
-        count INT;
+        provincias INT;
         i INT;
-        median NUMERIC;
-        curs CURSOR FOR SELECT province.area
-                        FROM country JOIN province
-                        ON country.code = province.country
-                        WHERE country.name = p_country
-                        ORDER BY province.area;
+        mediana NUMERIC;
+        curs CURSOR FOR SELECT provincia.area
+                        FROM pais JOIN provincia ON pais.codigo = provincia.pais
+                        WHERE pais.nome = p_pais
+                        ORDER BY provincia.area;
     BEGIN
-        i := 0;
-        median := 0;
-        IF p_country IS NOT NULL THEN
-            SELECT COUNT(DISTINCT p.name)
-            INTO count
-            FROM country c JOIN province p ON c.code = p.country
-            WHERE c.name = p_country;
+        IF p_pais IS NOT NULL THEN
+            SELECT COUNT(DISTINCT p.nome)
+            INTO provincias
+            FROM pais c JOIN provincia p ON c.codigo = p.pais
+            WHERE c.nome = p_pais;
             OPEN curs;
+
+            i := 0;
+            mediana := 0;
             LOOP FETCH curs INTO r1;
                 EXIT WHEN NOT FOUND;
                 i := i + 1;
-                IF i = ROUND(count::numeric/2) THEN
-                    IF count%2 = 0 THEN
+                IF i = ROUND(provincias::numeric/2) THEN
+                    IF provincias%2 = 0 THEN
                         FETCH curs into r2;
-                        median = (r1.area + r2.area)/2;
+                        mediana = (r1.area + r2.area)/2;
+                        EXIT;
                     ELSE
-                        median = r1.area;
+                        mediana = r1.area;
                     END IF;
                 END IF;
             END LOOP;
             CLOSE curs;
         END IF;
-        RETURN median;
+        RETURN mediana;
     END; $$ LANGUAGE PLPGSQL;
+
+select computeMedianArea('Brasil');
