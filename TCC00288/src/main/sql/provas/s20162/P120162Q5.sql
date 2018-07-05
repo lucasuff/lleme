@@ -67,8 +67,7 @@ BEGIN
 		      INNER JOIN antena t3 ON t3.antena_id = t1.antena_dest
 		 WHERE
 		      t1.inicio BETWEEN p_d1 AND p_d2
-		      OR t1.fim BETWEEN p_d1 AND p_d2
-		 FOR SHARE OF t1),
+		      OR t1.fim BETWEEN p_d1 AND p_d2),
 	  t2 AS (SELECT
 		      t1.bairro_orig,
 		      t1.municipio_orig,
