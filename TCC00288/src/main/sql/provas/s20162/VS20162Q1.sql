@@ -13,8 +13,7 @@ CREATE TABLE provincia(
   populacao INTEGER NOT NULL,
   capital TEXT NOT NULL,
   CONSTRAINT provincia_pais_fk FOREIGN
-  KEY (pais) REFERENCES pais(codigo)
-);
+  KEY (pais) REFERENCES pais(codigo));
 
 INSERT INTO pais values ('BR','Brasil','Brasilia','200M');
 INSERT INTO provincia values ('Rio','BR',10.0,8,'Rio');
