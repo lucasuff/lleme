@@ -12,17 +12,17 @@ public class P220171Q1 {
             this.conteudo = conteudo;
         }
 
-        public double visitar() {
+        public double calcular() {
             if (noDireito == null && noEsquerdo == null)
                 return Double.parseDouble(conteudo);
             else if (conteudo.equals("+"))
-                return noDireito.visitar() + noEsquerdo.visitar();
+                return noDireito.calcular() + noEsquerdo.calcular();
             else if (conteudo.equals("-"))
-                return noDireito.visitar() - noEsquerdo.visitar();
+                return noDireito.calcular() - noEsquerdo.calcular();
             else if (conteudo.equals("*"))
-                return noDireito.visitar() * noEsquerdo.visitar();
+                return noDireito.calcular() * noEsquerdo.calcular();
             else if (conteudo.equals("/"))
-                return noDireito.visitar() / noEsquerdo.visitar();
+                return noDireito.calcular() / noEsquerdo.calcular();
             else
                 return 0;
         }
@@ -48,6 +48,6 @@ public class P220171Q1 {
         soma.noEsquerdo = d;
         prod2.noEsquerdo = e;
 
-        System.out.println(dif.visitar());
+        System.out.println(dif.calcular());
     }
 }

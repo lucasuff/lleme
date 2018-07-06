@@ -17,6 +17,33 @@ public class P220171Q3 {
             this.chave = chave;
         }
 
+        public void printTree() {
+            if (esquerda != null)
+                esquerda.printTree(false, "");
+            printNodeValue();
+            if (direita != null)
+                direita.printTree(true, "");
+        }
+
+        private void printNodeValue() {
+            System.out.print("" + chave);
+            System.out.print('\n');
+        }
+
+        private void printTree(boolean isRight, String indent) {
+            if (esquerda != null)
+                esquerda.printTree(false, indent + (isRight ? " |      " : "        "));
+            System.out.print(indent);
+            if (isRight)
+                System.out.print(" \\");
+            else
+                System.out.print(" /");
+            System.out.print("----- ");
+            printNodeValue();
+            if (direita != null)
+                direita.printTree(true, indent + (isRight ? "        " : " |      "));
+        }
+
     }
 
     public boolean ehAVL() {
@@ -27,13 +54,13 @@ public class P220171Q3 {
 
     private int ehAVL(No no, int nivel) {
         if (no == null)
-            return nivel + 1;
-        int nivelD = ehAVL(no.direita, nivel + 1);
-        int nivelE = ehAVL(no.esquerda, nivel + 1);
-        no.saldo = Math.abs(nivelD - nivelE);
+            return nivel;
+        int alturaD = ehAVL(no.direita, nivel + 1);
+        int alturaE = ehAVL(no.esquerda, nivel + 1);
+        no.saldo = Math.abs(alturaD - alturaE);
         if (no.saldo > 1)
             avl = false;
-        return Math.max(nivelD, nivelE);
+        return Math.max(alturaD, alturaE);
     }
 
     public void incluir(int chave) {
@@ -59,11 +86,16 @@ public class P220171Q3 {
                 incluir(no.direita, novoNo);
     }
 
+    public void print() {
+        raiz.printTree();
+    }
+
     public static void main(String[] args) {
         P220171Q3 a = new P220171Q3();
-        int[] nums = {34, 1, 78, 12, 3, 14, 67, 7, 6, 24};
+        int[] nums = {34, 1, 78, 12, 14};
         for (int num : nums)
             a.incluir(num);
         System.out.println("" + a.ehAVL());
+        a.print();
     }
 }
