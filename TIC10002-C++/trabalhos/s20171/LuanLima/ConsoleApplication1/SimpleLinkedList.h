@@ -5,32 +5,33 @@
 
 #include <iostream>
 
-
-
-template <typename V, typename  F>
-class LinkedList{
-
+template <typename V, typename F>
+class LinkedList {
 public:
-    class Node{
 
+    class Node {
     public:
         V value;
         Node *next;
-        Node(V value) : value(value), next(nullptr) {}
+
+        Node(V value) : value(value), next(nullptr) {
+        }
     };
 
 
-    bool  sorted, canRepeat;
+    bool sorted, canRepeat;
     F compare;
     Node *head;
 
-    LinkedList(bool sorted=false, bool canRepeat=true) : sorted(sorted), canRepeat(canRepeat), head(nullptr), size(0) {}
+    LinkedList(bool sorted = false, bool canRepeat = true) : sorted(sorted), canRepeat(canRepeat), head(nullptr), size(0) {
+    }
 
 
     // Descontrutor.
-    ~LinkedList(){
+
+    ~LinkedList() {
         Node * aux1, *aux = head;
-        while(aux != nullptr){
+        while (aux != nullptr) {
             aux1 = aux;
             aux = aux->next;
             delete aux1;
@@ -38,43 +39,43 @@ public:
 
     }
 
-    void insert(V value){
+    void insert(V value) {
         Node * node = new Node(value);
 
-        if(head == nullptr) {
+        if (head == nullptr) {
             head = node;
             size += 1;
-        }else{
+        } else {
             Node * prev = nullptr;
             Node * aux = head;
 
             bool flag = false;
 
-            while(aux != nullptr){
-                if(sorted && compare(aux->value, value) > 0) // Preciso inserir ordenado?
+            while (aux != nullptr) {
+                if (sorted && compare(aux->value, value) > 0) // Preciso inserir ordenado?
                     break;
-                if(!canRepeat && compare(aux->value, value) == 0) { // Pode repetir valor?
+                if (!canRepeat && compare(aux->value, value) == 0) { // Pode repetir valor?
                     flag = true;
                     break;
                 }
-                prev  = aux;
+                prev = aux;
                 aux = aux->next;
 
 
             }
 
             // inserção
-            if(!flag){
+            if (!flag) {
 
-                if(sorted){ // se o modo ordenado estiver ativo, é necessário verificar se o prev == null (novo nó no inicio)
-                    if(prev == nullptr){
+                if (sorted) { // se o modo ordenado estiver ativo, é necessário verificar se o prev == null (novo nó no inicio)
+                    if (prev == nullptr) {
                         node->next = aux;
                         head = node;
-                    }else{
+                    } else {
                         prev->next = node;
                         node->next = aux;
                     }
-                }else{ // caso contrário prev sempre será diferente de null (if(head == nullptr) garante isso)
+                } else { // caso contrário prev sempre será diferente de null (if(head == nullptr) garante isso)
                     prev->next = node;
                 }
 
@@ -87,10 +88,10 @@ public:
 
     }
 
-    void print(){
+    void print() {
         Node *aux = head;
 
-        while(aux != nullptr){
+        while (aux != nullptr) {
             std::cout << aux->value << ", ";
             aux = aux->next;
         }
@@ -98,7 +99,7 @@ public:
         std::cout << std::endl;
     }
 
-    int getSize(){
+    int getSize() {
         return size;
     }
 
@@ -106,15 +107,15 @@ public:
      *
      * Não era necessário, mas fiz para a classe ficar completa.
      * */
-    bool remove(V value){
+    bool remove(V value) {
         Node *prev = nullptr, *aux = head;
-        while(aux!= nullptr && compare(aux->value, value) != 0){
+        while (aux != nullptr && compare(aux->value, value) != 0) {
             prev = aux;
             aux = aux->next;
         }
 
-        if(aux != nullptr){ // elemento encontrado - remover o elemento
-            if(prev == nullptr) // elemento na primeira posição
+        if (aux != nullptr) { // elemento encontrado - remover o elemento
+            if (prev == nullptr) // elemento na primeira posição
                 head = aux->next;
             else
                 prev->next = aux->next;
@@ -122,13 +123,13 @@ public:
             aux->next = nullptr;
             delete aux;
             return true;
-        }else
+        } else
             return false;
 
     }
 
     //Todo
-    LinkedList * Union(LinkedList  *other);
+    LinkedList * Union(LinkedList *other);
 
 
 private:

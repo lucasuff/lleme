@@ -15,14 +15,13 @@ using namespace std;
 #define MAX_SIZE_LIST 10
 #define GRAU_URGENCIA 10
 
-class servicioAtendimento
-{
-  private:
+class servicioAtendimento {
+private:
     TipoAssunto *listaTipoAssunto;
     MyHash listaEncerrar;
     MyHeap heapAtendimento;
 
-  public:
+public:
 
     servicioAtendimento();
     void imprimirListaTipoAtendimento();

@@ -1,5 +1,5 @@
 
-/* A clase OrderedList contém os métodos para criar a lista ordenada,
+/* A clase OrderedList contï¿½m os mï¿½todos para criar a lista ordenada,
    calcular os totais de vendas, e print as estruturas */
 
 #include "OrderedList.h"
@@ -8,13 +8,11 @@
 
 using namespace std;
 
-OrderedList::OrderedList()
-{
+OrderedList::OrderedList() {
     head = 0; // NULL
 }
 
-OrderedList::~OrderedList()
-{
+OrderedList::~OrderedList() {
     Node *x;
 
     while (head != 0) {
@@ -24,15 +22,13 @@ OrderedList::~OrderedList()
     }
 }
 
-Node* OrderedList::Search(int k)
-{
+Node* OrderedList::Search(int k) {
     Node *x = head;
 
     while (x != 0 && x->GetValue() <= k) {
         if (x->GetValue() == k) {
             return x;
-        }
-        else {
+        } else {
             x = x->GetNext();
         }
     }
@@ -40,15 +36,13 @@ Node* OrderedList::Search(int k)
     return 0;
 }
 
-bool OrderedList::ExistValue(int k)
-{
+bool OrderedList::ExistValue(int k) {
     Node *x = head;
 
     while (x != 0 && x->GetValue() <= k) {
         if (x->GetValue() == k) {
             return true;
-        }
-        else {
+        } else {
             x = x->GetNext();
         }
     }
@@ -56,9 +50,8 @@ bool OrderedList::ExistValue(int k)
     return false;
 }
 
-void OrderedList::OrderedInsert(Node *x)
-{
-    //inserçãon dos nos en ordem crescente
+void OrderedList::OrderedInsert(Node *x) {
+    //inserï¿½ï¿½on dos nos en ordem crescente
     Node *a = head;
     Node *prev = 0;
 
@@ -71,19 +64,16 @@ void OrderedList::OrderedInsert(Node *x)
 
     if (prev != 0) {
         prev->SetNext(x);
-    }
-    else {
+    } else {
         head = x;
     }
 }
 
-bool OrderedList::IsEmpty()
-{
+bool OrderedList::IsEmpty() {
     return (head == 0);
 }
 
-void OrderedList::PrintList()
-{
+void OrderedList::PrintList() {
     Node *x = head;
 
     while (x != 0) {
@@ -96,8 +86,7 @@ void OrderedList::PrintList()
     cout << "null\n";
 }
 
-void OrderedList::PrintList2()
-{
+void OrderedList::PrintList2() {
     Node *x = head;
 
     while (x != 0) {
@@ -110,8 +99,7 @@ void OrderedList::PrintList2()
     cout << "null\n";
 }
 
-void OrderedList::InsertVenda_1(Venda *V)
-{
+void OrderedList::InsertVenda_1(Venda *V) {
     Node *N = Search(V->GetFilial());
 
     if (N != 0) {
@@ -119,8 +107,7 @@ void OrderedList::InsertVenda_1(Venda *V)
     }
 }
 
-void OrderedList::InsertVenda_2(Venda *V)
-{
+void OrderedList::InsertVenda_2(Venda *V) {
     Node *N = Search(V->GetFilial()), *N2;
 
     if (N != 0) {
@@ -132,8 +119,7 @@ void OrderedList::InsertVenda_2(Venda *V)
     }
 }
 
-void OrderedList::InsertVenda_3(Venda *V)
-{
+void OrderedList::InsertVenda_3(Venda *V) {
     Node *N = Search(V->GetDate());
 
     if (N != 0) {
@@ -141,8 +127,7 @@ void OrderedList::InsertVenda_3(Venda *V)
     }
 }
 
-float OrderedList::TotalVendas(int lim_inf, int lim_sup)
-{
+float OrderedList::TotalVendas(int lim_inf, int lim_sup) {
     float total = 0.0f;
     Node *N = head;
 
@@ -150,8 +135,7 @@ float OrderedList::TotalVendas(int lim_inf, int lim_sup)
         if (N->GetValue() >= lim_inf) {
             if (N->GetValue() <= lim_sup) {
                 total += N->TotalVendas();
-            }
-            else {
+            } else {
                 return total;
             }
         }
@@ -162,8 +146,7 @@ float OrderedList::TotalVendas(int lim_inf, int lim_sup)
     return total;
 }
 
-float OrderedList::TotalVendas(int lim_inf, int lim_sup, int lim_inf2, int lim_sup2)
-{
+float OrderedList::TotalVendas(int lim_inf, int lim_sup, int lim_inf2, int lim_sup2) {
     float total = 0.0f;
     Node *N = head, *N2;
 
@@ -176,16 +159,14 @@ float OrderedList::TotalVendas(int lim_inf, int lim_sup, int lim_inf2, int lim_s
                     if (N2->GetValue() >= lim_inf2) {
                         if (N2->GetValue() <= lim_sup2) {
                             total += N2->TotalVendas();
-                        }
-                        else {
+                        } else {
                             break;
                         }
                     }
 
                     N2 = N2->GetNext();
                 }
-            }
-            else {
+            } else {
                 return total;
             }
         }

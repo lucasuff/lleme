@@ -1,8 +1,8 @@
 /*
-    * Estrutura de uma tabela HASH Genérica, é necessario passar chave (k), valor (V) e função hash (F)
-    *  A função Hash (F) sempre deverá retornar um inteiro. [fiz isso para facilitar a implementação]
-    * Created by luan on 5/22/17.
-*/
+ * Estrutura de uma tabela HASH Genérica, é necessario passar chave (k), valor (V) e função hash (F)
+ *  A função Hash (F) sempre deverá retornar um inteiro. [fiz isso para facilitar a implementação]
+ * Created by luan on 5/22/17.
+ */
 
 
 
@@ -11,10 +11,12 @@
 
 
 // Hash map class template
+
 template<typename K, typename V, typename F>
 
 class HashMap {
 private:
+
     /*Iner Clash: Noh da tabela HashTable
      *
      * Como a tabela genérica, optei por criar um "encapsulador" para o objeto utilizado na entrada.
@@ -22,16 +24,14 @@ private:
      *
      * */
     class NodeHash {
-
-
     public:
         K key; // chave da tabela hash
         V value; // Valor (conteudo) do nó hash
-        NodeHash *next;// Ponteiro para o proximo noh com o mesmo 'value'
-
+        NodeHash *next; // Ponteiro para o proximo noh com o mesmo 'value'
 
         NodeHash(const K &key, const V &value) :
-                key(key), value(value), next(nullptr) {}
+        key(key), value(value), next(nullptr) {
+        }
 
     };
 
@@ -39,17 +39,18 @@ private:
 public:
 
     /*Construtor: recebe o tamanho da tabela e cria a tabela Hash (vazia)*/
-    HashMap(int TABLE_SIZE=10000) {
+    HashMap(int TABLE_SIZE = 10000) {
         this->TABLE_SIZE = TABLE_SIZE;
         this->table = new NodeHash *[TABLE_SIZE](); // Inicializa a tabela
     }
 
-//    //Desconstrutor
-    ~HashMap(){
-        for(int i = 0; i < TABLE_SIZE; i++) {
+    //    //Desconstrutor
+
+    ~HashMap() {
+        for (int i = 0; i < TABLE_SIZE; i++) {
             NodeHash *ptr_hash = table[i];
             NodeHash *aux;
-            while(ptr_hash != nullptr){
+            while (ptr_hash != nullptr) {
                 aux = ptr_hash;
                 ptr_hash = ptr_hash->next;
                 delete aux;
@@ -116,6 +117,7 @@ public:
      * */
 
     // Implementei soh pra ficar completa. Não era necessario
+
     bool remove(const K &key) {
         unsigned long int hashValue = hashFunc(key);
         NodeHash *prev = NULL;
@@ -143,16 +145,16 @@ public:
     }
 
     /*DEBUG*/
-//    void print(){
-//        for(unsigned  long int i = 0; i < TABLE_SIZE; i++){
-//            NodeHash *ptr_hash = table[i];
-//            while(ptr_hash != nullptr) {
-//                ptr_hash->value->print();
-//                ptr_hash = ptr_hash->next;
-//            }
-//
-//        }
-//    }
+    //    void print(){
+    //        for(unsigned  long int i = 0; i < TABLE_SIZE; i++){
+    //            NodeHash *ptr_hash = table[i];
+    //            while(ptr_hash != nullptr) {
+    //                ptr_hash->value->print();
+    //                ptr_hash = ptr_hash->next;
+    //            }
+    //
+    //        }
+    //    }
 
 private:
     // hash table

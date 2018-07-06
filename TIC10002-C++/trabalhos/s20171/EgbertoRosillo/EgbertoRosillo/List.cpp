@@ -1,6 +1,6 @@
 
 /* clase que contiene un apuntador de tipo venda.
- Es onde se definem los métodos para manipular la lista
+ Es onde se definem los mï¿½todos para manipular la lista
  de tipo venda. */
 
 #include "List.h"
@@ -8,13 +8,11 @@
 
 using namespace std;
 
-List::List()
-{
+List::List() {
     head = 0; // NULL
 }
 
-List::~List()
-{
+List::~List() {
     Venda *x;
 
     while (!IsEmpty()) {
@@ -24,19 +22,16 @@ List::~List()
     }
 }
 
-void List::Insert(Venda *x)
-{
+void List::Insert(Venda *x) {
     x->SetNext(head);
     head = x;
 }
 
-bool List::IsEmpty()
-{
+bool List::IsEmpty() {
     return (head == 0);
 }
 
-void List::PrintList()
-{
+void List::PrintList() {
     Venda *x = head;
 
     while (x != 0) {
@@ -47,8 +42,7 @@ void List::PrintList()
     cout << " --> null";
 }
 
-void List::PrintList2()
-{
+void List::PrintList2() {
     Venda *x = head;
     cout << "(";
 
@@ -60,8 +54,7 @@ void List::PrintList2()
     cout << " --> null )";
 }
 
-float List::TotalVendas()
-{
+float List::TotalVendas() {
     float total = 0.0f;
     Venda *x = head;
 

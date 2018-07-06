@@ -10,21 +10,19 @@
 #include <fstream>
 #include <functional>
 
-
 class QuerySystem {
-
-
 #define TABLE_SIZE 100000
 #define TABLE_AUX_SIZE 200
 
 
-typedef  LinkedList<std::string, Manager::CompareDate>::Node Lnode;
+    typedef LinkedList<std::string, Manager::CompareDate>::Node Lnode;
 
 
 public:
 
     // Construtor com arquivo de entrada
-    QuerySystem(std::string inputFile, bool debug=false) {
+
+    QuerySystem(std::string inputFile, bool debug = false) {
 
         my_hash = new HashMap<size_t, Manager *, MyKeyHash>(TABLE_SIZE);
         branch_tree = Avl<int, Manager::CompareInt>();
@@ -35,7 +33,8 @@ public:
     }
 
     // Construtor sem arquivo de entrada
-    QuerySystem(bool debug=false) {
+
+    QuerySystem(bool debug = false) {
         my_hash = new HashMap<size_t, Manager *, MyKeyHash>(TABLE_SIZE);
         branch_tree = Avl<int, Manager::CompareInt>();
         date_tree = Avl<std::string, Manager::CompareDate>();
@@ -44,37 +43,35 @@ public:
 
     }
 
-
-    ~QuerySystem(){
+    ~QuerySystem() {
         delete my_hash;
     }
 
-
-    int getTotalSalesByDate(std::string d1, std::string d2){
+    int getTotalSalesByDate(std::string d1, std::string d2) {
 
         LinkedList<std::string, Manager::CompareDate> range = date_tree.getRange(d1, d2);
-        if(debug){
+        if (debug) {
             std::cout << "Datas: " << std::endl;
             range.print();
         }
 
 
-                  int sum = 0;
+        int sum = 0;
         Manager *aux;
         //Para cada data válida (dentro do range) soma o total de vendas
-        for(LinkedList<std::string, Manager::CompareDate>::Node *it = range.head; it != nullptr; it = it->next){
-            if(my_hash->get(getHash(it->value), aux)){
+        for (LinkedList<std::string, Manager::CompareDate>::Node *it = range.head; it != nullptr; it = it->next) {
+            if (my_hash->get(getHash(it->value), aux)) {
                 sum += aux->getTotal();
             }
         }
         return sum;
     }
 
-    int getTotalSalesByBranch(int b1, int b2){
+    int getTotalSalesByBranch(int b1, int b2) {
 
         LinkedList<int, Manager::CompareInt> range = branch_tree.getRange(b1, b2);
 
-        if(debug){
+        if (debug) {
             std::cout << "Filiais: " << std::endl;
             range.print();
         }
@@ -82,21 +79,21 @@ public:
         int sum = 0;
         Manager *aux;
         // Para cada filial válida (dentro do range) soma o total de vendas
-        for(LinkedList<int, Manager::CompareInt>::Node *it = range.head; it != nullptr; it = it->next){
-            if(my_hash->get(getHash(std::to_string(it->value)), aux)){
+        for (LinkedList<int, Manager::CompareInt>::Node *it = range.head; it != nullptr; it = it->next) {
+            if (my_hash->get(getHash(std::to_string(it->value)), aux)) {
                 sum += aux->getTotal();
             }
         }
         return sum;
     }
 
-    int getTotalSalesByDateAndBranch(std::string d1, std::string d2, int b1, int b2){
+    int getTotalSalesByDateAndBranch(std::string d1, std::string d2, int b1, int b2) {
         //Recupera o range de datas
         LinkedList<std::string, Manager::CompareDate> range_date = date_tree.getRange(d1, d2);
         //Recupera o range de filiais
         LinkedList<int, Manager::CompareInt> range_branch = branch_tree.getRange(b1, b2);
 
-        if(debug) { // DEBUG
+        if (debug) { // DEBUG
             std::cout << "Datas: " << std::endl;
             range_date.print();
 
@@ -108,7 +105,7 @@ public:
         //Aloca uma HAsh Auxiliar para melhorar o desempenho da consulta
         HashMap<size_t, std::string, MyKeyHashAux> * aux_hash = new HashMap<size_t, std::string, MyKeyHashAux>(TABLE_AUX_SIZE);
         //Cria as entradas na HASH auxiliar (a data será a chave da consulta)
-        for(LinkedList<std::string, Manager::CompareDate>::Node *it = range_date.head; it != nullptr; it = it->next) {
+        for (LinkedList<std::string, Manager::CompareDate>::Node *it = range_date.head; it != nullptr; it = it->next) {
             aux_hash->put(getHash(it->value), it->value);
         }
 
@@ -116,8 +113,8 @@ public:
         int aux;
         Manager *aux_manager;
         //Para cara filial consulta as vendas nas datas válidas (utilizando o aux_hash)
-        for(LinkedList<int, Manager::CompareInt>::Node *it = range_branch.head; it != nullptr; it = it->next){
-            if(my_hash->get(getHash(std::to_string(it->value)), aux_manager)) { //Recupera da HASH principal
+        for (LinkedList<int, Manager::CompareInt>::Node *it = range_branch.head; it != nullptr; it = it->next) {
+            if (my_hash->get(getHash(std::to_string(it->value)), aux_manager)) { //Recupera da HASH principal
                 // a função getTotalByDAte utiliza o hash auxiliar para que essa consulta seja feita em O(N)
                 sum += aux_manager->getTotalByDate(aux_hash);
             }
@@ -131,7 +128,7 @@ public:
 
     }
 
-    void insertSale(int branch_int, std::string date, int seller_code,  int total_sold){
+    void insertSale(int branch_int, std::string date, int seller_code, int total_sold) {
 
         std::string branch = std::to_string(branch_int);
 
@@ -141,14 +138,14 @@ public:
 
         //Verifica se já existe um Manager com key=branch
         Manager *aux1 = nullptr;
-        if(!my_hash->get(getHash(branch), aux1)) {// caso NAO exista cria um novo manager key=branch.
+        if (!my_hash->get(getHash(branch), aux1)) {// caso NAO exista cria um novo manager key=branch.
             aux1 = new Manager(branch);
             branch_tree.insert(std::stoi(branch));
         }
 
         Manager *aux2 = nullptr;
         //Verificar se já existe um Manager com key=Date
-        if(!my_hash->get(getHash(date), aux2)) { // Caso NAO exista, cria um novo manager key=Date
+        if (!my_hash->get(getHash(date), aux2)) { // Caso NAO exista, cria um novo manager key=Date
             aux2 = new Manager(date);
             date_tree.insert(date);
         }
@@ -165,12 +162,14 @@ public:
 private:
 
     struct MyKeyHash {
+
         unsigned long operator()(const size_t &k) const {
             return k % unsigned(TABLE_SIZE);
         }
     };
 
     struct MyKeyHashAux {
+
         unsigned long operator()(const size_t &k) const {
             return k % unsigned(TABLE_AUX_SIZE);
         }
@@ -179,12 +178,12 @@ private:
 
 
     // Dado uma string, retorna um valor numerico (MD5, eu acho)
+
     /* Função utilizada para gerar chaves para os elementos que serão inseridos na minha tabela hash*/
     size_t getHash(std::string key) {
         std::hash<std::string> hasher;
         return hasher(key);
     }
-
 
     /*
      * Ler arquivo de entrada
@@ -213,7 +212,7 @@ private:
                  "out"
                  "nov"
                  "dez"
-      */
+     */
     void readFile(std::string file_name) {
         //Reading file
         std::string line;
@@ -256,7 +255,7 @@ private:
             insertSale(std::stoi(branch), date, seller_code, total_sold);
 
         }
-        if(debug){
+        if (debug) {
             std::cout << "Leu o arquivo de entrada..." << std::endl;
         }
     }

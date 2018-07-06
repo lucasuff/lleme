@@ -5,48 +5,45 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-/*! Classe Fluxo para armazenar os valores recebidos pelas instâncias e para 
+/*! Classe Fluxo para armazenar os valores recebidos pelas instâncias e para
  *  imprimir o resultado final.
  */
-class Fluxo
-{
+class Fluxo {
 public:
 
     /* Construtor padrão    */
-    Fluxo( )
-    {
+    Fluxo() {
     };
 
     /*  Construtor passando todos os valores de um Fluxo individualmente    */
-    Fluxo( std::string setor, std::string rodovia, int dia, double valor ) : m_setor( setor ), m_rodovia( rodovia ), m_dia( dia ), m_valor( valor )
-    {
+    Fluxo(std::string setor, std::string rodovia, int dia, double valor) : m_setor(setor), m_rodovia(rodovia), m_dia(dia), m_valor(valor) {
     };
 
     /*! Retorna o setor do Fluxo    */
-    std::string setor( );
+    std::string setor();
 
     /*! Retorna a rodovia do Fluxo   */
-    std::string rodovia( );
+    std::string rodovia();
 
     /*! Retorna o dia do Fluxo   */
-    int dia( );
+    int dia();
 
     /*! Retorna o valor do Fluxo    */
-    double valor( );
+    double valor();
 
     /*! Incrementa o valor do Fluxo para o caso do Fluxo ser o mesmo    */
-    void incValor( double );
+    void incValor(double);
 
     /*! Retorna uma chave ( setor + dia ) para encontrar a posição da tabela
      *  Hash
      */
-    std::string chave( );
+    std::string chave();
 
     /*! Operator de igual entre duas classes Fluxo  */
-    bool operator==( Fluxo& fluxo )const;
+    bool operator==(Fluxo& fluxo)const;
 
     /*! Operator de atribuição entre duas classes Fluxo  */
-    void operator=( Fluxo& fluxo );
+    void operator=(Fluxo& fluxo);
 private:
     std::string m_setor;
     std::string m_rodovia;
@@ -54,20 +51,17 @@ private:
     double m_valor;
 };
 
-class NoFluxo
-{
+class NoFluxo {
 public:
 
     /*! Construtor padrão   */
-    NoFluxo( )
-    {
+    NoFluxo() {
         this->proximo = NULL;
     };
 
     /*! Construtor passando um Fluxo novo   */
-    NoFluxo( Fluxo fluxo )
-    {
-        this->m_fluxo.operator=( fluxo );
+    NoFluxo(Fluxo fluxo) {
+        this->m_fluxo.operator=(fluxo);
         this->proximo = NULL;
     }
 
@@ -75,41 +69,38 @@ public:
     Fluxo m_fluxo;
 };
 
-class ListaFluxo
-{
+class ListaFluxo {
 public:
 
     /*! Construtor padrão   */
-    ListaFluxo( )
-    {
+    ListaFluxo() {
         this->m_raiz = NULL;
     }
 
     /*! Construtor passando um novo Fluxo por parâmetro   */
-    ListaFluxo( Fluxo fluxo )
-    {
-        this->m_raiz = this->novoNo( fluxo );
+    ListaFluxo(Fluxo fluxo) {
+        this->m_raiz = this->novoNo(fluxo);
     }
 
     NoFluxo *m_raiz;
 
     /*! Imprime a lista de fluxos
      */
-    void imprimir( );
+    void imprimir();
 
     /*! Retorna true se a lista estiver vazia, false caso contrário
      */
-    bool vazia( );
+    bool vazia();
 
     /*! Retorna um novo nó com os dados do parâmetro fluxo
      */
-    NoFluxo *novoNo( Fluxo fluxo );
+    NoFluxo *novoNo(Fluxo fluxo);
 
     /*! Insere um novo fluxo na lista
      */
-    bool inserir( Fluxo fluxo );
+    bool inserir(Fluxo fluxo);
 
     /*! Remove o fluxo da lista
      */
-    static bool remover( ListaFluxo*, Fluxo& );
+    static bool remover(ListaFluxo*, Fluxo&);
 };

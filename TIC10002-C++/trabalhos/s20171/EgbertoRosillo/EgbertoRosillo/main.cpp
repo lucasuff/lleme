@@ -1,34 +1,34 @@
 /*
-Para a solução do trabalho se considerou como estrutura de dados: lista simplesmente encadeada.
+Para a soluï¿½ï¿½o do trabalho se considerou como estrutura de dados: lista simplesmente encadeada.
 Especipicamente uma lista de lista. Na hora de criar essas listas se fez de forma ordenada de um
 jeito especifico para cada estrutura. Se consideram dois tipos de listas:
-Se tem uma lista Nodo, onde cada nodo tem um endereço que aponta a outra lista, e uma
-lista venda que contém os objetos vendas com todos os dados refetentes a um reporte de venda.
+Se tem uma lista Nodo, onde cada nodo tem um endereï¿½o que aponta a outra lista, e uma
+lista venda que contï¿½m os objetos vendas com todos os dados refetentes a um reporte de venda.
 
 A. Para o primer inciso a primeira lista nodo se ordena por filiais e cada nodo aponta a uma lista venda.
 
 B. Para o segundo inciso a primeira lista nodo se ordena por filiais e cada nodo aponta a outra lista Nodo
-   ordenada por datas, e cada elemento de esta a sua vês aponta a uma terceira lista de venda.
+   ordenada por datas, e cada elemento de esta a sua vï¿½s aponta a uma terceira lista de venda.
 
 C. Para o terceiro inciso a primeira lista Nodo se ordena por datas e cada nodo aponta a uma lista venda.
 
-Na solução se utiliza o paradigma da POO, em linguaje  C++.
+Na soluï¿½ï¿½o se utiliza o paradigma da POO, em linguaje  C++.
 
 O programa pode ser comprovado a partir de um arquivo txt com o formato indicado.
-Na pasta da solução tem um que pode se utilizar.
+Na pasta da soluï¿½ï¿½o tem um que pode se utilizar.
 
-OBSERVAÇÃO: A solução proposta no trabalho foi baseada em listas encadeadas,
-principalmente porque a data de realização se reconhece que não se tinha
-conhecimento suficiente para a programação de estruturas que são mais eficientes,
-mas mais complexas de implementar. Como é o caso dos ABB que reduzem o tempo
-de busca significativamente e além dessa uma árvore AVL garanta que até no pior
-dos casos a busca de um elemento seja em O(lg n), mas a implementação é mais
-complexa, já que na hora de inserir cada elemento se tem que garantir que a arvore
+OBSERVAï¿½ï¿½O: A soluï¿½ï¿½o proposta no trabalho foi baseada em listas encadeadas,
+principalmente porque a data de realizaï¿½ï¿½o se reconhece que nï¿½o se tinha
+conhecimento suficiente para a programaï¿½ï¿½o de estruturas que sï¿½o mais eficientes,
+mas mais complexas de implementar. Como ï¿½ o caso dos ABB que reduzem o tempo
+de busca significativamente e alï¿½m dessa uma ï¿½rvore AVL garanta que atï¿½ no pior
+dos casos a busca de um elemento seja em O(lg n), mas a implementaï¿½ï¿½o ï¿½ mais
+complexa, jï¿½ que na hora de inserir cada elemento se tem que garantir que a arvore
 fique balanceada.*/
 
 //******************************************************************************************
 
-// Declaracão das librerías a utilizar en el main.
+// Declaracï¿½o das librerï¿½as a utilizar en el main.
 
 #include <iostream>
 #include <fstream>
@@ -39,12 +39,11 @@ fique balanceada.*/
 
 using namespace std;
 
-int main()
-{
- /* A seguir se realiza a leitura do arquivo .txt. A leitura se realiza línea a línea do arquivo
-    até chegar ao fim do mesmo. */
+int main() {
+    /* A seguir se realiza a leitura do arquivo .txt. A leitura se realiza lï¿½nea a lï¿½nea do arquivo
+       atï¿½ chegar ao fim do mesmo. */
 
-    ifstream ifs ("vendas.txt", ifstream::in);
+    ifstream ifs("vendas.txt", ifstream::in);
     string str;
     int filial, ano, mes, ano_mes, cod_vendedor;
     float total_vendido;
@@ -55,7 +54,7 @@ int main()
     Venda *V1, *V2, *V3;
 
     while (ifs.peek() != EOF) {
-        getline (ifs, str, ',');
+        getline(ifs, str, ',');
         // convert string to int
         stringstream sstr(str);
         sstr >> filial;
@@ -71,11 +70,11 @@ int main()
             estrutura_2->OrderedInsert(N);
         }
 
-        getline (ifs, str, '_');
+        getline(ifs, str, '_');
         stringstream sstr2(str);
         sstr2 >> ano;
 
-        getline (ifs, str, ',');
+        getline(ifs, str, ',');
         stringstream sstr3(str);
         sstr3 >> mes;
         ifs.ignore(2, ' ');
@@ -94,23 +93,23 @@ int main()
             estrutura_3->OrderedInsert(N);
         }
 
-        getline (ifs, str, ',');
+        getline(ifs, str, ',');
         stringstream sstr4(str);
         sstr4 >> cod_vendedor;
         ifs.ignore(2, ' ');
 
-        getline (ifs, str);
+        getline(ifs, str);
         stringstream sstr5(str);
         sstr5 >> total_vendido;
 
-/* A variável V representa cada objeto venda.
-   Neste caso se tem V1, V2, e V3 um por cada estrutura por comodidade na hora de programar */
+        /* A variï¿½vel V representa cada objeto venda.
+           Neste caso se tem V1, V2, e V3 um por cada estrutura por comodidade na hora de programar */
 
         V1 = new Venda(filial, ano, mes, cod_vendedor, total_vendido);
         V2 = new Venda(filial, ano, mes, cod_vendedor, total_vendido);
         V3 = new Venda(filial, ano, mes, cod_vendedor, total_vendido);
 
-/* Através do método InsertVenda se adicionam as vendas y se forma cada estrutura de dado*/
+        /* Atravï¿½s do mï¿½todo InsertVenda se adicionam as vendas y se forma cada estrutura de dado*/
         estrutura_1->InsertVenda_1(V1);
         estrutura_2->InsertVenda_2(V2);
         estrutura_3->InsertVenda_3(V3);
@@ -118,10 +117,10 @@ int main()
 
     ifs.close();
 
- /* Uma vez que estão criadas as estruturas de dados, estas se amostram.
-    Esta operação não se precisa para a solução do trabalho, mas se adicionou
-    para comprovar que foram criadas corretamente.
-    Se chama ao método PrintList para imprimir cada estrutura de dado. */
+    /* Uma vez que estï¿½o criadas as estruturas de dados, estas se amostram.
+       Esta operaï¿½ï¿½o nï¿½o se precisa para a soluï¿½ï¿½o do trabalho, mas se adicionou
+       para comprovar que foram criadas corretamente.
+       Se chama ao mï¿½todo PrintList para imprimir cada estrutura de dado. */
 
     cout << "\nEstrutura # 1:\n";
     estrutura_1->PrintList();
@@ -132,20 +131,20 @@ int main()
     cout << "\nEstrutura # 3:\n";
     estrutura_3->PrintList();
 
- /* A continuação se amostra a resposta de cada inciso do trabalho.
-    Para isso se emprega o método TotalVendas. */
+    /* A continuaï¿½ï¿½o se amostra a resposta de cada inciso do trabalho.
+       Para isso se emprega o mï¿½todo TotalVendas. */
 
-    cout << "\nTotal de vendas das filiais com códigos entre 10 y 20:\n"
-         << estrutura_1->TotalVendas(10, 20) << endl;
+    cout << "\nTotal de vendas das filiais com cï¿½digos entre 10 y 20:\n"
+            << estrutura_1->TotalVendas(10, 20) << endl;
 
-    cout << "\nTotal de vendas das filiais com códigos entre 10 y 20 \nnos meses de Jan/17 até Jun/17:\n"
-         << estrutura_2->TotalVendas(10, 20, 201701, 201706) << endl;
+    cout << "\nTotal de vendas das filiais com cï¿½digos entre 10 y 20 \nnos meses de Jan/17 atï¿½ Jun/17:\n"
+            << estrutura_2->TotalVendas(10, 20, 201701, 201706) << endl;
 
-    cout << "\nTotal de vendas de todas as filiais nos meses de Ago/17 até Out/17:\n"
-         << estrutura_3->TotalVendas(201708, 201710) << endl;
+    cout << "\nTotal de vendas de todas as filiais nos meses de Ago/17 atï¿½ Out/17:\n"
+            << estrutura_3->TotalVendas(201708, 201710) << endl;
 
- /* Ao final se eliminam as estruturas de dados para liberar o espaço de memória utilizado
-    para a criação das estruturas. */
+    /* Ao final se eliminam as estruturas de dados para liberar o espaï¿½o de memï¿½ria utilizado
+       para a criaï¿½ï¿½o das estruturas. */
 
     delete estrutura_1;
     delete estrutura_2;

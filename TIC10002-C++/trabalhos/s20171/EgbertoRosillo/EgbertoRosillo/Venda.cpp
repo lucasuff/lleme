@@ -1,10 +1,9 @@
 
-// A clase venda contém o objeto venda
+// A clase venda contï¿½m o objeto venda
 
 #include "Venda.h"
 
-Venda::Venda()
-{
+Venda::Venda() {
     filial = 0;
     ano = 0;
     mes = 0;
@@ -13,8 +12,7 @@ Venda::Venda()
     next = 0; // null
 }
 
-Venda::Venda(int F, int A, int M, int CV, float TV)
-{
+Venda::Venda(int F, int A, int M, int CV, float TV) {
     filial = F;
     ano = A;
     mes = M;
@@ -23,49 +21,40 @@ Venda::Venda(int F, int A, int M, int CV, float TV)
     next = 0; // null
 }
 
-int Venda::GetFilial()
-{
+int Venda::GetFilial() {
     return filial;
 }
 
-int Venda::GetAno()
-{
+int Venda::GetAno() {
     return ano;
 }
 
-int Venda::GetMes()
-{
+int Venda::GetMes() {
     return mes;
 }
 
-int Venda::GetDate()
-{
+int Venda::GetDate() {
     return 100 * ano + mes;
 }
 
-int Venda::GetCodVendedor()
-{
+int Venda::GetCodVendedor() {
     return cod_vendedor;
 }
 
-float Venda::GetTotalVendido()
-{
+float Venda::GetTotalVendido() {
     return total_vendido;
 }
 
-void Venda::SetFilial(int F)
-{
+void Venda::SetFilial(int F) {
     if (F > 0)
         filial = F;
 }
 
-Venda* Venda::GetNext()
-{
+Venda* Venda::GetNext() {
     return next;
 }
 
-void Venda::SetNext(Venda *Next)
-{
+void Venda::SetNext(Venda *Next) {
     next = Next;
 }
 

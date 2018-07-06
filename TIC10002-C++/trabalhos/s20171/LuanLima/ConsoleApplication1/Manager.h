@@ -9,31 +9,34 @@
 #include "Sale.h"
 #include "SimpleLinkedList.h"
 
-
 class Manager {
-
 public:
 
-    Manager(std::string key) : key(key),  total(0) {
+    Manager(std::string key) : key(key), total(0) {
         list = new LinkedList<Sale *, CompareSale>(true, true);
     }
 
     //desconstrutor
-    ~Manager(){
+
+    ~Manager() {
         delete list;
 
     }
 
 
     // Compara dois Inteiros
+
     struct CompareInt {
+
         int operator()(const int & a, const int & b) const {
             return a - b;
         }
     };
 
     // Comparação para uma string que representa uma data
+
     struct CompareDate {
+
         int operator()(const std::string &a, const std::string &b) const {
             Sale sale;
             int month_a = sale.parseMonth(a);
@@ -58,43 +61,43 @@ public:
     };
 
     //Compara a Estrutura Sale (ordenado pelo branch)
+
     struct CompareSale {
+
         int operator()(const Sale *a, const Sale *b) const {
             return std::stoi(a->getBranch()) - std::stoi(b->getBranch());
         }
     };
 
-
-    void add(Sale *sale){
+    void add(Sale *sale) {
         total += sale->getTotal_sold();
 
         list->insert(sale);
 
     }
 
-
-    void print(){
+    void print() {
         std::cout << "Key: " << key << " Total: " << total << std::endl;
         LinkedList<Sale*, CompareSale>::Node * aux = list->head;
-        while(aux != nullptr) {
+        while (aux != nullptr) {
             aux->value->print();
             aux = aux->next;
         }
     }
 
-    int getTotal(){
+    int getTotal() {
         return total;
     }
 
     template<typename K, typename V, typename F>
-    int getTotalByDate( HashMap<K, V, F> * aux_hash){
+    int getTotalByDate(HashMap<K, V, F> * aux_hash) {
         int sum = 0;
         V value;
-        for(LinkedList<Sale *, CompareSale>::Node *it = list->head; it != nullptr; it=it->next){
-            if(aux_hash->get(getHash(it->value->getDate()), value))
+        for (LinkedList<Sale *, CompareSale>::Node *it = list->head; it != nullptr; it = it->next) {
+            if (aux_hash->get(getHash(it->value->getDate()), value))
                 sum += it->value->getTotal_sold();
         }
-        return  sum;
+        return sum;
     }
 
 

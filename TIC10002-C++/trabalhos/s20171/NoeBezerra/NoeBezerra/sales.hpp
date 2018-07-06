@@ -8,24 +8,26 @@
 #ifndef SALES_HPP_
 #define SALES_HPP_
 
-class saling{
+class saling {
 public:
-	int unity;
-	int month;
-	int saler;
-	float total;
-	saling(){
-		unity = 0;
-		month = 0;
-		saler = 0;
-		total = 0;
-	}
-	saling(int local, int date, int code, float value){
-		unity = local;
-		month = date;
-		saler = code;
-		total = value;
-	}
+    int unity;
+    int month;
+    int saler;
+    float total;
+
+    saling() {
+        unity = 0;
+        month = 0;
+        saler = 0;
+        total = 0;
+    }
+
+    saling(int local, int date, int code, float value) {
+        unity = local;
+        month = date;
+        saler = code;
+        total = value;
+    }
 };
 
 #endif /* SALES_HPP_ */
