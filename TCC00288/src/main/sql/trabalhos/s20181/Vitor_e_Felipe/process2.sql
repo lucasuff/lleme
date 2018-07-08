@@ -3,7 +3,7 @@ DECLARE
 	current_class record;
 BEGIN
 	IF NEW.nivel <> OLD.nivel THEN
-		-- pegar o nível da classe que se deve upar
+		-- pegar o nível da classe a que se deve evoluir
 		SELECT proxima_classe, nivel_proxima_classe INTO current_class
 			FROM public."Classe"
 			WHERE id = NEW.id_classe;
