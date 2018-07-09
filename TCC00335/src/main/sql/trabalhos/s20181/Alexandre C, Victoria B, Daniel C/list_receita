@@ -1,0 +1,35 @@
+CREATE OR REPLACE FUNCTION list_receita(usuario_endereco_id INTEGER) RETURNS TABLE( id_r BIGINT, nome_r CHARACTER VARYING ) AS $BODY$
+	DECLARE
+		
+	BEGIN
+		RETURN QUERY WITH
+		ingredientes_usuario AS (
+			SELECT 
+				receita_id,
+				COUNT(ingrediente_id) AS qtd_ingrediente
+			FROM receita_ingrediente AS ri
+			WHERE ri.ingrediente_id IN 
+				(SELECT 
+				ig.id
+				FROM 
+				ingrediente AS ig 
+				JOIN estoque AS eq ON eq.ingrediente_id = ig.id 
+				JOIN endereco AS ed ON ed.id = eq.endereco_id 
+				JOIN usuario_endereco AS ue ON ue.endereco_id = ed.id
+				WHERE ue.id = usuario_endereco_id)
+			GROUP BY receita_id
+		),
+		receita_ingrediente AS (
+			SELECT receita_id, COUNT(*) AS qtd_ingrediente FROM receita_ingrediente GROUP BY receita_id
+		)
+		SELECT 
+			id,nome 
+		FROM receita,ingredientes_usuario,receita_ingrediente
+		WHERE 
+			ingredientes_usuario.receita_id = receita_ingrediente.receita_id AND ingredientes_usuario.qtd_ingrediente = receita_ingrediente.qtd_ingrediente
+			AND ingredientes_usuario.receita_id = id;
+	END
+$BODY$ LANGUAGE plpgsql;
+
+SELECT DISTINCT(list_receita(1)) FROM ingrediente;
+
