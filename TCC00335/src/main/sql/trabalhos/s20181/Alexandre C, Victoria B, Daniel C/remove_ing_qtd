@@ -1,0 +1,16 @@
+CREATE OR REPLACE FUNCTION remove_ing_qtd() RETURNS TRIGGER AS $BODY$
+	BEGIN
+		--verifica se a nova quantidade do item é válida.
+		IF NEW.quantidade > 0 THEN
+			RETURN NEW;
+			--deixo fazer a inserção ou alteração
+		ELSE
+			--ingrediente acabou ou está com quantidade negativa. Removo da tabela.
+			DELETE FROM estoque WHERE id = NEW.id;
+			RETURN NULL;
+		END IF;
+	END
+$BODY$ LANGUAGE plpgsql;
+
+CREATE TRIGGER remove_ing_qtd BEFORE INSERT OR UPDATE ON estoque
+	FOR EACH ROW EXECUTE PROCEDURE remove_ing_qtd();
