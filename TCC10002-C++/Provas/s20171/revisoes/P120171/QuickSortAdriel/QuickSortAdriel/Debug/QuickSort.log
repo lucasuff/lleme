@@ -1,4 +1,0 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(387,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (QuickSort.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  main.cpp
-  QuickSort.vcxproj -> C:\Users\lapaesleme\Source Code\GitHub\lleme\TCC10002-C++\QuickSortAdriel\Debug\QuickSortAdriel.exe
-  QuickSort.vcxproj -> C:\Users\lapaesleme\Source Code\GitHub\lleme\TCC10002-C++\QuickSortAdriel\Debug\QuickSortAdriel.pdb (Partial PDB)

@@ -1,0 +1,8 @@
+1 implementar as duas funções da classe main que faltam (encerrar e gerar estatísticas)
+ok 2  usar uma estrutura no método atender para quando a gente for fazer a estatistica, podermos buscar com a chave sendo o dia.
+//tvz table hash.
+ok 3 adicionar o método remover na lista
+ok 4 verificar todos os locais onde a gente percorre a lista e ver a viabilidade de fazer um método para buscar, de forma que a classe não precise conhecer a classe NoLista, assim somente quem conheceria essa essa classe seria a própria lista.
+ex: classe cliente não conhecer nolista, sim somente lista, que tem o metodo buscar que sempre retorna um objeto assunto.
+5 fazer parte gráfica para o prof visualizar quem entra e como o heap esta sendo organizado.
+6 fazer relatorio e informar por ex que instanciadeteste são classes que emulam clientes, assuntos e tipos assuntos. Dessas coisas, tipo assunto é uma classe de domínio.

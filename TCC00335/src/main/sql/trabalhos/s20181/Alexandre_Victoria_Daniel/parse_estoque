@@ -1,0 +1,29 @@
+-- Function: public.parse_estoque()
+
+-- DROP FUNCTION public.parse_estoque();
+
+CREATE OR REPLACE FUNCTION public.parse_estoque()
+  RETURNS trigger AS
+$BODY$
+	DECLARE
+		quantidade_atual INTEGER;
+
+	BEGIN
+		--verifica se existe uma linha do endereco para aquele ingrediente
+		SELECT quantidade INTO quantidade_atual FROM estoque WHERE NEW.endereco_id = endereco_id AND NEW.ingrediente_id = ingrediente_id;
+		--se a linha nao existe
+		IF quantidade_atual IS NULL THEN
+			--ingrediente do usuario ainda nao esta dentro da tabela, inserimos normalmente
+			RETURN NEW;
+		ELSE
+			--ingrediente já esta dentro da tablea
+			UPDATE estoque SET quantidade = (NEW.quantidade + quantidade) WHERE endereco_id = NEW.endereco_id AND NEW.ingrediente_id = ingrediente_id;
+			RETURN NULL;
+		END IF;
+	
+	END
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION public.parse_estoque()
+  OWNER TO postgres;

@@ -1,0 +1,36 @@
+CREATE OR REPLACE FUNCTION check_restricao() RETURNS TRIGGER AS $BODY$
+	DECLARE
+		--ingredientes necessarios para a refeicao 
+		ingredientes_refeicao CURSOR FOR 
+			SELECT receita_ingrediente.ingrediente_id 
+				FROM receita JOIN receita_ingrediente ON receita_ingrediente.receita_id = receita.id 
+						WHERE receita.id = NEW.receita_id;
+		--restricoes do usuario
+		ingredientes_restricao CURSOR FOR 
+			SELECT ingrediente_id 
+				FROM restricao 
+					JOIN usuario ON restricao.usuario_id = usuario.id 
+						JOIN usuario_endereco ON usuario_endereco.usuario_id = usuario.id
+							WHERE usuario_endereco.id = NEW.usuario_endereco_id;
+
+		restrito INTEGER;
+	BEGIN
+		FOR i_refeicao IN ingredientes_refeicao
+		LOOP
+			RAISE NOTICE 'ingrediente : %',i_refeicao;
+			SELECT COUNT(*) INTO restrito
+				FROM (SELECT ingrediente_id 
+					FROM restricao JOIN usuario ON restricao.usuario_id = usuario.id 
+						JOIN usuario_endereco ON usuario_endereco.usuario_id = usuario.id
+							WHERE usuario_endereco.id = NEW.usuario_endereco_id) AS ingredientes_restricao
+								WHERE i_refeicao.ingrediente_id = ingredientes_restricao.ingrediente_id;
+			RAISE NOTICE 'restrito %',restrito;
+			IF(restrito >= 1) THEN
+				RAISE NOTICE 'Ingrediente restrito --> %',i_refeicao;
+				RETURN NULL;
+			END IF;
+		END LOOP;
+	--tudo ok retornamos a nova linha
+	RETURN NEW;
+	END;
+$BODY$ LANGUAGE plpgsql;

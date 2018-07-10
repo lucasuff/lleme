@@ -1,0 +1,20 @@
+CREATE OR REPLACE FUNCTION limita_enderecos() RETURNS TRIGGER AS $BODY$
+	DECLARE
+		quantidade_limite CONSTANT INTEGER := 3;
+		quantidade_enderecos INTEGER;
+
+	BEGIN
+		-- Conta quantos endereços o usuario já possui associado
+		SELECT COUNT(*) INTO quantidade_enderecos FROM usuario_endereco WHERE usuario_id = NEW.usuario_id;
+		IF quantidade_enderecos < quantidade_limite THEN
+			RETURN NEW;
+			--deixo fazer a inserção ou alteração
+		ELSE
+			--o usuario ja possui o máximo de endereços permitidos
+			RETURN NULL;
+		END IF;
+	END
+$BODY$ LANGUAGE plpgsql;
+
+CREATE TRIGGER limita_enderecos BEFORE INSERT OR UPDATE ON usuario_endereco
+	FOR EACH ROW EXECUTE PROCEDURE limita_enderecos();

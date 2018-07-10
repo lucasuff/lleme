@@ -231,6 +231,72 @@ CREATE TRIGGER muda_evento_trigger BEFORE UPDATE OR DELETE ON eventos
 FOR EACH ROW EXECUTE PROCEDURE muda_evento();
 
 
+CREATE OR REPLACE FUNCTION muda_deck() RETURNS trigger AS $$
+DECLARE
+BEGIN
+	if EXISTS (SELECT * FROM participa WHERE participa.deck_id = old.id) then
+		RAISE EXCEPTION 'Deck participa de algum evento.';
+	end if;
+	return new;
+END; $$ LANGUAGE plpgsql;
+
+CREATE TRIGGER muda_deck_trigger BEFORE UPDATE OR DELETE ON decks
+FOR EACH ROW EXECUTE PROCEDURE muda_deck();
+
+CREATE OR REPLACE FUNCTION muda_formato() RETURNS trigger AS $$
+DECLARE
+BEGIN
+	if EXISTS (SELECT * FROM decks WHERE decks.formato_id = old.id) then
+		RAISE EXCEPTION 'Formato não pode ser alterado se algum deck usa ele.';
+	end if;
+	return new;
+END; $$ LANGUAGE plpgsql;
+
+CREATE TRIGGER muda_formato_trigger BEFORE UPDATE OR DELETE ON formatos
+FOR EACH ROW EXECUTE PROCEDURE muda_formato();
+
+
+CREATE OR REPLACE FUNCTION muda_banida() RETURNS trigger AS $$
+DECLARE
+BEGIN
+	if EXISTS (SELECT * FROM pertence INNER JOIN decks on (pertence.deck_id = decks.id) 
+			   WHERE pertence.carta_id = new.carta_id and decks.formato_id = new.formato_id) then		   
+		RAISE EXCEPTION 'Carta a ser banida pertence a um deck.';
+	end if;
+	return new;
+END; $$ LANGUAGE plpgsql;
+
+CREATE TRIGGER muda_banida_trigger BEFORE UPDATE OR INSERT ON bane
+FOR EACH ROW EXECUTE PROCEDURE muda_banida();
+
+CREATE OR REPLACE FUNCTION muda_formato_deck() RETURNS trigger AS $$
+DECLARE
+BEGIN
+	if EXISTS (SELECT * FROM (SELECT * FROM pertence WHERE deck_id = old.id) AS cards INNER JOIN bane on (cards.carta_id = bane.carta_id) 
+			   WHERE bane.formato_id = new.formato_id ) or new.id <> old.id then		   
+		RAISE EXCEPTION 'O deck tem alguma carta banida no novo formato';
+	end if;
+		if EXISTS (SELECT * FROM pertence WHERE deck_id = old.id and quantidade <= (SELECT qtd_repetidas FROM formatos WHERE id = new.formato_id)) then
+			RAISE EXCEPTION 'Alguma carta não respeita o limite de quantidade';
+	end if;
+	return new;
+END; $$ LANGUAGE plpgsql;
+
+CREATE TRIGGER muda_formato_deck_trigger BEFORE UPDATE ON decks
+FOR EACH ROW EXECUTE PROCEDURE muda_formato_deck();
+
+CREATE OR REPLACE FUNCTION muda_tipo_carta() RETURNS trigger AS $$
+DECLARE
+BEGIN
+	if EXISTS (SELECT * FROM cartas WHERE cartas.tipo_id = old.id) then
+		RAISE EXCEPTION 'Alguma carta já usa tipo.';
+	end if;
+	return new;
+END; $$ LANGUAGE plpgsql;
+
+CREATE TRIGGER muda_tipo_carta_trigger BEFORE UPDATE OR DELETE ON tipos_cartas
+FOR EACH ROW EXECUTE PROCEDURE muda_tipo_carta();
+
 CREATE OR REPLACE FUNCTION checa_validade_carta() RETURNS trigger AS $$
 DECLARE
 	qtd integer;
@@ -522,6 +588,7 @@ INSERT INTO bane VALUES (1, 2);
 INSERT INTO bane VALUES (2, 2);
 INSERT INTO bane VALUES (3, 2);
 INSERT INTO bane VALUES (4, 2);
+INSERT INTO bane VALUES (9, 2);
 
 --INSERT INTO pertence VALUES (deck, carta, quantidade, is_comandante;
 INSERT INTO pertence VALUES (1, 5, 1,false);
@@ -600,11 +667,25 @@ INSERT INTO participa VALUES (4,1);
 	--INSERT INTO colore VALUES (7, 2);
 	--Tenta colocar carta com cor como incolot
 	--INSERT INTO colore VALUES (8, 1);
+	
+--Adições no trabalho
+	--UPDATE EM DECK
+	--UPDATE decks SET formato_id = 1 WHERE id = 1;
+	--UPDATE EM FORMATO
+	--UPDATE formatos SET qtd_repetidas = 1 WHERE id = 1;
+	--UPDATE EM TIPO_CARTA
+	--UPDATE tipos_cartas SET basic_land = false WHERE id = 2;
+	--UPDATE EM BANIDA
+	--INSERT INTO bane VALUES (5, 2);
+	--UPDATE bane SET formato_id = 1 WHERE carta_id = 9;
+	--UPDATE EM DECK
+	--UPDATE decks SET formato_id = 2 WHERE id = 2; 
+	--UPDATE decks SET formato_id = 1 WHERE id = 5; 
+
 -----------------------------------------------------CONSULTAS-----------------------------------------------------
 
 --SELECT cartas_mais_jogadas(id_formato, n_ranking) 
 --SELECT cartas_mais_jogadas(1, 5) 
-
 
 
 

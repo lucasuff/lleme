@@ -1,0 +1,43 @@
+﻿--Durante a insercao das receitas verificar se os ingredientes estao disponiveis
+CREATE OR REPLACE FUNCTION check_refeicao_p() RETURNS TRIGGER AS $check_refeicao$
+	DECLARE
+		--ingredientes necessarios para a refeicao 
+		ingredientes_refeicao CURSOR FOR 
+			SELECT receita_ingrediente.ingrediente_id 
+				FROM receita JOIN receita_ingrediente ON receita_ingrediente.receita_id = receita.id 
+						WHERE receita.id = NEW.receita_id;
+		--ingredientes diponiveis
+		ingredientes_disponiveis CURSOR FOR SELECT ingrediente_id 
+						FROM estoque JOIN endereco ON endereco.id = estoque.endereco_id
+							JOIN usuario_endereco ON estoque.endereco_id = usuario_endereco.endereco_id
+								WHERE quantidade > 0 AND NEW.usuario_endereco_id = usuario_endereco.id;
+		--variaveis de controle
+		disponivel INTEGER;
+		end_id INTEGER;
+
+	BEGIN
+		FOR i_refeicao IN ingredientes_refeicao
+		LOOP
+			SELECT COUNT(*) INTO disponivel FROM (SELECT ingrediente_id 
+				FROM estoque JOIN endereco ON endereco.id = estoque.endereco_id
+					JOIN usuario_endereco ON estoque.endereco_id = usuario_endereco.endereco_id
+						WHERE quantidade > 0 AND NEW.usuario_endereco_id = usuario_endereco.id) AS idisp WHERE idisp.ingrediente_id = i_refeicao.ingrediente_id;
+			
+			
+			IF disponivel < 1 THEN
+				RAISE NOTICE 'Ingrediente indisponivel %',i_refeicao;
+				RETURN NULL;
+			END IF;
+		END LOOP;
+
+		--remove os ingredientes utilizados
+		SELECT endereco_id INTO end_id FROM usuario_endereco AS ue WHERE id = NEW.usuario_endereco_id;
+		
+		UPDATE estoque SET quantidade = (quantidade - 1)
+			WHERE endereco_id = end_id AND
+			ingrediente_id IN ( SELECT receita_ingrediente.ingrediente_id 
+				FROM receita JOIN receita_ingrediente ON receita_ingrediente.receita_id = receita.id 
+					WHERE receita.id = NEW.receita_id);
+	RETURN NEW;	
+	END;
+$check_refeicao$ LANGUAGE plpgsql; 

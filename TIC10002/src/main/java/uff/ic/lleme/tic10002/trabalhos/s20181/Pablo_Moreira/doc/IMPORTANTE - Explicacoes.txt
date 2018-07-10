@@ -1,0 +1,11 @@
+O código possui um heap para os atendimentos onde o de maior prioridade é o primeiro elemento. A função de alterar prioridade está implementada e apenas sobe um atendimento caso sua prioridade seja maior que a do "pai".
+A minha implementação do serviço apenas considera o dia corrente, quando o dia muda ela joga fora dados do dia anterior (na função recepcionar da classe ServicoAtendimento). Isso implica diretamente no hash que guarda os assuntos. (O que pensei aqui foi, se eu apenas quero utilizar o dia corrente e não quero fazer nenhuma operação com os dados dos dias anteriores, porque guardá-los ?)
+O Hash foi implementado como um vetor de listas encadeadas.
+A função gerar estatística, quando chamada, fornece a média de tempo que cada tipo de assunto levou para ser resolvido. Ela simplesmente consulta o hash (historicoDiarioDeAssuntos) de assuntos, cada posição desse hash aponta para uma lista de assuntos de um tipo determinado, a função calcula a média do tempo que cada tipo levou para ser resolvido e imprime esses resultados. Não guardo os atendimentos depois de serem terminados porque na minha implementação não faria sentido já que tudo pode ser calculado a partir dos assuntos.
+
+A classe ParDeEspera é uma associação entre uma prioridade e um atendimento.
+
+A classe CriadorDataset apenas gera os dados para teste.
+
+A função main executa um exemplo mas muda conforme a execução devido ao uso de algumas variáveis randômicas.
+
