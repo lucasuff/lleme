@@ -1,23 +1,24 @@
 	--- Procedure 3 ---
-CREATE OR REPLACE FUNCTION garantir_funcionario_alocado() RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION verificar_funcionario_presta_servico_escolhido() RETURNS TRIGGER AS $$
 	DECLARE
-		qtd_negocio_vinculo INTEGER;
+		contagem_servico INTEGER;
 	BEGIN
-		SELECT COUNT(cpf_funcionario) INTO qtd_negocio_vinculo 
-			FROM vinculo_empregaticio AS ve
-				WHERE NEW.cpf_funcionario = ve.cpf_funcionario AND NEW.id_negocio = ve.id_negocio
-					AND NEW.data_agendada BETWEEN ve.periodo_inicio AND ve.periodo_fim;
+		SELECT COUNT(*) INTO contagem_servico
+		FROM servico_funcionario
+		WHERE tipo_servico = new.tipo_servico AND cpf_funcionario = new.cpf_funcionario;
 
-		IF qtd_negocio_vinculo < 1 THEN
-			RAISE EXCEPTION 'Funcionario nao esta cadastrado nesse negocio.';
+		IF contagem_servico >0 THEN
+			RETURN new;
+		ELSE
+			RAISE EXCEPTION 'Funcionario nao presta servico escolhido.';
 		END IF;
-
-		RETURN NEW;
 	END;
 $$ LANGUAGE plpgsql;
+ 
+	--- Trigger 3 ---
+	--- Verifica se funcionario presta servico associado ao agendamento ---
+CREATE TRIGGER verificar_funcionario_presta_servico_escolhido_trg
+BEFORE INSERT OR UPDATE ON agendamento FOR EACH ROW EXECUTE PROCEDURE
+verificar_funcionario_presta_servico_escolhido();
 
-	--- Trigger 3 ----
-	--- Verificar se funcionario ao cadastrar agendamento, está cadastrado ao negocio designado --
-CREATE TRIGGER garantir_funcionario_alocado_trg BEFORE INSERT OR UPDATE  ON agendamento
-	FOR EACH ROW EXECUTE PROCEDURE garantir_funcionario_alocado(); 
 
