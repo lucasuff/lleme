@@ -18,7 +18,7 @@ CREATE OR REPLACE FUNCTION calcular_qtd_servico(negocio INTEGER, data_inicio tim
 	END;
 $$ LANGUAGE plpgsql;
 
---- Usada para retornar quantidade de servicos realizados pelos funcionarios associados a um negócio em um tempo determinado --
+--- Usada para retornar quantidade de servicos realizados por todos os funcionarios de um negócio em um tempo determinado --
 SELECT * FROM calcular_qtd_servico(1, timestamp '01-01-16', timestamp '01-01-19');
 
 CREATE OR REPLACE FUNCTION estatisticas_funcionario(cpf_f TEXT, data_inicio timestamp, data_fim timestamp) RETURNS 
