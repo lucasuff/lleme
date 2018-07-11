@@ -21,7 +21,7 @@ CREATE TABLE estadia (
   (numero) REFERENCES reserva (numero)
   on delete restrict on update cascade);
 
-
+DROP FUNCTION IF EXISTS verifica_estadia() CASCADE;
 CREATE OR REPLACE FUNCTION verifica_estadia() RETURNS trigger AS $$
 DECLARE
     v_inicio timestamp;
@@ -41,7 +41,7 @@ END;$$ LANGUAGE plpgsql;
 CREATE TRIGGER verifica_estadia_tgr BEFORE INSERT OR UPDATE ON estadia
 FOR EACH ROW EXECUTE PROCEDURE verifica_estadia();
 
-
+DROP FUNCTION IF EXISTS verifica_reserva() CASCADE;
 CREATE OR REPLACE FUNCTION verifica_reserva() RETURNS trigger AS $$
 DECLARE
     v_inicio timestamp;
