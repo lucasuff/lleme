@@ -1,24 +1,30 @@
-	--- Procedure 4---
-CREATE OR REPLACE FUNCTION verificar_funcionario_presta_servico_escolhido() RETURNS TRIGGER AS $$
+--- Procedure 4 ---
+CREATE OR REPLACE FUNCTION funcionario_nao_faz_mais_o_servico() RETURNS TRIGGER AS $$
 	DECLARE
-		contagem_servico INTEGER;
+		qnt_servicos_pendentes INTEGER;
 	BEGIN
-		SELECT COUNT(*) INTO contagem_servico
-		FROM servico_funcionario
-		WHERE tipo_servico = new.tipo_servico AND cpf_funcionario = new.cpf_funcionario;
-
-		IF contagem_servico >0 THEN
-			RETURN new;
-		ELSE
-			RAISE EXCEPTION 'Funcionario nao presta servico escolhido.';
-		END IF;
+			SELECT COUNT(*) INTO qnt_servicos_pendentes 
+				FROM agendamento
+ 				WHERE data_agendada > localtimestamp
+				AND cpf_funcionario = old.cpf_funcionario 
+ 				AND tipo_servico = old.tipo_servico
+				AND status = 1;
+				
+			IF qnt_servicos_pendentes > 0 THEN
+				RAISE EXCEPTION 'Funcionario ainda possui agendamentos a serem feitos com o servico anterior.'
+			END IF;			
+			IF TG_OP = 'UPDATE' THEN
+				RETURN new;
+			END IF;
+			IF TG_OP = 'DELETE' THEN
+				RETURN NULL;
+			END IF;
 	END;
 $$ LANGUAGE plpgsql;
- 
-	--- Trigger 4 ---
-	--- Verifica se funcionario presta servico associado ao agendamento ---
-CREATE TRIGGER verificar_funcionario_presta_servico_escolhido_trg
-BEFORE INSERT OR UPDATE ON agendamento FOR EACH ROW EXECUTE PROCEDURE
-verificar_funcionario_presta_servico_escolhido();
+
+--- Trigger 4 ---
+--- Verifica se ao alterar ou excluir um servico do funcionario ele possui agendamentos a realizar ---
+CREATE TRIGGER funcionario_nao_faz_mais_o_servico_trg BEFORE UPDATE OR DELETE
+ON servico_funcionario FOR EACH ROW EXECUTE PROCEDURE funcionario_nao_faz_mais_o_servico();
 
 
