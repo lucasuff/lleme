@@ -1,7 +1,0 @@
-PGTO;pagamento nao identificado;10
-ROTEADOR;roteador com defeito;7
-ENDERECO;mudança de endereço;5
-BOLETO;segunda via de boleto;4 
-SENHA;reset senha de acesso;2
-VELOCIDADE;aumento de velocidade de acesso;3
-CANCELAMENTO;cancelamento de serviço;10

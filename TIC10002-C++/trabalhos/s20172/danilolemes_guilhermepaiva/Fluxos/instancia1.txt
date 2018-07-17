@@ -1,7 +1,0 @@
-Norte,A,1,10,
-Norte,A,2,25,
-Norte,A,3,50,
-Sul,F,5,15,
-Sul,F,6,45,
-Sul,H,3,50,
-Leste,G,5,30,
