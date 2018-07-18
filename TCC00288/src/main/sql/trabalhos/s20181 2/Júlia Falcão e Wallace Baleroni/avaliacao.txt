@@ -1,0 +1,83 @@
+
+
+
+NOTA DO TRABALHO (vide avaliações abaixo): 6,0
+
+AVALIAÇÃO GERAL: ALGUMAS RESTRIÇÕES DE INTEGRIDADE NÃO ESTÃO SUFICIENTEMENTE ESPECIFICADAS PARA ENTENDIMENTO DO PROFESSOR E A IMPLEMENTAÇÃO NÃO CAPTUROU TODOS OS EVENTOS NECESSÁRIOS PARA GARANTI-LAS. FUNÇÕES E TRIGGERS DE BAIXA COMPLEXIDADE EM SUA MAIORIA.
+
+
+
+
+
+Título: UBER
+
+
+
+PARTE 1 - Restrições de integridade: implementação de três restrições de integridade
+
+OBS.: "Algumas restrições podem ser especificadas ao SGBD e impostas automaticamente. Outras podem ter que ser verificadas por programas de atualização ou no momento da entrada de dados. Em geral, para grandes aplicações, é comum chamar essas restrições de regras de negócio." (Elmasri, Ramez. Sistemas de Bancos de Dados 6a. Ed. (Seção 1.6.8))
+
+
+1) Verifica formato do CPF
+
+AVALIAÇÃO: REGRA DE BAIXÍSSIMA COMPLEXIDADE (*** REGRA INVÁLIDA ***)
+
+
+2) Verifica formato do e-mail
+
+AVALIAÇÃO: REGRA DE BAIXÍSSIMA COMPLEXIDADE (*** REGRA INVÁLIDA ***)
+
+
+3) Avaliação do motorista deve ser valor entre 0 e 5
+
+AVALIAÇÃO: REGRA DE BAIXÍSSIMA COMPLEXIDADE (*** REGRA INVÁLIDA ***)
+
+
+4) Atualização dos timestamps em pedido
+
+AVALIAÇÃO: não são restrições de integridade (*** REGRA INVÁLIDA ***)
+
+
+5) Algumas categorias, como UberBlack, podem atender a pedidos de categorias inferiores como UberX.
+
+AVALIAÇÃO: 
+REGRA DE MÉDIA COMPLEXIDADE
+TRIGGERS NECESSÁRIOS --> INSERT E UPDATE EM CORRIDA (IMPLEMENTADO)
+                         UPDATE EM CARRO (*** NÃO IMPLEMENTADO ***)
+                         UPDATE EM CARRO (*** NÃO IMPLEMENTADO ***)
+                         UPDATE EM PEDIDO (*** NÃO IMPLEMENTADO ***)
+                         UPDATE EM PEDIDO (*** NÃO IMPLEMENTADO ***)
+                        
+
+6) Um passageiro só pode fazer outro pedido uma vez que o seu último pedido aberto tenha sido fechado
+
+AVALIAÇÃO:
+REGRA DE BAIXA COMPLEXIDADE
+TRIGGERS NECESSÁRIOS --> INSERT E UPDATE EM CORRIDA (IMPLEMENTADO PARCIALMENTE - SOMENTE INSERT) 
+
+
+
+7) uma nova corrida não está sendo criada no mesmo período de tempo que uma corrida já existente com o mesmo motorista ou o mesmo passageiro
+
+AVALIAÇÃO:
+REGRA DE BAIXA COMPLEXIDADE
+TRIGGERS NECESSÁRIOS --> INSERT E UPDATE EM PEDIDO (IMPLEMENTADO PARCIALMENTE - SOMENTE INSERT) 
+
+
+
+8) verifica a condição para um motorista fazer uma corrida da categoria “UberSelect”, ou seja, que ele tenha avaliação média maior que 4.5
+
+REGRA DE ALTA COMPLEXIDADE
+TRIGGERS NECESSÁRIOS --> INSERT E UPDATE EM CORRIDA (IMPLEMENTADO)
+
+
+PARTE 2 - Funções: implementação de duas funções
+
+1) Procedure que gera um ranking (uma tabela, em ordem) de áreas problemáticas, onde há os maiores índices de cancelamento de corridas.
+
+AVALIAÇÃO: FUNÇÃO DE MÉDIA COMPLEXIDADE
+
+2) calcula e imprime algumas estatísticas a respeito das corridas, como por exemplo, quantidade de corridas feitas em certos intervalos de tempo e média de avaliação dos motoristas por categoria.
+
+AVALIAÇÃO: FUNÇÃO DE BAIXA COMPLEXIDADE
+
