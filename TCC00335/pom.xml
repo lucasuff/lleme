@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <name>TCC00335</name>
     <groupId>uff.ic.lleme</groupId>
-    <artifactId>tcc00335-core</artifactId>
+    <artifactId>tcc00335</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
@@ -23,7 +23,7 @@
             <version>6.0.6</version>
         </dependency>
     </dependencies>
-    <build> 
+    <build>
         <resources>
             <resource>
                 <directory>src/main/sql</directory>

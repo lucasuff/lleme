@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <name>TCC00288</name>
     <groupId>uff.ic.lleme</groupId>
-    <artifactId>tcc00288-core</artifactId>
+    <artifactId>tcc00288</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
