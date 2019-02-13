@@ -1,7 +1,6 @@
 package uff.ic.lleme.tic10086.examples.jena;
 
 import com.opencsv.CSVReader;
-import static com.sun.jmx.defaults.ServiceName.DOMAIN;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,14 +31,15 @@ import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.WebContent;
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 import org.apache.jena.tdb.TDBFactory;
-import uff.ic.swlab.commons.util.DBpediaSearch;
 import uff.ic.swlab.commons.riot.JenaSchemaMgr;
+import uff.ic.swlab.commons.util.DBpediaSearch;
 
 public class NewClass {
 
     public static void main(String[] args) throws UnsupportedEncodingException, FileNotFoundException, MalformedURLException, IOException {
 
         {
+            String DOMAIN = null;
             String DATASET_URL = null;
             String DEREF_PORT = null;
             String DEFAULT_NS = "http://" + DOMAIN + DEREF_PORT + "/resource/";
