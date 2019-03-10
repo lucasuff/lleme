@@ -1,4 +1,4 @@
-package uff.ic.lleme.tic10086.exercises;
+package old.uff.ic.lleme.tic10086.exercises;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-package uff.ic.lleme.tic10086.exercises;
+package old.uff.ic.lleme.tic10086.exercises;
 
 import com.opencsv.CSVReader;
 import java.io.BufferedReader;
