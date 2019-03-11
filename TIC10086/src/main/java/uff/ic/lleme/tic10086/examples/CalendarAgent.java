@@ -24,7 +24,7 @@ import uff.ic.swlab.vocab.teaching.Teaching;
 public class CalendarAgent {
 
     public static void main(String[] args) {
-        String nomeAluno = "LUAN SIMOES CARDOSO";
+        String nomeAluno = "Luiz André";
         String rdfTranslatorService = "http://rdf-translator.appspot.com/convert/rdfa/xml/%1$s";
         String sourceURL = "http://swlab.lleme.net:8080/cursos.html";
         String schemaURL = "http://swlab.lleme.net:8080/vocab/teaching#Course";
