@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
@@ -23,59 +24,56 @@ public class CalendarAgent {
         String sourceURL = "http://swlab.lleme.net:8080/cursos.html";
         String schemaURL = "http://swlab.lleme.net:8080/vocab/teaching#Course";
 
-        // Browsing
+        // ********************************************************************************
+        // Browse a Web resource
+        //
         Model data = ModelFactory.createDefaultModel();
         RDFDataMgr.read(data, String.format(rdfTranslatorService, sourceURL), Lang.RDFXML);
-        //RDFDataMgr.write(System.out, data, Lang.N3);
+        //
+        // ********************************************************************************
 
+        // **************************************************************************************************************
+        // Analyse topics of the the Web resource
+        //
         Set<String> datasets = new HashSet<>();
         Set<String> sparqlEndpoints = new HashSet<>();
+        Property[] topicProperties = {FOAF.topic, FOAF.primaryTopic};
 
-        {
-            StmtIterator iter = data.listStatements(ResourceFactory.createResource(sourceURL), FOAF.topic, (RDFNode) null);
+        for (Property property : topicProperties) {
+            StmtIterator iter = data.listStatements(ResourceFactory.createResource(sourceURL), property, (RDFNode) null);
             while (iter.hasNext()) {
                 Resource topic = iter.next().getObject().asResource();
                 StmtIterator types = topic.listProperties(RDF.type);
+
                 while (types.hasNext()) {
                     Resource _class = types.next().getObject().asResource();
 
-                    // if something known
+                    // *******************************************************
+                    // if the Web resource is about something known, handle it
+                    //
                     if (_class.equals(Teaching.Discipline)
                             || _class.equals(Teaching.Course)
                             || _class.equals(Teaching.Test)
                             || _class.equals(Teaching.Report)
                             || _class.equals(Teaching.Class))
-                        datasets.add(getDataset(topic.getURI(), data));
-
+                        // store container datasets
+                        datasets.add(extractDatasetURI(topic, data));
+                    // *******************************************************
                 }
+
             }
         }
+        // **************************************************************************************************************
 
-        {
-            StmtIterator iter = data.listStatements(ResourceFactory.createResource(sourceURL), FOAF.primaryTopic, (RDFNode) null);
-            while (iter.hasNext()) {
-                Resource topic = iter.next().getObject().asResource();
-                StmtIterator types = topic.listProperties(RDF.type);
-                while (types.hasNext()) {
-                    Resource _class = types.next().getObject().asResource();
-
-                    // if something known
-                    if (_class.equals(Teaching.Discipline)
-                            || _class.equals(Teaching.Course)
-                            || _class.equals(Teaching.Test)
-                            || _class.equals(Teaching.Report)
-                            || _class.equals(Teaching.Class))
-                        datasets.add(getDataset(topic.getURI(), data));
-
-                }
-            }
-        }
-
+        // ********************************************************
+        // For each container dataset
+        //
         for (String datasetURI : datasets)
             if (datasetURI != null)
                 sparqlEndpoints.add(getSparqlEndpoints(datasetURI));
 
         System.out.println(sparqlEndpoints);
+        // ********************************************************
 
         //Detecting Events
         //OntModel schema = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
@@ -86,9 +84,18 @@ public class CalendarAgent {
         //RDFDataMgr.write(System.out, infModel, Lang.N3);
     }
 
-    private static String getDataset(String topicURI, Model data) {
-        Resource topic = ResourceFactory.createResource(topicURI);
-
+    /**
+     * Use existing backlinks, recommended by the VoID specification
+     * <a href="http://www.w3.org/TR/void/#backlinks">(http://www.w3.org/TR/void/#backlinks)</a>,
+     * to find the container dataset of the topic.
+     *
+     * @param topic The topic resource for which one wants to find the
+     * container. dataset
+     * @param data The RDF graph that supposedly contains the backlink for the
+     * resource.
+     * @return The dataset URI
+     */
+    private static String extractDatasetURI(Resource topic, Model data) {
         StmtIterator iter = data.listStatements(topic, VOID.inDataset, (RDFNode) null);
         String datasetURI = null;
         while (iter.hasNext()) {
