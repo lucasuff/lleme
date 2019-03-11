@@ -24,16 +24,16 @@ public class CalendarAgent {
         String sourceURL = "http://swlab.lleme.net:8080/cursos.html";
         String schemaURL = "http://swlab.lleme.net:8080/vocab/teaching#Course";
 
-        // ********************************************************************************
-        // Browse a Web resource
+        // **************************************************************************************************************
+        // First step: Browse a Web resource
         //
         Model data = ModelFactory.createDefaultModel();
         RDFDataMgr.read(data, String.format(rdfTranslatorService, sourceURL), Lang.RDFXML);
         //
-        // ********************************************************************************
+        // **************************************************************************************************************
 
         // **************************************************************************************************************
-        // Analyse topics of the the Web resource
+        // Second step: Analyse topics of the the Web resource
         //
         Set<String> datasets = new HashSet<>();
         Set<String> sparqlEndpoints = new HashSet<>();
@@ -43,6 +43,7 @@ public class CalendarAgent {
             StmtIterator iter = data.listStatements(ResourceFactory.createResource(sourceURL), property, (RDFNode) null);
             while (iter.hasNext()) {
                 Resource topic = iter.next().getObject().asResource();
+                String topicURI = topic.getURI();
                 StmtIterator types = topic.listProperties(RDF.type);
 
                 while (types.hasNext()) {
@@ -56,8 +57,8 @@ public class CalendarAgent {
                             || _class.equals(Teaching.Test)
                             || _class.equals(Teaching.Report)
                             || _class.equals(Teaching.Class))
-                        // store container datasets
-                        datasets.add(extractDatasetURI(topic, data));
+                        // store container datasets <<<<<<<<<<<<<<<<<<<<<<<<<<
+                        datasets.add(getDatasetURI(topicURI, data));
                     // *******************************************************
                 }
 
@@ -65,16 +66,20 @@ public class CalendarAgent {
         }
         // **************************************************************************************************************
 
-        // ********************************************************
-        // For each container dataset
+        // **************************************************************************************************************
+        // Third step: For each container dataset
         //
         for (String datasetURI : datasets)
             if (datasetURI != null)
-                sparqlEndpoints.add(getSparqlEndpoints(datasetURI));
+                sparqlEndpoints.add(getSparqlEndpoint(datasetURI));
 
         System.out.println(sparqlEndpoints);
-        // ********************************************************
+        // **************************************************************************************************************
 
+        // **************************************************************************************************************
+        // Fourth step: query de SPARQL endpoints do find iCal events
+        //
+        // **************************************************************************************************************
         //Detecting Events
         //OntModel schema = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
         //schema.read(schemaURL);
@@ -90,12 +95,14 @@ public class CalendarAgent {
      * to find the container dataset of the topic.
      *
      * @param topic The topic resource for which one wants to find the
-     * container. dataset
+     * container.
      * @param data The RDF graph that supposedly contains the backlink for the
      * resource.
-     * @return The dataset URI
+     * @return The URI of the container dataset.
      */
-    private static String extractDatasetURI(Resource topic, Model data) {
+    private static String getDatasetURI(String topicURI, Model data) {
+        Resource topic = ResourceFactory.createResource(topicURI);
+
         StmtIterator iter = data.listStatements(topic, VOID.inDataset, (RDFNode) null);
         String datasetURI = null;
         while (iter.hasNext()) {
@@ -105,7 +112,16 @@ public class CalendarAgent {
         return datasetURI;
     }
 
-    private static String getSparqlEndpoints(String datasetURI) {
+    /**
+     * Use dataset URI dereferencing
+     * <a href="https://www.w3.org/TR/void/#void-file">(https://www.w3.org/TR/void/#void-file)</a>,
+     * to get the sparqlEndpoint of the given dataset.
+     *
+     * @param datasetURI The URI of the dataset for which to find the SPARQL
+     * endpoint.
+     * @return The URI of the SPARQL endpoint.
+     */
+    private static String getSparqlEndpoint(String datasetURI) {
         Resource dataset = ResourceFactory.createResource(datasetURI);
 
         Model voidData = ModelFactory.createDefaultModel();
