@@ -72,8 +72,6 @@ public class CalendarAgent {
         for (String datasetURI : datasets)
             if (datasetURI != null)
                 sparqlEndpoints.add(getSparqlEndpoint(datasetURI));
-
-        System.out.println(sparqlEndpoints);
         // **************************************************************************************************************
 
         // **************************************************************************************************************
