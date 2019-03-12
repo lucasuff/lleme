@@ -24,10 +24,11 @@ import uff.ic.swlab.vocab.teaching.Teaching;
 public class CalendarAgent {
 
     public static void main(String[] args) {
-        String nomeAluno = "Luiz André";
         String rdfTranslatorService = "http://rdf-translator.appspot.com/convert/rdfa/xml/%1$s";
+
+        String nomeAluno = "Luiz André";
         String sourceURL = "http://swlab.lleme.net:8080/cursos.html";
-        String schemaURL = "http://swlab.lleme.net:8080/vocab/teaching#Course";
+        String schemaURL = "http://swlab.lleme.net:8080/vocab/teaching#";
 
         // **************************************************************************************************************
         // First step: Browse a Web resource
@@ -80,7 +81,7 @@ public class CalendarAgent {
         // **************************************************************************************************************
 
         // **************************************************************************************************************
-        // Fourth step: query de SPARQL endpoints to get Assignments
+        // Fourth step: query the SPARQL endpoints to get available assignments
         //
         for (String sparqlEndpoint : sparqlEndpoints) {
             Model assigments = getAssigments(sparqlEndpoint, nomeAluno);
