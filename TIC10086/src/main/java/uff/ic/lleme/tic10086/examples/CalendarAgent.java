@@ -138,7 +138,7 @@ public class CalendarAgent {
         return sparqlEndpointURL;
     }
 
-    private static Model getAssigments(String sparqlEndpoint, String nome) {
+    private static Model getAssigments(String sparqlEndpoint, String name) {
         String query = ""
                 + "prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
                 + "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
@@ -147,7 +147,7 @@ public class CalendarAgent {
                 + "prefix void: <http://rdfs.org/ns/void#>\n"
                 + "prefix icaltzd: <http://www.w3.org/2002/12/cal/icaltzd#>\n"
                 + "prefix particip: <http://purl.org/vocab/participation/schema#>\n"
-                + "prefix myvoid: <http://swlab.lleme.net:8080/void.ttl#> \n"
+                + "prefix myvoid: <http://swlab.lleme.net:8080/void.ttl#>\n"
                 + "prefix teach: <http://swlab.lleme.net:8080/vocab/teaching#>\n"
                 + "prefix rsc: <http://swlab.lleme.net:8080/resource/>\n"
                 + "prefix BR: <http://www.w3.org/2002/12/cal/tzd/America/Sao_Paulo#>\n"
@@ -160,31 +160,20 @@ public class CalendarAgent {
                 + "  ?group teach:hasAssignment ?asmt.\n"
                 + "  ?role rdfs:label ?lbl.\n"
                 + "}\n"
+                + "from <urn:x-arq:DefaultGraph>\n"
+                + "from <urn:x-arq:UnionGraph>\n"
                 + "where {\n"
-                + "  {\n"
-                + "    select ?sdt ?score\n"
-                + "    where {\n"
-                + "      {?sdt a foaf:Person. (?sdt ?score) text:query \"(%1$s)\".}\n"
-                + "    	union {graph ?g {?sdt a foaf:Person. (?sdt ?score) text:query \"(%1$s)\".}}\n"
-                + "    }\n"
-                + "    order by desc(?score)\n"
-                + "    limit 1\n"
-                + "  }\n"
-                + "  {{?role particip:holder ?sdt} \n"
-                + "    union {graph ?g1 {?role particip:holder ?sdt}}}\n"
-                + "  {{?role a teach:UndergraduateStudent} \n"
-                + "    union {graph ?g2 {?role a teach:UndergraduateStudent}}\n"
-                + "    union {?role a teach:Teacher} \n"
-                + "    union {graph ?g2 {?role a teach:Teacher}}}\n"
-                + "  {{?group particip:role ?role}\n"
-                + "    union {graph ?g3 {?group particip:role ?role}}}\n"
-                + "  {{?group teach:hasAssignment ?asmt}\n"
-                + "    union {graph ?g4 {?group teach:hasAssignment ?asmt}}}\n"
-                + "  {{?asmt ?p ?o.} union {graph ?g5 {?asmt ?p ?o.}}}\n"
-                + "  optional {{?o ?p2 ?o2} union {graph ?g6 {?o ?p2 ?o2}}}\n"
-                + "  optional {{?role rdfs:label ?lbl} union {graph ?g7 {?role rdfs:label ?lbl}}}\n"
+                + "  ?sdt text:query (\"(%1$s)\" 1).\n"
+                + "  ?sdt a foaf:Person.\n"
+                + "  ?role particip:holder ?sdt.\n"
+                + "  {{?role a teach:UndergraduateStudent} union {?role a teach:Teacher}}\n"
+                + "  ?group particip:role ?role.\n"
+                + "  ?group teach:hasAssignment ?asmt.\n"
+                + "  ?asmt ?p ?o.\n"
+                + "  optional {?o ?p2 ?o2}\n"
+                + "  optional {?role rdfs:label ?lbl}\n"
                 + "}";
-        query = String.format(query, nome);
+        query = String.format(query, name);
 
         final Model result = ModelFactory.createDefaultModel();
         try (final QueryExecution exec = new QueryEngineHTTP(sparqlEndpoint, query, HttpClients.createDefault())) {
