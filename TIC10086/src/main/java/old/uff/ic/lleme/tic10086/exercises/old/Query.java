@@ -1,4 +1,4 @@
-package uff.ic.lleme.tic10086.examples;
+package old.uff.ic.lleme.tic10086.exercises.old;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,32 +21,32 @@ import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.VOID;
 import uff.ic.swlab.vocab.teaching.Teaching;
 
-public class CalendarAgent {
+public class Query {
 
     public static void main(String[] args) {
         String rdfTranslatorService = "http://rdf-translator.appspot.com/convert/rdfa/xml/%1$s";
 
-        String nomeAluno = "Luiz André";
-        String sourceURL = "http://swlab.lleme.net:8080/cursos.html";
-        String schemaURL = "http://swlab.lleme.net:8080/vocab/teaching#";
+        String studentName = "Willian Alecsander Farias Costa";
+        String siteURL = "http://swlab.lleme.net:8080/cursos.html";
 
         // **************************************************************************************************************
         // First step: Browse a Web resource
         //
         Model data = ModelFactory.createDefaultModel();
-        RDFDataMgr.read(data, String.format(rdfTranslatorService, sourceURL), Lang.RDFXML);
+        RDFDataMgr.read(data, String.format(rdfTranslatorService, siteURL), Lang.RDFXML);
+        RDFDataMgr.write(System.out, data, Lang.TTL);
         //
         // **************************************************************************************************************
 
         // **************************************************************************************************************
-        // Second step: Analyse topics of the the Web resource
+        // Second step: Search for topics of interest in the the Web resource
         //
         Set<String> datasets = new HashSet<>();
         Set<String> sparqlEndpoints = new HashSet<>();
         Property[] topicProperties = {FOAF.topic, FOAF.primaryTopic};
 
         for (Property property : topicProperties) {
-            StmtIterator iter = data.listStatements(ResourceFactory.createResource(sourceURL), property, (RDFNode) null);
+            StmtIterator iter = data.listStatements(ResourceFactory.createResource(siteURL), property, (RDFNode) null);
             while (iter.hasNext()) {
                 Resource topic = iter.next().getObject().asResource();
                 String topicURI = topic.getURI();
@@ -56,7 +56,7 @@ public class CalendarAgent {
                     Resource _class = types.next().getObject().asResource();
 
                     // *******************************************************
-                    // if the Web resource is about something known, handle it
+                    // if the Web resource is about something of interest, handle it (get container dataset)
                     //
                     if (_class.equals(Teaching.Discipline)
                             || _class.equals(Teaching.Course)
@@ -64,7 +64,7 @@ public class CalendarAgent {
                             || _class.equals(Teaching.Report)
                             || _class.equals(Teaching.Class))
                         // store container datasets <<<<<<<<<<<<<<<<<<<<<<<<<<
-                        datasets.add(getDatasetURI(topicURI, data));
+                        datasets.add(getInDataset(topicURI, data));
                     // *******************************************************
                 }
 
@@ -73,7 +73,7 @@ public class CalendarAgent {
         // **************************************************************************************************************
 
         // **************************************************************************************************************
-        // Third step: For each container dataset
+        // Third step: For each container dataset get the sparql endpoint
         //
         for (String datasetURI : datasets)
             if (datasetURI != null)
@@ -84,7 +84,7 @@ public class CalendarAgent {
         // Fourth step: query the SPARQL endpoints to get available assignments
         //
         for (String sparqlEndpoint : sparqlEndpoints) {
-            Model assigments = getAssigments(sparqlEndpoint, nomeAluno);
+            Model assigments = getAssigments(sparqlEndpoint, studentName);
             RDFDataMgr.write(System.out, assigments, RDFFormat.TURTLE_PRETTY);
         }
         // **************************************************************************************************************
@@ -102,7 +102,7 @@ public class CalendarAgent {
      * resource.
      * @return The URI of the container dataset.
      */
-    private static String getDatasetURI(String topicURI, Model data) {
+    private static String getInDataset(String topicURI, Model data) {
         Resource topic = ResourceFactory.createResource(topicURI);
 
         StmtIterator iter = data.listStatements(topic, VOID.inDataset, (RDFNode) null);
