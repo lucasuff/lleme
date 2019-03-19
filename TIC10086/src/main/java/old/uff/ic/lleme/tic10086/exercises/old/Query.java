@@ -55,7 +55,7 @@ public class Query {
                 while (types.hasNext()) {
                     Resource _class = types.next().getObject().asResource();
 
-                    // *******************************************************
+                    // *************************************************************************************
                     // if the Web resource is about something of interest, handle it (get container dataset)
                     //
                     if (_class.equals(Teaching.Discipline)
@@ -65,7 +65,7 @@ public class Query {
                             || _class.equals(Teaching.Class))
                         // store container datasets <<<<<<<<<<<<<<<<<<<<<<<<<<
                         datasets.add(getInDataset(topicURI, data));
-                    // *******************************************************
+                    // *************************************************************************************
                 }
 
             }
