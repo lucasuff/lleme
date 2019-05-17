@@ -7,10 +7,10 @@ import uff.ic.lleme.tcc00288.aulas.concorrencia.util.Transacao;
 public class AtualizacaoTemporaria {
 
     public static void main(String[] args) throws InterruptedException {
-        boolean controleTransação = false;
+        boolean controleTransacao = true;
         Config.initBD();
-        Transacao t1 = iniciarTransacaoT1(controleTransação);
-        Transacao t2 = iniciarTransacaoT2(controleTransação);
+        Transacao t1 = iniciarTransacaoT1(controleTransacao);
+        Transacao t2 = iniciarTransacaoT2(controleTransacao);
         t1.join();
         t2.join();
     }
@@ -22,22 +22,20 @@ public class AtualizacaoTemporaria {
 
                 long x = 0;
                 {// Parte 1
-                    x = lerX("");
+                    x = ler("X");
                     int N = 5;
-                    System.out.println(String.format("Transacao 1 faz x = %d - %d = %d", x, N, x - N));
+                    System.out.println(String.format("Transação 1 faz x = %d - %d = %d", x, N, x - N));
                     x = x - N;
-                    escreverX(x);
+                    escrever("X", x);
                 }
 
                 processar(2000); // simulação carga de processamdento em outras atividades
 
                 long y = 0;
                 {// Parte 2
-                    y = lerY("for update");
-                    System.out.println("Transacao 1 encerra.");
-                    rollback();
+                    y = ler("Y");
+                    throw new SQLException("Erro no processamento.");
                 }
-
             }
         };
         t.start();
@@ -54,20 +52,17 @@ public class AtualizacaoTemporaria {
                 long x = 0;
                 int M = 0;
                 {// Parte 1
-                    x = lerX("");
+                    x = ler("X");
                     M = 8;
-                    System.out.println(String.format("Transacao 2 faz x = %d - %d = %d", x, M, x - M));
+                    System.out.println(String.format("Transação 2 faz x = %d - %d = %d", x, M, x - M));
                     x = x - M;
-                    escreverX(x);
+                    escrever("X", x);
                 }
 
                 processar(2000); // simulação carga de processamdento em outras atividades
 
-                long novoX = lerX("");
-                if (novoX == x + M)
-                    System.out.println(String.format("Transacao 2 continua lendo o valor x = %d <--------", novoX));
-                else
-                    System.out.println(String.format("Transacao 2 perde o valor x = %d que agora é x = %d <--------", x + M, novoX));
+                long novoX = ler("X");
+                System.out.println(String.format("Transação 2 lê novamente x = %d que gravou anteriormente. <--------", novoX));
             }
         };
         t.start();

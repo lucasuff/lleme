@@ -7,7 +7,7 @@ import uff.ic.lleme.tcc00288.aulas.concorrencia.util.Transacao;
 public class AtualizacaoPerdida {
 
     public static void main(String[] args) throws InterruptedException {
-        boolean controleTransação = false;
+        boolean controleTransação = true;
         Config.initBD();
         Transacao t1 = iniciarTransacaoT1(controleTransação);
         Transacao t2 = iniciarTransacaoT2(controleTransação);
@@ -22,35 +22,33 @@ public class AtualizacaoPerdida {
 
                 long x = 0;
                 {// Parte 1
-                    x = lerX("");
+                    x = ler("X");
                     int N = 5;
+                    System.out.println(String.format("Transacao 1 faz x = %d - %d = %d", x, N, x - N));
                     x = x - N;
-                    System.out.println(String.format("Transacao 1 faz x = %d - %d = %d", x + N, N, x));
                 }
 
                 processar(2000);
 
                 long y = 0;
                 {// Parte 2
-                    escreverX(x);
-                    y = lerY("");
+                    escrever("X", x);
+                    y = ler("Y");
                 }
 
                 processar(2000);
 
                 {// Parte 3
                     int N = 3;
+                    System.out.println(String.format("Transacao 1 faz y = %d + %d = %d", y, N, y + N));
                     y = y + N;
-                    System.out.println(String.format("Transacao 1 faz y = %d + %d = %d", y - N, N, y));
-                    escreverY(y);
+                    escrever("Y", y);
                 }
 
                 {// Parte 4
                     System.out.println("");
-                    x = lerX("");
-                    System.out.println("Transacao 1 encerra.");
+                    x = ler("X");
                 }
-
             }
         };
         t.start();
@@ -66,18 +64,16 @@ public class AtualizacaoPerdida {
 
                 long x = 0;
                 {// Parte 1
-                    x = lerX("");
+                    x = ler("X");
                     int N = 8;
+                    System.out.println(String.format("Transacao 2 faz x = %d + %d = %d", x, N, x + N));
                     x = x + N;
-                    System.out.println(String.format("Transacao 2 faz x = %d + %d = %d", x - N, N, x));
                 }
 
                 processar(2000);
 
                 {// Parte 2
-                    escreverX(x);
-                    System.out.println("Transacao 2 encerra.");
-                    this.conn.commit();
+                    escrever("X", x);
                 }
             }
         };

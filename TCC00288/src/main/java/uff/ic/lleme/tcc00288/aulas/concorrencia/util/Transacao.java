@@ -8,9 +8,9 @@ import java.sql.Statement;
 
 public abstract class Transacao extends Thread {
 
-    protected int numero = 0;
-    protected boolean controleTransacao = true;
-    protected Connection conn = null;
+    private int numero = 0;
+    private boolean controleTransacao = true;
+    private Connection conn = null;
 
     protected Transacao(int numero, boolean controleTransacao) {
         this.numero = numero;
@@ -29,13 +29,14 @@ public abstract class Transacao extends Thread {
                 try {
 
                     tarefa();
+                    commit();
 
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                     try {
-                        conn.rollback();
+                        rollback();
                     } catch (SQLException ex) {
-                        System.out.println(e.getMessage());
+                        System.out.println(ex.getMessage());
                     }
                 }
             }
@@ -46,69 +47,46 @@ public abstract class Transacao extends Thread {
 
     public abstract void tarefa() throws SQLException, InterruptedException;
 
-    protected void setControleTransacao(boolean controleTransacao) throws SQLException {
+    private void setControleTransacao(boolean controleTransacao) throws SQLException {
         conn.setAutoCommit(!controleTransacao);
+        if (controleTransacao)
+            conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        else
+            conn.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
     }
 
     protected void rollback() throws SQLException {
-        conn.rollback();
+        System.out.println(String.format("Transação %1$d detecta erro e dezfaz alterações.", numero));
+        if (!conn.getAutoCommit())
+            conn.rollback();
     }
 
-    protected long lerX(String bloqueio) throws SQLException {
+    protected void commit() throws SQLException {
+        System.out.println(String.format("Transação %1$d encerra normalmente.", numero));
+        if (!conn.getAutoCommit())
+            conn.commit();
+    }
+
+    protected long ler(String item) throws SQLException {
         try (Statement st = conn.createStatement();) {
             long x = 0;
-            ResultSet rs1 = st.executeQuery(String.format("select valor from tabela where chave = 'x' %s;", bloqueio));
+            ResultSet rs1 = st.executeQuery(String.format("select valor from tabela where chave = '%s';", item));
             if (rs1.next())
                 x = rs1.getLong("valor");
-            System.out.println(String.format("Transacao %d le x = %d", numero, x));
+            System.out.println(String.format("Transação %1$d lê %2$s = %3$d", numero, item, x));
             return x;
         }
     }
 
-    protected long lerY(String bloqueio) throws SQLException {
+    protected void escrever(String item, long valor) throws SQLException {
         try (Statement st = conn.createStatement();) {
-            long y = 0;
-            ResultSet rs2 = st.executeQuery(String.format("select valor from tabela where chave = 'y' %s;", bloqueio));
-            if (rs2.next())
-                y = rs2.getLong("valor");
-            System.out.println(String.format("Transacao %d le y = %d", numero, y));
-            return y;
-        }
-    }
-
-    protected void desfazX(long x) throws SQLException {
-        try (Statement st = conn.createStatement();) {
-            st.executeUpdate(String.format("update tabela set valor=%d where chave = %s;", x, "'x'"));
-            System.out.println(String.format("Transacao %d falha e desfaz a atualizacao de x = %d  ***", numero, x));
-        }
-    }
-
-    protected long lerXNovamente() throws SQLException {
-        try (Statement st = conn.createStatement();) {
-            long novox = 0;
-            ResultSet rs1 = st.executeQuery("select valor from tabela where chave = 'x';");
-            if (rs1.next())
-                novox = rs1.getLong("valor");
-            return novox;
-        }
-    }
-
-    protected void escreverX(long x) throws SQLException {
-        try (Statement st = conn.createStatement();) {
-            st.executeUpdate(String.format("update tabela set valor=%d where chave = %s;", x, "'x'"));
-            System.out.println(String.format("Transacao %d salva x = %d", numero, x));
-        }
-    }
-
-    protected void escreverY(long y) throws SQLException {
-        try (Statement st = conn.createStatement();) {
-            st.executeUpdate(String.format("update tabela set valor=%d where chave = %s;", y, "'y'"));
-            System.out.println(String.format("Transacao %d salva y = %d", numero, y));
+            st.executeUpdate(String.format("update tabela set valor=%2$d where chave = '%1$s';", item, valor));
+            System.out.println(String.format("Transação %1$d grava %2$s = %3$d", numero, item, valor));
         }
     }
 
     protected void processar(long t) throws InterruptedException {
-        System.out.println(String.format("Transacao %d em processamento...", numero));
+        System.out.println(String.format("Transação %d em processamento...", numero));
         Thread.sleep(t);
     }
 }

@@ -15,10 +15,10 @@ public class Config {
                 try (Statement st = conn.createStatement();) {
                     st.execute("drop table if exists tabela cascade;");
                     st.execute("create table tabela(chave char,valor bigint, primary key(chave));");
-                    st.execute("insert into tabela values('x',100);");
+                    st.execute("insert into tabela values('X',100);");
                     System.out.println("X = 100");
-                    st.execute("insert into tabela values('y',50);");
-                    System.out.println("y = 50");
+                    st.execute("insert into tabela values('Y',50);");
+                    System.out.println("Y = 50");
                 }
             }
         } catch (Exception e) {
