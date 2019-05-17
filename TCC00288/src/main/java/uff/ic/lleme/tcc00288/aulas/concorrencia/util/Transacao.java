@@ -1,6 +1,7 @@
 package uff.ic.lleme.tcc00288.aulas.concorrencia.util;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -8,24 +9,49 @@ import java.sql.Statement;
 public abstract class Transacao extends Thread {
 
     protected int numero = 0;
+    protected boolean controleTransacao = true;
     protected Connection conn = null;
 
-    protected Transacao(int numero) {
+    protected Transacao(int numero, boolean controleTransacao) {
         this.numero = numero;
+        this.controleTransacao = controleTransacao;
     }
 
-    protected void desativarControleTransacao() throws SQLException {
-        conn.setAutoCommit(true);
+    @Override
+    public void run() {
+        try {
+            Class.forName("org.postgresql.Driver");
+            try (Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/TCC00288", "postgres", "fluminense");) {
+
+                this.conn = conn;
+                setControleTransacao(controleTransacao);
+
+                try {
+
+                    tarefa();
+
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    try {
+                        conn.rollback();
+                    } catch (SQLException ex) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    protected void iniciarTransacaoComBloqueio() throws SQLException {
-        conn.setAutoCommit(false);
-        conn.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
+    public abstract void tarefa() throws SQLException, InterruptedException;
+
+    protected void setControleTransacao(boolean controleTransacao) throws SQLException {
+        conn.setAutoCommit(!controleTransacao);
     }
 
-    protected void iniciarTransacaoComIsolamento() throws SQLException {
-        conn.setAutoCommit(false);
-        conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+    protected void rollback() throws SQLException {
+        conn.rollback();
     }
 
     protected long lerX(String bloqueio) throws SQLException {

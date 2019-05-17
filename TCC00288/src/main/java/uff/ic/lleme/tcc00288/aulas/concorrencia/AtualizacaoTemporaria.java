@@ -1,7 +1,5 @@
 package uff.ic.lleme.tcc00288.aulas.concorrencia;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import uff.ic.lleme.tcc00288.aulas.concorrencia.util.Config;
 import uff.ic.lleme.tcc00288.aulas.concorrencia.util.Transacao;
@@ -9,96 +7,70 @@ import uff.ic.lleme.tcc00288.aulas.concorrencia.util.Transacao;
 public class AtualizacaoTemporaria {
 
     public static void main(String[] args) throws InterruptedException {
+        boolean controleTransação = false;
         Config.initBD();
-        Transacao t1 = iniciarTransacaoT1();
-        Transacao t2 = iniciarTransacaoT2();
+        Transacao t1 = iniciarTransacaoT1(controleTransação);
+        Transacao t2 = iniciarTransacaoT2(controleTransação);
         t1.join();
         t2.join();
     }
 
-    private static Transacao iniciarTransacaoT1() throws InterruptedException {
-        Transacao t = new Transacao(1) {
+    private static Transacao iniciarTransacaoT1(boolean controleTransacao) {
+        Transacao t = new Transacao(1, controleTransacao) {
             @Override
-            public void run() {
-                try {
-                    Class.forName("org.postgresql.Driver");
-                    try (Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/TCC00288", "postgres", "fluminense");) {
-                        this.conn = conn;
+            public void tarefa() throws SQLException, InterruptedException {
 
-                        // -------------------------------------------------------------------------------------------
-                        try {
-
-                            long x = 0;
-                            {// Parte 1
-                                desativarControleTransacao();
-                                x = lerX("for update");
-                                int N = 5;
-                                x = x - N;
-                                System.out.println(String.format("Transacao 1 faz x = %d - %d = %d", x + N, N, x));
-                                escreverX(x);
-                                processar(2000);
-                            }
-
-                            long y = 0;
-                            {// Parte 2
-                                y = lerY("for update");
-                                int N = 5;
-                                desfazX(x + N);
-                            }
-
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                        // -------------------------------------------------------------------------------------------
-
-                    }
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                long x = 0;
+                {// Parte 1
+                    x = lerX("");
+                    int N = 5;
+                    System.out.println(String.format("Transacao 1 faz x = %d - %d = %d", x, N, x - N));
+                    x = x - N;
+                    escreverX(x);
                 }
+
+                processar(2000); // simulação carga de processamdento em outras atividades
+
+                long y = 0;
+                {// Parte 2
+                    y = lerY("for update");
+                    System.out.println("Transacao 1 encerra.");
+                    rollback();
+                }
+
             }
         };
         t.start();
         return t;
     }
 
-    private static Transacao iniciarTransacaoT2() throws InterruptedException {
-        Transacao t = new Transacao(2) {
+    private static Transacao iniciarTransacaoT2(boolean controleTransacao) {
+        Transacao t = new Transacao(2, controleTransacao) {
             @Override
-            public void run() {
-                try {
-                    Class.forName("org.postgresql.Driver");
-                    try (Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/TCC00288", "postgres", "fluminense");) {
-                        this.conn = conn;
+            public void tarefa() throws SQLException, InterruptedException {
 
-                        // -------------------------------------------------------------------------------------------
-                        try {
+                processar(1000); // simulação carga de processamdento em outras atividades
 
-                            long x = 0;
-                            {// Parte 1
-                                desativarControleTransacao();
-                                processar(1000);
-                                x = lerX("for update");
-                                int N = 8;
-                                x = x - N;
-                                System.out.println(String.format("Transacao 2 faz x = %d - %d = %d", x + N, N, x));
-                                escreverX(x);
-                                processar(2000);
-                                long novox = lerX("");
-                                System.out.println(String.format("Transacao 2 perde o valor x = %d que agora é x = %d <--------", x, novox));
-                            }
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                        // -------------------------------------------------------------------------------------------
-
-                    }
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                long x = 0;
+                int M = 0;
+                {// Parte 1
+                    x = lerX("");
+                    M = 8;
+                    System.out.println(String.format("Transacao 2 faz x = %d - %d = %d", x, M, x - M));
+                    x = x - M;
+                    escreverX(x);
                 }
+
+                processar(2000); // simulação carga de processamdento em outras atividades
+
+                long novoX = lerX("");
+                if (novoX == x + M)
+                    System.out.println(String.format("Transacao 2 continua lendo o valor x = %d <--------", novoX));
+                else
+                    System.out.println(String.format("Transacao 2 perde o valor x = %d que agora é x = %d <--------", x + M, novoX));
             }
         };
         t.start();
         return t;
     }
-
 }
