@@ -7,6 +7,9 @@ import uff.ic.lleme.tcc00288.aulas.concorrencia.util.Transacao;
 public class AtualizacaoPerdida {
 
     public static void main(String[] args) throws InterruptedException {
+        System.out.println("*** Execução SEM controle de transação ***");
+        System.out.println("");
+
         {
             boolean controleTransação = false;
             Config.initBD();
@@ -17,6 +20,8 @@ public class AtualizacaoPerdida {
         }
 
         System.out.println("");
+        System.out.println("");
+        System.out.println("*** Execução COM controle de transação ***");
         System.out.println("");
 
         {
@@ -66,7 +71,7 @@ public class AtualizacaoPerdida {
                     if (newX != x)
                         System.out.println(String.format("Transacao 1 deveria ter lido x = %1$d, conforme foi gravado!!! (ATUALIZAÇÃO PERDIDA)", x));
                     else
-                        System.out.println(String.format("Leu x = %1$d conforme foi gravado. (OK)", x));
+                        System.out.println(String.format("Transacao 1 leu x = %1$d conforme foi gravado. (OK)", x));
                 }
             }
         };

@@ -32,7 +32,7 @@ public abstract class Transacao extends Thread {
                     commit();
 
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                    System.out.println(String.format("%1$s na transação %2$d.", e.getMessage(), numero));
                     try {
                         rollback();
                     } catch (SQLException ex) {
@@ -58,8 +58,9 @@ public abstract class Transacao extends Thread {
     protected void rollback() throws SQLException {
         if (!conn.getAutoCommit()) {
             conn.rollback();
-            System.out.println(String.format("Transação %1$d detecta erro e dezfaz alterações.", numero));
-        }
+            System.out.println(String.format("Transação %1$d detecta erro, dezfaz alterações e encerra.", numero));
+        } else
+            System.out.println(String.format("Transação %1$d termina.", numero));
     }
 
     protected void commit() throws SQLException {
