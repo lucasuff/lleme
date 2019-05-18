@@ -4,29 +4,15 @@ import java.sql.SQLException;
 import uff.ic.lleme.tcc00288.aulas.concorrencia.util.Config;
 import uff.ic.lleme.tcc00288.aulas.concorrencia.util.Transacao;
 
-public class AtualizacaoPerdida {
+public class AtualizacaoResumoIncorreto {
 
     public static void main(String[] args) throws InterruptedException {
-        {
-            boolean controleTransação = false;
-            Config.initBD();
-            Transacao t1 = iniciarTransacaoT1(controleTransação);
-            Transacao t2 = iniciarTransacaoT2(controleTransação);
-            t1.join();
-            t2.join();
-        }
-
-        System.out.println("");
-        System.out.println("");
-
-        {
-            boolean controleTransação = true;
-            Config.initBD();
-            Transacao t1 = iniciarTransacaoT1(controleTransação);
-            Transacao t2 = iniciarTransacaoT2(controleTransação);
-            t1.join();
-            t2.join();
-        }
+        boolean controleTransação = true;
+        Config.initBD();
+        Transacao t1 = iniciarTransacaoT1(controleTransação);
+        Transacao t2 = iniciarTransacaoT2(controleTransação);
+        t1.join();
+        t2.join();
     }
 
     private static Transacao iniciarTransacaoT1(boolean controleTransacao) {
@@ -34,18 +20,17 @@ public class AtualizacaoPerdida {
             @Override
             public void tarefa() throws SQLException, InterruptedException {
 
-                long x;
-                int N = 3;
+                long x = 0;
                 {// Parte 1
                     x = ler("X");
-                    N = 5;
+                    int N = 5;
                     System.out.println(String.format("Transacao 1 faz x = %d - %d = %d", x, N, x - N));
                     x = x - N;
                 }
 
                 processar(2000);
 
-                long y;
+                long y = 0;
                 {// Parte 2
                     escrever("X", x);
                     y = ler("Y");
@@ -54,19 +39,15 @@ public class AtualizacaoPerdida {
                 processar(2000);
 
                 {// Parte 3
+                    int N = 3;
                     System.out.println(String.format("Transacao 1 faz y = %d + %d = %d", y, N, y + N));
                     y = y + N;
                     escrever("Y", y);
                 }
 
-                long newX;
                 {// Parte 4
                     System.out.println("");
-                    newX = ler("X");
-                    if (newX != x)
-                        System.out.println(String.format("Transacao 1 deveria ter lido x = %1$d, conforme foi gravado!!! (ATUALIZAÇÃO PERDIDA)", x));
-                    else
-                        System.out.println(String.format("Leu x = %1$d conforme foi gravado. (OK)", x));
+                    x = ler("X");
                 }
             }
         };

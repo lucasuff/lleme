@@ -56,15 +56,18 @@ public abstract class Transacao extends Thread {
     }
 
     protected void rollback() throws SQLException {
-        System.out.println(String.format("Transação %1$d detecta erro e dezfaz alterações.", numero));
-        if (!conn.getAutoCommit())
+        if (!conn.getAutoCommit()) {
             conn.rollback();
+            System.out.println(String.format("Transação %1$d detecta erro e dezfaz alterações.", numero));
+        }
     }
 
     protected void commit() throws SQLException {
-        System.out.println(String.format("Transação %1$d encerra normalmente.", numero));
-        if (!conn.getAutoCommit())
+        if (!conn.getAutoCommit()) {
             conn.commit();
+            System.out.println(String.format("Transação %1$d encerra sem erros.", numero));
+        } else
+            System.out.println(String.format("Transação %1$d termina.", numero));
     }
 
     protected long ler(String item) throws SQLException {
