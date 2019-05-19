@@ -17,6 +17,9 @@ public class AtualizacaoTemporaria {
             Transacao t2 = iniciarTransacaoT2(controleTransação);
             t1.join();
             t2.join();
+
+            Transacao t3 = iniciarTransacaoT3(controleTransação);
+            t3.join();
         }
 
         System.out.println("");
@@ -31,6 +34,9 @@ public class AtualizacaoTemporaria {
             Transacao t2 = iniciarTransacaoT2(controleTransação);
             t1.join();
             t2.join();
+
+            Transacao t3 = iniciarTransacaoT3(controleTransação);
+            t3.join();
         }
     }
 
@@ -39,23 +45,28 @@ public class AtualizacaoTemporaria {
             @Override
             public void tarefa() throws SQLException, InterruptedException {
 
-                long x = 0;
+                long X = 0;
                 int N = 5;
                 {// Parte 1
-                    x = ler("X");
-                    System.out.println(String.format("Transação 1 faz x = %d - %d = %d", x, N, x - N));
-                    x = x - N;
-                    escrever("X", x);
+                    X = ler("X");
+                    System.out.println(String.format("Transação 1 faz x = %d - %d = %d", X, N, X - N));
+                    X = X - N;
+                    escrever("X", X);
                 }
 
                 processar(2000); // simulação carga de processamdento em outras atividades
 
-                long y = 0;
+                long Y = 0;
                 {// Parte 2
-                    y = ler("Y");
-                    System.out.println(String.format("Nenhuma transação deveria ter lido X = %1$d porque operação será desfeita.", x));
+                    Y = ler("Y");
+                    System.out.println(String.format("Nenhuma transação além da %1$d deveria ter lido X = %2$d porque operação será desfeita. (ATUALIZAÇÃO TEMPORÁRIA)", numero, X));
                     throw new SQLException("Erro no processamento");
                 }
+            }
+
+            @Override
+            public void desfazer() throws SQLException {
+                desfazer("X", 95, 100);
             }
         };
         t.start();
@@ -69,18 +80,27 @@ public class AtualizacaoTemporaria {
 
                 processar(1000); // simulação carga de processamdento em outras atividades
 
-                long x;
+                long X;
                 int M = 8;
                 {// Parte 1
-                    x = ler("X");
-                    if (!controleTransacao)
-                        System.out.println("                      (ATUALIZAÇÃO TEMPORÁRIA)");
-                    System.out.println(String.format("Transação 2 faz x = %d - %d = %d", x, M, x - M));
-                    x = x - M;
-                    escrever("X", x);
+                    X = ler("X");
+                    System.out.println(String.format("Transação 2 faz x = %d - %d = %d", X, M, X - M));
+                    X = X - M;
+                    escrever("X", X);
                 }
 
                 processar(2000); // simulação carga de processamdento em outras atividades
+            }
+        };
+        t.start();
+        return t;
+    }
+
+    private static Transacao iniciarTransacaoT3(boolean controleTransacao) {
+        Transacao t = new Transacao(3, controleTransacao) {
+            @Override
+            public void tarefa() throws SQLException, InterruptedException {
+                ler("X");
             }
         };
         t.start();

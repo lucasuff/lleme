@@ -8,8 +8,8 @@ import java.sql.Statement;
 
 public abstract class Transacao extends Thread {
 
-    private int numero = 0;
-    private boolean controleTransacao = true;
+    public final int numero;
+    public final boolean controleTransacao;
     private Connection conn = null;
 
     protected Transacao(int numero, boolean controleTransacao) {
@@ -21,7 +21,7 @@ public abstract class Transacao extends Thread {
     public void run() {
         try {
             Class.forName("org.postgresql.Driver");
-            try (Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/TCC00288", "postgres", "fluminense");) {
+            try ( Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/TCC00288", "postgres", "fluminense");) {
 
                 this.conn = conn;
                 setControleTransacao(controleTransacao);
@@ -47,6 +47,9 @@ public abstract class Transacao extends Thread {
 
     public abstract void tarefa() throws SQLException, InterruptedException;
 
+    public void desfazer() throws SQLException {
+    }
+
     private void setControleTransacao(boolean controleTransacao) throws SQLException {
         conn.setAutoCommit(!controleTransacao);
         if (controleTransacao)
@@ -55,15 +58,17 @@ public abstract class Transacao extends Thread {
             conn.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
     }
 
-    protected void rollback() throws SQLException {
+    public void rollback() throws SQLException {
         if (!conn.getAutoCommit()) {
             conn.rollback();
             System.out.println(String.format("Transação %1$d detecta erro, dezfaz alterações e encerra.", numero));
-        } else
+        } else {
+            desfazer();
             System.out.println(String.format("Transação %1$d termina.", numero));
+        }
     }
 
-    protected void commit() throws SQLException {
+    public void commit() throws SQLException {
         if (!conn.getAutoCommit()) {
             conn.commit();
             System.out.println(String.format("Transação %1$d encerra sem erros.", numero));
@@ -71,8 +76,8 @@ public abstract class Transacao extends Thread {
             System.out.println(String.format("Transação %1$d termina.", numero));
     }
 
-    protected long ler(String item) throws SQLException {
-        try (Statement st = conn.createStatement();) {
+    public long ler(String item) throws SQLException {
+        try ( Statement st = conn.createStatement();) {
             long x = 0;
             ResultSet rs1 = st.executeQuery(String.format("select valor from tabela where chave = '%s';", item));
             if (rs1.next())
@@ -82,10 +87,17 @@ public abstract class Transacao extends Thread {
         }
     }
 
-    protected void escrever(String item, long valor) throws SQLException {
-        try (Statement st = conn.createStatement();) {
+    public void escrever(String item, long valor) throws SQLException {
+        try ( Statement st = conn.createStatement();) {
             st.executeUpdate(String.format("update tabela set valor=%2$d where chave = '%1$s';", item, valor));
             System.out.println(String.format("Transação %1$d grava %2$s = %3$d", numero, item, valor));
+        }
+    }
+
+    public void desfazer(String item, long valorNovo, long valorAntigo) throws SQLException {
+        try ( Statement st = conn.createStatement();) {
+            st.executeUpdate(String.format("update tabela set valor=%2$d where chave = '%1$s';", item, valorAntigo));
+            System.out.println(String.format("Transação %1$d desgrava %2$s = %3$d", numero, item, valorNovo));
         }
     }
 

@@ -39,39 +39,40 @@ public class AtualizacaoPerdida {
             @Override
             public void tarefa() throws SQLException, InterruptedException {
 
-                long x;
-                int N = 3;
+                long X;
+                int N = 5;
                 {// Parte 1
-                    x = ler("X");
-                    N = 5;
-                    System.out.println(String.format("Transacao 1 faz x = %d - %d = %d", x, N, x - N));
-                    x = x - N;
+                    X = ler("X");
+                    System.out.println(String.format("Transacao 1 faz x = %d - %d = %d", X, N, X - N));
+                    X = X - N;
                 }
 
                 processar(2000);
 
-                long y;
+                long Y;
                 {// Parte 2
-                    escrever("X", x);
-                    y = ler("Y");
+                    escrever("X", X);
+                    Y = ler("Y");
                 }
 
                 processar(2000);
 
                 {// Parte 3
-                    System.out.println(String.format("Transacao 1 faz y = %d + %d = %d", y, N, y + N));
-                    y = y + N;
-                    escrever("Y", y);
+                    System.out.println(String.format("Transacao 1 faz y = %d + %d = %d", Y, N, Y + N));
+                    Y = Y + N;
+                    escrever("Y", Y);
                 }
 
-                long newX;
+                processar(2000);
+
+                long novoX;
                 {// Parte 4
                     System.out.println("");
-                    newX = ler("X");
-                    if (newX != x)
-                        System.out.println(String.format("Transacao 1 deveria ter lido x = %1$d, conforme foi gravado!!! (ATUALIZAÇÃO PERDIDA)", x));
+                    novoX = ler("X");
+                    if (novoX != X)
+                        System.out.println(String.format("Transacao 1 deveria ter lido x = %1$d, conforme foi gravado!!! (ATUALIZAÇÃO PERDIDA)", X));
                     else
-                        System.out.println(String.format("Transacao 1 leu x = %1$d conforme foi gravado. (OK)", x));
+                        System.out.println(String.format("Transacao 1 leu x = %1$d conforme foi gravado. (OK)", X));
                 }
             }
         };
@@ -86,18 +87,18 @@ public class AtualizacaoPerdida {
 
                 processar(1000);
 
-                long x = 0;
+                long X = 0;
+                int N = 8;
                 {// Parte 1
-                    x = ler("X");
-                    int N = 8;
-                    System.out.println(String.format("Transacao 2 faz x = %d + %d = %d", x, N, x + N));
-                    x = x + N;
+                    X = ler("X");
+                    System.out.println(String.format("Transacao 2 faz x = %d + %d = %d", X, N, X + N));
+                    X = X + N;
                 }
 
                 processar(2000);
 
                 {// Parte 2
-                    escrever("X", x);
+                    escrever("X", X);
                 }
             }
         };

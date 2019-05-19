@@ -7,12 +7,31 @@ import uff.ic.lleme.tcc00288.aulas.concorrencia.util.Transacao;
 public class AtualizacaoResumoIncorreto {
 
     public static void main(String[] args) throws InterruptedException {
-        boolean controleTransação = true;
-        Config.initBD();
-        Transacao t1 = iniciarTransacaoT1(controleTransação);
-        Transacao t2 = iniciarTransacaoT2(controleTransação);
-        t1.join();
-        t2.join();
+        System.out.println("*** Execução SEM controle de transação ***");
+        System.out.println("");
+
+        {
+            boolean controleTransação = false;
+            Config.initBD();
+            Transacao t2 = iniciarTransacaoT2(controleTransação);
+            Transacao t1 = iniciarTransacaoT1(controleTransação);
+            t1.join();
+            t2.join();
+        }
+
+        System.out.println("");
+        System.out.println("");
+        System.out.println("*** Execução COM controle de transação ***");
+        System.out.println("");
+
+        {
+            boolean controleTransação = true;
+            Config.initBD();
+            Transacao t2 = iniciarTransacaoT2(controleTransação);
+            Transacao t1 = iniciarTransacaoT1(controleTransação);
+            t1.join();
+            t2.join();
+        }
     }
 
     private static Transacao iniciarTransacaoT1(boolean controleTransacao) {
@@ -20,34 +39,26 @@ public class AtualizacaoResumoIncorreto {
             @Override
             public void tarefa() throws SQLException, InterruptedException {
 
-                long x = 0;
+                processar(1000);
+
+                long X = 0;
+                int N = 5;
                 {// Parte 1
-                    x = ler("X");
-                    int N = 5;
-                    System.out.println(String.format("Transacao 1 faz x = %d - %d = %d", x, N, x - N));
-                    x = x - N;
+                    X = ler("X");
+                    System.out.println(String.format("Transacao 1 faz %1$s = %2$d - %3$d = %4$d", "X", X, N, X - N));
+                    X = X - N;
+                    escrever("X", X);
                 }
 
                 processar(2000);
 
-                long y = 0;
+                long Y = 0;
                 {// Parte 2
-                    escrever("X", x);
-                    y = ler("Y");
-                }
-
-                processar(2000);
-
-                {// Parte 3
-                    int N = 3;
-                    System.out.println(String.format("Transacao 1 faz y = %d + %d = %d", y, N, y + N));
-                    y = y + N;
-                    escrever("Y", y);
-                }
-
-                {// Parte 4
-                    System.out.println("");
-                    x = ler("X");
+                    Y = ler("Y");
+                    System.out.println(String.format("Transacao 1 faz %1$s = %2$d - %3$d = %4$d", "Y", Y, N, X + N));
+                    Y = Y + N;
+                    escrever("Y", Y);
+                    System.out.println(String.format("Transações devem ler %1$s = %3$d e %2$s = %4$d ou %1$s = %5$d e %2$s = %6$d. (RESUMO INCORRETO)", "X", "Y", X + N, Y - N, X, Y));
                 }
             }
         };
@@ -60,20 +71,27 @@ public class AtualizacaoResumoIncorreto {
             @Override
             public void tarefa() throws SQLException, InterruptedException {
 
-                processar(1000);
-
-                long x = 0;
+                long A;
+                long soma;
                 {// Parte 1
-                    x = ler("X");
-                    int N = 8;
-                    System.out.println(String.format("Transacao 2 faz x = %d + %d = %d", x, N, x + N));
-                    x = x + N;
+                    System.out.println(String.format("Transacao 2 faz %1$s = %2$d", "soma", 0));
+                    soma = 0;
+                    A = ler("A");
+                    System.out.println(String.format("Transacao 2 faz %1$s = %2$d + %3$d = %4$d", "soma", soma, A, soma + A));
+                    soma = soma + A;
                 }
 
                 processar(2000);
 
+                long X;
+                long Y;
                 {// Parte 2
-                    escrever("X", x);
+                    X = ler("X");
+                    System.out.println(String.format("Transacao 2 faz %1$s = %2$d + %3$d = %4$d", "soma", soma, X, soma + X));
+                    soma = soma + X;
+                    Y = ler("Y");
+                    System.out.println(String.format("Transacao 2 faz %1$s = %2$d + %3$d = %4$d", "soma", soma, Y, soma + Y));
+                    soma = soma + Y;
                 }
             }
         };
