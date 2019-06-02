@@ -69,4 +69,4 @@ begin
     return query select t1.acao, sum(t1.qtd)::integer, t1.preco from saldo as t1 group by t1.acao, t1.preco;
 end;$$ language plpgsql;
 
-select * from saldo('{"A1","A2"}') order by 1;
+select * from saldo('{"A1","A2","A3"}') order by 1;
