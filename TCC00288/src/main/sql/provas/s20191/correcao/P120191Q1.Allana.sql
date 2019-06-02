@@ -20,7 +20,7 @@ insert into operacao values('A3','2019-05-16'::timestamp,300,7.5);
 
 
 drop function if exists saldo(p_acoes varchar[]);
-CREATE OR REPLACE FUNCTION calculaSaldo6(acoes varchar[]) RETURNS TABLE(acName varchar, qt integer, prec float) AS $$
+CREATE OR REPLACE FUNCTION saldo(acoes varchar[]) RETURNS TABLE(acName varchar, qt integer, prec float) AS $$
 DECLARE
     curSaldo cursor(acao1 varchar) FOR SELECT * FROM operacao WHERE acao = acao1;
     tam integer;
