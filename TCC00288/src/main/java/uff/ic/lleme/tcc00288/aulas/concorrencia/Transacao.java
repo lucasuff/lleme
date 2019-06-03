@@ -1,4 +1,4 @@
-package uff.ic.lleme.tcc00288.aulas.concorrencia.util;
+package uff.ic.lleme.tcc00288.aulas.concorrencia;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
