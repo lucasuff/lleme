@@ -19,6 +19,7 @@ insert into operacao values('A2','2019-05-21'::timestamp,-125,19.5);
 insert into operacao values('A3','2019-05-16'::timestamp,300,7.5);
 
 
+// aceitar implementacao prova
 drop function if exists saldo(p_acoes varchar[]);
 create or replace function saldo(acoes varchar[]) returns table(acao varchar, qtd integer, preco float) as $$
 declare
@@ -46,7 +47,7 @@ begin
 		end loop;
 	end loop;
 	delete from temporaria where temporaria.qtd = 0;
-	return query select temporaria.acao, temporaria.qtd, temporaria.preco from temporaria;
+	return query select temporaria.acao, sum(temporaria.qtd)::integer, temporaria.preco from temporaria GROUP BY temporaria.acao, temporaria.preco;
 end;
 $$ language plpgsql;
 

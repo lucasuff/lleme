@@ -19,6 +19,8 @@ insert into operacao values('A2','2019-05-21'::timestamp,-125,19.5);
 insert into operacao values('A3','2019-05-16'::timestamp,300,7.5);
 
 
+
+// ACEITAR IMPLEMENTACAO PROVA
 drop function if exists saldo(p_acoes varchar[]);
 CREATE OR REPLACE FUNCTION saldo(acoes varchar[]) RETURNS TABLE (acao varchar, qtd integer, preco float) AS $$
 DECLARE
