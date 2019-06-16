@@ -2,7 +2,6 @@ package uff.ic.lleme.tcc00288.aulas.concorrencia;
 
 import java.sql.SQLException;
 import uff.ic.lleme.tcc00288.aulas.concorrencia.util.Config;
-import uff.ic.lleme.tcc00288.aulas.concorrencia.util.Transacao;
 
 public class AtualizacaoPerdida {
 
