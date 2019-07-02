@@ -48,11 +48,11 @@ begin
     create temporary table conta_afetada(id int) on commit drop;
     return null;
 end;$$ language plpgsql;
+
 create trigger trigger_create_temp_table before insert or update or delete on movimento
 for each statement execute procedure create_temp_table();
 
-create trigger trigger_create_temp_table2 before insert or update or delete on limite_credito
-for each statement execute procedure create_temp_table();
+
 
 --
 drop function if exists salva_conta_atefada() cascade;
@@ -68,7 +68,8 @@ begin
     end if;
     return old;
 end;$$ language plpgsql;
-create trigger trigger_salva_conta_atefada before insert or update or delete on movimento
+
+create trigger trigger_salva_conta_atefada after insert or update or delete on movimento
 for each row execute procedure salva_conta_atefada();
 
 --
@@ -147,14 +148,17 @@ create trigger trigger_check_limite after insert or update or delete on moviment
 for each statement execute procedure check_limite2();
 
 
+
+
+
 --Triggers em limite_credito
 drop trigger if exists trigger_create_temp_table on limite_credito;
-create trigger trigger_create_temp_table after insert or update or delete on limite_credito
+create trigger trigger_create_temp_table before insert or update or delete on limite_credito
 for each statement execute procedure create_temp_table();
 
 --
 drop trigger if exists trigger_salva_conta_atefada on limite_credito;
-create trigger trigger_salva_conta_atefada before insert or update or delete on limite_credito
+create trigger trigger_salva_conta_atefada after insert or update or delete on limite_credito
 for each row execute procedure salva_conta_atefada();
 
 --
