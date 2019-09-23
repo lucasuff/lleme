@@ -3,8 +3,11 @@ package uff.ic.lleme.tcc00328.exercicios.blog;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import uff.ic.lleme.tcc00328.exercicios.blog.model.Blog;
+import uff.ic.lleme.tcc00328.exercicios.blog.model.Nota;
+import uff.ic.lleme.tcc00328.exercicios.blog.model.Usuario;
 
-public class Sistema {
+public class Blog2 {
 
     private static Blog blogs[] = new Blog[100];
     private static Blog blogCorrente = null;
@@ -46,7 +49,7 @@ public class Sistema {
         } catch (NullPointerException e) {
             System.out.println("sdfkl");
         } catch (StringVazio e) {
-            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Blog2.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 

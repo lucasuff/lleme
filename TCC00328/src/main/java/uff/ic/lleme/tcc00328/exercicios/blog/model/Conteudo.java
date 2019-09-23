@@ -1,4 +1,4 @@
-package uff.ic.lleme.tcc00328.exercicios.blog;
+package uff.ic.lleme.tcc00328.exercicios.blog.model;
 
 import java.util.Date;
 
