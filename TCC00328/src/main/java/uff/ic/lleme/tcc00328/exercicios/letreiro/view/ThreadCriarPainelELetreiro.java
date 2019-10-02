@@ -2,7 +2,6 @@ package uff.ic.lleme.tcc00328.exercicios.letreiro.view;
 
 import uff.ic.lleme.tcc00328.exercicios.letreiro.model.Letreiro;
 import uff.ic.lleme.tcc00328.exercicios.letreiro.model.mostrador1.Fabrica;
-import uff.ic.lleme.tcc00328.exercicios.letreiro.view.Painel;
 
 public class ThreadCriarPainelELetreiro implements Runnable {
 
@@ -17,8 +16,8 @@ public class ThreadCriarPainelELetreiro implements Runnable {
             }
         });
         // Criar Letreiro
-        Letreiro letreiro = new Letreiro((byte) 20, new Fabrica(), dialog);
-        letreiro.atribuirMensagem("Luiz Andre");
+        Letreiro letreiro = new Letreiro((byte) 30, new Fabrica(), dialog);
+        letreiro.atribuirMensagem("Andre");
         letreiro.ligar();
         dialog.setVisible(true);
     }

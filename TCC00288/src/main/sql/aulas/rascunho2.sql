@@ -1,56 +1,60 @@
-DROP TABLE if exists bairro cascade;
-CREATE TABLE bairro (
-  bairro_id integer NOT NULL,
-  nome character varying NOT NULL,
-  CONSTRAINT bairro_pk PRIMARY KEY
-  (bairro_id));
+drop table if exists artista cascade;
+create table artista (
+  id int,
+  CONSTRAINT artista_pk PRIMARY KEY
+  (id));
 
-DROP TABLE if exists municipio cascade;
-CREATE TABLE municipio (
-  municipio_id integer NOT NULL,
-  nome character varying NOT NULL,
-  CONSTRAINT municipio_pk PRIMARY KEY
-  (municipio_id));
+drop table if exists arena cascade;
+create table arena (
+  id int,
+  CONSTRAINT arena_pk PRIMARY KEY
+  (id));
 
-DROP TABLE if exists antena cascade;
-CREATE TABLE antena (
-  antena_id integer NOT NULL,
-  bairro_id integer NOT NULL,
-  municipio_id integer NOT NULL,
-  CONSTRAINT antena_pk PRIMARY KEY
-  (antena_id),
-  CONSTRAINT bairro_fk FOREIGN KEY
-  (bairro_id) REFERENCES bairro
-  (bairro_id),
-  CONSTRAINT municipio_fk FOREIGN KEY
-  (municipio_id) REFERENCES municipio
-  (municipio_id));
+drop table if exists concerto cascade;
+create table concerto (
+  artista int,
+  arena int,
+  "data" date,
+  preco float,
+  CONSTRAINT concerto_pk PRIMARY KEY
+  (artista,arena),
+  CONSTRAINT concerto_artista_fk
+  FOREIGN KEY (artista) REFERENCES
+  artista(id),
+  CONSTRAINT conereto_arena_fk FOREIGN
+  KEY (arena) REFERENCES arena(id));
 
-DROP TABLE if exists ligacao cascade;
-CREATE TABLE ligacao (
-  ligacao_id bigint NOT NULL,
-  numero_orig integer NOT NULL,
-  numero_dest integer NOT NULL,
-  antena_orig integer NOT NULL,
-  antena_dest integer NOT NULL,
-  inicio timestamp NOT NULL,
-  fim timestamp NOT NULL,
-  CONSTRAINT ligacao_pk PRIMARY KEY
-  (ligacao_id),
-  CONSTRAINT antena_orig_fk FOREIGN KEY
-  (antena_orig) REFERENCES antena
-  (antena_id),
-  CONSTRAINT antena_dest_fk FOREIGN KEY
-  (numero_dest) REFERENCES antena
-  (antena_id));
+insert into artista values (1);
+insert into artista values (2);
+insert into artista values (3);
 
-create or replace function media(d1 date, d2 date)
-returns table (municipio_orig varchar, bairro_orig varchar, municipio_dest varchar, bairro_dest varchar, duracao float) as $$
+insert into arena values (1);
+
+insert into concerto values (1,1,'2019-09-28'::date,500.0);
+
+drop function if exists adicionar (int, int, date, float);
+
+create or replace function adicionar(pArtista int, pArena int, pData date, pPreco float)
+returns void as $$
+
 declare
-    c1 cursor for select distinct m_o, b_o, m_d, b_d
-                    from ligacao l inner join antena a1 on a1.antena_id = l.antena_orig
-                                    inner join antena a2 on a2.antena_id = l.antena_dest
-                                    inner ;
+
 begin
 
-end; $$ language plpgsql;
+if not exists (select artista
+               from concerto
+               where pArena = concerto.arena and pData = concerto."data") then
+
+    insert into concerto values (pArtista, pArena, pData, pPreco);
+
+else
+    raise exception 'Concerto já existe';
+
+end if;
+
+end;
+
+$$ language plpgsql;
+
+select adicionar(2,1,'2019-09-29'::date,100.0);
+select * from concerto;

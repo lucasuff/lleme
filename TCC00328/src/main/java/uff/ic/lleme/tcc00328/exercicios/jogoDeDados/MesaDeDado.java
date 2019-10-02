@@ -77,7 +77,7 @@ public class MesaDeDado {
     private Integer somarPontos(Dado[] dados) {
         int pontosObtidos = 0;
         for (Dado dado : dados)
-            pontosObtidos += dado.obterValor();
+            pontosObtidos += dado.getValor();
         if (pontosObtidos > 0)
             return pontosObtidos;
         else

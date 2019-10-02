@@ -4,7 +4,7 @@ public class Dado {
 
     private int valor = 1;
 
-    public int obterValor() {
+    public int getValor() {
         return valor;
     }
 

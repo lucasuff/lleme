@@ -24,7 +24,7 @@ RETURNS table(acao varchar, qtd integer, preco float) AS $$
 DECLARE
     operacoes CURSOR(sigla varchar) for
         SELECT * FROM operacao WHERE operacao.acao = sigla
-        order by acao, "data";
+        order by "data";
     carteira float[][];
     val int = 0;
     venda integer = 0;
