@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<xmi:XMI xmlns:xmi='http://www.omg.org/spec/XMI/20131001' xmlns:uml='http://www.omg.org/spec/UML/20131001'>
+ <documentation exporter='Oracle JDeveloper' exporterVersion='12.2.1.4.0'/>
+ <uml:Association xmi:type='uml:Association' xmi:uuid='urn:uuid:1420ddc2-3624-4b6b-8d01-0258275029a0'
+   isAbstract='false'
+   isDerived='false'
+   isFinalSpecialization='false'
+   isLeaf='false'
+   name='Association1'
+   visibility='public'>
+  <memberEnd href='urn:uuid:37c0602a-6ee2-4241-b59d-1279fb6f5f46'/>
+  <memberEnd href='urn:uuid:f6282490-0596-4858-9eb4-bb8e84d7159f'/>
+  <navigableOwnedEnd href='urn:uuid:f6282490-0596-4858-9eb4-bb8e84d7159f'/>
+  <ownedEnd xmi:type='uml:Property' xmi:uuid='urn:uuid:37c0602a-6ee2-4241-b59d-1279fb6f5f46'
+    isDerived='false'
+    isDerivedUnion='false'
+    isID='false'
+    isLeaf='false'
+    isOrdered='false'
+    isReadOnly='false'
+    isStatic='false'
+    isUnique='true'
+    aggregation='none'>
+   <association href='urn:uuid:1420ddc2-3624-4b6b-8d01-0258275029a0'/>
+   <type href='urn:uuid:d39a9b50-24d2-4be9-999c-ef44384026d6'/>
+   <lowerValue xmi:type='uml:LiteralInteger' xmi:uuid='urn:uuid:8a195428-8755-40ec-bd75-b1776611bbd0'
+     value='1'
+     visibility='public'/>
+   <upperValue xmi:type='uml:LiteralUnlimitedNatural' xmi:uuid='urn:uuid:91238a76-cc83-4b22-a10a-751b1e045513'
+     value='1'
+     visibility='public'/>
+  </ownedEnd>
+  <ownedEnd xmi:type='uml:Property' xmi:uuid='urn:uuid:f6282490-0596-4858-9eb4-bb8e84d7159f'
+    isDerived='false'
+    isDerivedUnion='false'
+    isID='false'
+    isLeaf='false'
+    isOrdered='false'
+    isReadOnly='false'
+    isStatic='false'
+    isUnique='true'
+    name='produto'
+    aggregation='none'
+    visibility='private'>
+   <association href='urn:uuid:1420ddc2-3624-4b6b-8d01-0258275029a0'/>
+   <type href='urn:uuid:13647520-eb12-42fb-94f1-aed9c795c6aa'/>
+   <defaultValue xmi:type='uml:LiteralString' xmi:uuid='urn:uuid:a49c1549-f96c-48b7-a5ad-ee3ff48e4446'
+     value='null'
+     visibility='public'/>
+   <lowerValue xmi:type='uml:LiteralInteger' xmi:uuid='urn:uuid:c5701b75-c420-43df-aaeb-a9756f0578b4'
+     value='1'
+     visibility='public'/>
+   <upperValue xmi:type='uml:LiteralUnlimitedNatural' xmi:uuid='urn:uuid:732e1cb2-9fb5-448d-9ecf-126b468d6889'
+     value='1'
+     visibility='public'/>
+  </ownedEnd>
+ </uml:Association>
+</xmi:XMI>
