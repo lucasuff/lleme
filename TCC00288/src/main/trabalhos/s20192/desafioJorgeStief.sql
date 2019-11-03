@@ -121,10 +121,10 @@ begin
 	 execute 'with
 		t1 as (select ano_mes, sum(valor) as valor
 		from venda group by ano_mes, produto)
-	 select 
+	 select
 		array_agg(array[ano_mes,1]),
 		transpor(array_agg(array[t1.ano_mes,1])),
-		transpor(array[array_agg(t1.valor)]) 
+		transpor(array[array_agg(t1.valor)])
 	 from t1'
 	 into x,xl,r;
 	 c1 = multiplicar(xl,x);
@@ -132,7 +132,7 @@ begin
 	 coef = resolver(c1,c2);
 	 produto = prod;
 	 previsao= coef[1] * p_ano_mes + coef[2];
-	 return next;  
+	 return next;
  end loop;
 end$$ language plpgsql;
 
