@@ -1,12 +1,13 @@
 package uff.ic.lleme.tcc00328.exercicios.letreiro.model.mostrador1;
 
 import uff.ic.lleme.tcc00328.exercicios.letreiro.model.Caractere;
+import uff.ic.lleme.tcc00328.exercicios.letreiro.model.Fabrica;
 
-public class Fabrica extends uff.ic.lleme.tcc00328.exercicios.letreiro.model.Fabrica {
+public class Fabrica21Segmentos extends Fabrica {
 
     @Override
-    public Mostrador criarMostrador() {
-        return new Mostrador();
+    public Mostrador21Segmentos criarMostrador() {
+        return new Mostrador21Segmentos();
     }
 
     @Override

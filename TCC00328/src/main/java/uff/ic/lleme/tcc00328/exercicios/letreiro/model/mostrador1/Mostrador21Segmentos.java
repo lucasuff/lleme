@@ -1,17 +1,19 @@
 package uff.ic.lleme.tcc00328.exercicios.letreiro.model.mostrador1;
 
 import uff.ic.lleme.tcc00328.exercicios.letreiro.model.Caractere;
+import uff.ic.lleme.tcc00328.exercicios.letreiro.model.Mostrador;
 
-public class Mostrador extends uff.ic.lleme.tcc00328.exercicios.letreiro.model.Mostrador {
+public class Mostrador21Segmentos extends Mostrador {
 
     private static final byte linhas = 5;
     private static final byte colunas = 5;
     public boolean[][] estados = new boolean[linhas][colunas];
-    private final char[][] leds = {{' ', '_', '_', '_', ' '},
-    {'|', '\\', '|', '/', '|'},
-    {'|', '-', '+', '-', '|'},
-    {'|', '/', '|', '\\', '|'},
-    {' ', '-', '-', '-', ' '}};
+    private final char[][] leds
+            = {{' ', '_', '_', '_', ' '},
+            {'|', '\\', '|', '/', '|'},
+            {'|', '-', '+', '-', '|'},
+            {'|', '/', '|', '\\', '|'},
+            {' ', '-', '-', '-', ' '}};
 
     @Override
     public void acenderLeds(Caractere caractere) {

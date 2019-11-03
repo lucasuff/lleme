@@ -16,7 +16,7 @@ public class Space extends Caractere {
     }
 
     @Override
-    public void acenderMostrador(Mostrador mostrador1) {
+    public void acenderMostrador(Mostrador21Segmentos mostrador1) {
         boolean[][] estados = {{false, false, false, false, false},
         {false, false, false, false, false},
         {false, false, false, false, false},
