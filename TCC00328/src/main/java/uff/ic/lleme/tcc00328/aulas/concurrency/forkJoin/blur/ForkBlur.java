@@ -1,4 +1,4 @@
-package uff.ic.lleme.tcc00328.aulas.concurrency;
+package uff.ic.lleme.tcc00328.aulas.concurrency.forkJoin.blur;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

@@ -1,6 +1,9 @@
-package uff.ic.lleme.tcc00328.aulas;
+package uff.ic.lleme.tcc00328.aulas.concurrency.rascunho;
 
-public class NewClass {
+import uff.ic.lleme.tcc00328.aulas.Conta;
+import uff.ic.lleme.tcc00328.aulas.Pilha;
+
+public class NewClass2 {
 
     public static void main(String[] args) {
         int i = 0;

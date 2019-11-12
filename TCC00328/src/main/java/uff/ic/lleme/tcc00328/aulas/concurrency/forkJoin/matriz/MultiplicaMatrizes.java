@@ -1,4 +1,4 @@
-package uff.ic.lleme.tcc00328.aulas.concurrency.multiplicarMatriz;
+package uff.ic.lleme.tcc00328.aulas.concurrency.forkJoin.matriz;
 
 import java.util.ArrayList;
 import java.util.List;

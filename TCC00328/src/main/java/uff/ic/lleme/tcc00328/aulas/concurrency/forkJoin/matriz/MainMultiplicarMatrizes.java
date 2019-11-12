@@ -1,4 +1,4 @@
-package uff.ic.lleme.tcc00328.aulas.concurrency.multiplicarMatriz;
+package uff.ic.lleme.tcc00328.aulas.concurrency.forkJoin.matriz;
 
 import java.util.Date;
 import java.util.concurrent.ForkJoinPool;
