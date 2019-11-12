@@ -1,4 +1,4 @@
-package uff.ic.lleme.tcc00328.aulas.concurrency;
+package uff.ic.lleme.tcc00328.aulas.concurrency.rascunho;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package uff.ic.lleme.tcc00328.aulas.concurrency;
+package uff.ic.lleme.tcc00328.aulas.concurrency.multiplicarMatriz;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ public class MultiplicaMatrizes extends RecursiveAction {
 
     private final double[][] a, b;
     private int i1, j1, i2, j2;
-    public static double[][] resultado;
+    public static Cell[][] resultado;
 
     public MultiplicaMatrizes(double[][] a, double[][] b, int i1, int j1, int i2, int j2) {
         this.a = a;
@@ -18,16 +18,14 @@ public class MultiplicaMatrizes extends RecursiveAction {
         this.i2 = i2;
         this.j2 = j2;
         if (resultado == null)
-            resultado = new double[a.length][b[0].length];
+            resultado = new Cell[a.length][b[0].length];
     }
 
     protected void multiplica() {
         for (int i = i1; i < i2; i++)
-            for (int j = j1; j < j2; j++) {
-                resultado[i][j] = 0;
+            for (int j = j1; j < j2; j++)
                 for (int k = 0; k < a[0].length; k++)
-                    resultado[i][j] += a[i][k] * b[k][j];
-            }
+                    resultado[i][j].setValue(resultado[i][j].getValue() + a[i][k] * b[k][j]);
         System.out.format("(%d,%d)-(%d,%d)\n", i1, j1, i2, j2);
     }
 

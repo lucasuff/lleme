@@ -1,4 +1,4 @@
-package uff.ic.lleme.tcc00328.aulas.concurrency;
+package uff.ic.lleme.tcc00328.aulas.concurrency.producer_consumer;
 
 import java.util.Random;
 
