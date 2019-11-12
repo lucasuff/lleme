@@ -24,21 +24,20 @@ public class ForkMean extends RecursiveAction {
     }
 
     protected void computeDirectly() {
-        Aluno aluno;
         for (int i = inicio; i < inicio + quantidade; i++) {
-            aluno = alunos.get(i);
-            aluno.media = (aluno.n1 + aluno.n2) / 2;
+            Aluno aluno = alunos.get(i);
+            aluno.situacao = (aluno.n1 + aluno.n2) / 2 >= 6 ? "aprovado" : "reprovado";
         }
     }
 
     @Override
     protected void compute() {
-        if (quantidade < tamanhoJob) {
+        if (quantidade < tamanhoJob)
             computeDirectly();
-            return;
+        else {
+            int meio = quantidade / 2;
+            invokeAll(new ForkMean(alunos, inicio, meio),
+                    new ForkMean(alunos, inicio + meio, quantidade - meio));
         }
-        int meio = quantidade / 2;
-        invokeAll(new ForkMean(alunos, inicio, meio),
-                new ForkMean(alunos, inicio + meio, quantidade - meio));
     }
 }
