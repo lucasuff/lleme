@@ -11,7 +11,7 @@ public class MainCallable {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         boolean errors = false;
         int recebidos = 0, enviados = 0;
-        ExecutorService executor = Executors.newFixedThreadPool(16);
+        ExecutorService executor = Executors.newFixedThreadPool(8);
         CompletionService<Aluno> gerenciador = new ExecutorCompletionService<>(executor);
 
         { // inicialização da lista de alunos
