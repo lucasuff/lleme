@@ -16,13 +16,23 @@ public class Resultado {
                 locks[i][j] = new Object();
     }
 
-    public void adicionar(double valor, int i, int j) {
+    public void addCelula(int i, int j, double valor) {
         synchronized (locks[i][j]) {
             matriz[i][j] += valor;
         }
     }
 
-    public double[][] getResultado() {
+    public void setCelula(int i, int j, double valor) {
+        synchronized (locks[i][j]) {
+            matriz[i][j] = valor;
+        }
+    }
+
+    public double getCelula(int i, int j) {
+        return matriz[i][j];
+    }
+
+    public double[][] getMatriz() {
         return clonar(matriz);
     }
 
