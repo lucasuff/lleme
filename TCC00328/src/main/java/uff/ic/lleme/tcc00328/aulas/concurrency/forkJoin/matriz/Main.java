@@ -6,8 +6,8 @@ import org.junit.Assert;
 public class Main {
 
     public static void main(String[] args) {
-        double[][] A = Matrizes.rndMatriz(2000, 1880);
-        double[][] B = Matrizes.rndMatriz(1880, 2800);
+        double[][] A = Matrizes.rndMatriz(2000, 880);
+        double[][] B = Matrizes.rndMatriz(880, 2800);
         double[][] resultado1;
         double[][] resultado2;
 
