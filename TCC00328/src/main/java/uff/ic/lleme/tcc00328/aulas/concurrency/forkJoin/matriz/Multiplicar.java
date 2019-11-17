@@ -5,7 +5,7 @@ import java.util.concurrent.*;
 
 // tem que ter import java.util.*;
 // tem que ter import java.util.concurrent.*;
-public class Multiplicar extends RecursiveTask<double[][]> {
+public class Multiplicar extends RecursiveAction {
 
     private final double[][] A, B;
     private final int i1, j1, i2, j2, i3, j3, i4, j4;
@@ -56,28 +56,36 @@ public class Multiplicar extends RecursiveTask<double[][]> {
     }
 
     @Override
-    protected double[][] compute() {
-        if (((i2 - i1) * (j4 - j3) * (j2 - j1)) < 10000)
+    protected void compute() {
+        int work = (i2 - i1) * (j4 - j3) * (j2 - j1);
+        if (work < 1000000)
             multiplica();
         else {
             List<Multiplicar> jobs = new ArrayList<>();
-            int im1 = (i2 - i1) / 2;
-            int jm1 = (j2 - j1) / 2;
-            int im3 = (i4 - i3) / 2;
-            int jm3 = (j4 - j3) / 2;
+            int im1 = (i1 + i2) / 2;
+            int jm1 = (j1 + j2) / 2;
+            int im3 = (i3 + i4) / 2;
+            int jm3 = (j3 + j4) / 2;
 
             jobs.add(new Multiplicar(A, B, i1, j1, im1, jm1, i3, j3, im3, jm3, resultado));
-            jobs.add(new Multiplicar(A, B, i1, j1, im1, jm1, i3, jm3, im3, j4, resultado));
-            jobs.add(new Multiplicar(A, B, im1, j1, i2, jm1, i3, j3, im3, jm3, resultado));
-            jobs.add(new Multiplicar(A, B, im1, j1, i2, jm1, i3, jm3, im3, j4, resultado));
+            jobs.add(new Multiplicar(A, B, i1, j1, im1, jm1, i3, jm3 + 1, im3, j4, resultado));
 
-            jobs.add(new Multiplicar(A, B, i1, jm1, im1, j2, im3, j3, i4, jm3, resultado));
-            jobs.add(new Multiplicar(A, B, i1, jm1, im1, j2, im3, jm3, i4, j4, resultado));
-            jobs.add(new Multiplicar(A, B, im1, jm1, i2, j2, im3, j3, i4, jm3, resultado));
-            jobs.add(new Multiplicar(A, B, im1, jm1, i2, j2, im3, jm3, i4, j4, resultado));
+            jobs.add(new Multiplicar(A, B, im1 + 1, j1, i2, jm1, i3, j3, im3, jm3, resultado));
+            jobs.add(new Multiplicar(A, B, im1 + 1, j1, i2, jm1, i3, jm3 + 1, im3, j4, resultado));
+            //
+            //
+            //
+            jobs.add(new Multiplicar(A, B, i1, jm1 + 1, im1, j2, im3 + 1, j3, i4, jm3, resultado));
+            jobs.add(new Multiplicar(A, B, i1, jm1 + 1, im1, j2, im3 + 1, jm3 + 1, i4, j4, resultado));
+
+            jobs.add(new Multiplicar(A, B, im1 + 1, jm1 + 1, i2, j2, im3 + 1, j3, i4, jm3, resultado));
+            jobs.add(new Multiplicar(A, B, im1 + 1, jm1 + 1, i2, j2, im3 + 1, jm3 + 1, i4, j4, resultado));
 
             invokeAll(jobs);
         }
+    }
+
+    public double[][] getResultado() {
         return resultado.getMatriz();
     }
 

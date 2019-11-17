@@ -2,8 +2,11 @@ package uff.ic.lleme.tcc00328.aulas.concurrency.forkJoin.matriz;
 
 public class Resultado {
 
-    private final Object locks[][];
-    private final double[][] matriz;
+    private Object locks[][] = null;
+    private double[][] matriz = null;
+
+    private Resultado() {
+    }
 
     public Resultado(int linhas, int colunas) {
         locks = new Object[linhas][colunas];
