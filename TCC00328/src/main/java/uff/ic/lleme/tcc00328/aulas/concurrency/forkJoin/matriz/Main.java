@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         double[][] A = Matrizes.rndMatriz(1000, 580);
-        double[][] B = Matrizes.rndMatriz(580, 1200);
+        double[][] B = Matrizes.rndMatriz(580, 800);
         double[][] resultado1 = null;
         double[][] resultado2 = null;
 
@@ -21,7 +21,7 @@ public class Main {
 
         {
             Date inicio = new Date();
-            resultado2 = Matrizes.multiplicarJorJoin(A, B);
+            resultado2 = Matrizes.multiplicarForkJoin(A, B);
             Date fim = new Date();
             long duracao = fim.getTime() - inicio.getTime();
             System.out.printf("multiplicacao usando Jork/Join: %d milisegundos%n", duracao);

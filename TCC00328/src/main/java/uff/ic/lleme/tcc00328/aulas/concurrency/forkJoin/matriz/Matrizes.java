@@ -1,7 +1,7 @@
 package uff.ic.lleme.tcc00328.aulas.concurrency.forkJoin.matriz;
 
-import java.util.Objects;
-import java.util.concurrent.ForkJoinPool;
+import java.util.*;
+import java.util.concurrent.*;
 
 public class Matrizes {
 
@@ -17,11 +17,11 @@ public class Matrizes {
         return resultado;
     }
 
-    public static double[][] multiplicarJorJoin(double[][] A, double[][] B) {
+    public static double[][] multiplicarForkJoin(double[][] A, double[][] B) {
         Objects.requireNonNull(A, "Matriz A inválida.");
         Objects.requireNonNull(B, "Matriz B inválida.");
 
-        double[][] resultado = new double[A.length][B[0].length];
+        double[][] resultado;
         Multiplicar fb = new Multiplicar(A, B);
         ForkJoinPool pool = new ForkJoinPool(16);
         resultado = pool.invoke(fb);

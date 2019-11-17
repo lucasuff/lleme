@@ -1,19 +1,17 @@
 package uff.ic.lleme.tcc00328.aulas.concurrency.forkJoin.matriz;
 
-import java.util.concurrent.locks.ReentrantLock;
-
 public class Resultado {
 
-    private Object locks[][] = null;
-    private double[][] matriz = null;
+    private final Object locks[][];
+    private final double[][] matriz;
 
     public Resultado(int linhas, int colunas) {
-        locks = new ReentrantLock[linhas][colunas];
+        locks = new Object[linhas][colunas];
         matriz = new double[linhas][colunas];
 
-        for (int i = 0; i < locks.length; i++)
-            for (int j = 0; j < locks.length; j++)
-                locks[i][j] = new Object();
+        for (Object[] lock : locks)
+            for (int j = 0; j < locks[0].length; j++)
+                lock[j] = new Object();
     }
 
     public void addCelula(int i, int j, double valor) {
@@ -33,7 +31,8 @@ public class Resultado {
     }
 
     public double[][] getMatriz() {
-        return clonar(matriz);
+        //return clonar(matriz);
+        return matriz;
     }
 
     private static double[][] clonar(double[][] src) {
