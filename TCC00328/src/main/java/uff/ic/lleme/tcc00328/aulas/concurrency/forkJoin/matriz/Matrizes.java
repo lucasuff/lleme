@@ -11,9 +11,11 @@ public class Matrizes {
 
         double[][] resultado = new double[A.length][B[0].length];
         for (int i = 0; i < A.length; i++)
-            for (int j = 0; j < B.length; j++)
+            for (int j = 0; j < B[0].length; j++) {
+                resultado[i][j] = 0;
                 for (int k = 0; k < A[0].length; k++)
                     resultado[i][j] += A[i][k] * B[k][j];
+            }
         return resultado;
     }
 
@@ -23,7 +25,7 @@ public class Matrizes {
 
         double[][] resultado;
         Multiplicar fb = new Multiplicar(A, B);
-        ForkJoinPool pool = new ForkJoinPool();
+        ForkJoinPool pool = new ForkJoinPool(16);
         pool.invoke(fb);
         resultado = fb.getResultado();
 

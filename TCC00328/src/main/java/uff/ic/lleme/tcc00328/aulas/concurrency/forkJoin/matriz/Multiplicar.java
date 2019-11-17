@@ -46,9 +46,10 @@ public class Multiplicar extends RecursiveAction {
     }
 
     protected void multiplica() {
-        double somatorio = 0;
+        double somatorio;
         for (int i = i1; i < i2; i++)
             for (int j = j3; j < j4; j++) {
+                somatorio = 0;
                 for (int k = j1; k < j2; k++)
                     somatorio += A[i][k] * B[k][j];
                 resultado.addCelula(i, j, somatorio);
@@ -68,18 +69,18 @@ public class Multiplicar extends RecursiveAction {
             int jm3 = (j3 + j4) / 2;
 
             jobs.add(new Multiplicar(A, B, i1, j1, im1, jm1, i3, j3, im3, jm3, resultado));
-            jobs.add(new Multiplicar(A, B, i1, j1, im1, jm1, i3, jm3 + 1, im3, j4, resultado));
+            jobs.add(new Multiplicar(A, B, i1, j1, im1, jm1, i3, jm3, im3, j4, resultado));
 
-            jobs.add(new Multiplicar(A, B, im1 + 1, j1, i2, jm1, i3, j3, im3, jm3, resultado));
-            jobs.add(new Multiplicar(A, B, im1 + 1, j1, i2, jm1, i3, jm3 + 1, im3, j4, resultado));
+            jobs.add(new Multiplicar(A, B, im1, j1, i2, jm1, i3, j3, im3, jm3, resultado));
+            jobs.add(new Multiplicar(A, B, im1, j1, i2, jm1, i3, jm3, im3, j4, resultado));
             //
             //
             //
-            jobs.add(new Multiplicar(A, B, i1, jm1 + 1, im1, j2, im3 + 1, j3, i4, jm3, resultado));
-            jobs.add(new Multiplicar(A, B, i1, jm1 + 1, im1, j2, im3 + 1, jm3 + 1, i4, j4, resultado));
+            jobs.add(new Multiplicar(A, B, i1, jm1, im1, j2, im3, j3, i4, jm3, resultado));
+            jobs.add(new Multiplicar(A, B, i1, jm1, im1, j2, im3, jm3, i4, j4, resultado));
 
-            jobs.add(new Multiplicar(A, B, im1 + 1, jm1 + 1, i2, j2, im3 + 1, j3, i4, jm3, resultado));
-            jobs.add(new Multiplicar(A, B, im1 + 1, jm1 + 1, i2, j2, im3 + 1, jm3 + 1, i4, j4, resultado));
+            jobs.add(new Multiplicar(A, B, im1, jm1, i2, j2, im3, j3, i4, jm3, resultado));
+            jobs.add(new Multiplicar(A, B, im1, jm1, i2, j2, im3, jm3, i4, j4, resultado));
 
             invokeAll(jobs);
         }

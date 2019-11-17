@@ -6,8 +6,8 @@ import org.junit.Assert;
 public class Main {
 
     public static void main(String[] args) {
-        double[][] A = Matrizes.rndMatriz(1000, 580);
-        double[][] B = Matrizes.rndMatriz(580, 800);
+        double[][] A = Matrizes.rndMatriz(2000, 1880);
+        double[][] B = Matrizes.rndMatriz(1880, 2800);
         double[][] resultado1;
         double[][] resultado2;
 
@@ -28,7 +28,7 @@ public class Main {
         }
 
         for (int i = 0; i < resultado1.length; i++)
-            Assert.assertArrayEquals(resultado1[i], resultado2[i], 0.0001);
+            Assert.assertArrayEquals(resultado1[i], resultado2[i], 1E-6);
     }
 
 }
