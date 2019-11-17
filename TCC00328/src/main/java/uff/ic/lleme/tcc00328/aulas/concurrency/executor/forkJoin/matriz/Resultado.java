@@ -1,4 +1,4 @@
-package uff.ic.lleme.tcc00328.aulas.concurrency.forkJoin.matriz;
+package uff.ic.lleme.tcc00328.aulas.concurrency.executor.forkJoin.matriz;
 
 public class Resultado {
 

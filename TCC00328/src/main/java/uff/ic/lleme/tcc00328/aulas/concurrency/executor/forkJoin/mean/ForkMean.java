@@ -1,4 +1,4 @@
-package uff.ic.lleme.tcc00328.aulas.concurrency.forkJoin.mean;
+package uff.ic.lleme.tcc00328.aulas.concurrency.executor.forkJoin.mean;
 
 import java.util.ArrayList;
 import java.util.List;
