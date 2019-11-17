@@ -25,7 +25,7 @@ public class Matrizes {
 
         double[][] resultado;
         Multiplicar fb = new Multiplicar(A, B);
-        ForkJoinPool pool = new ForkJoinPool(16);
+        ForkJoinPool pool = new ForkJoinPool();
         pool.invoke(fb);
         resultado = fb.getResultado();
 
