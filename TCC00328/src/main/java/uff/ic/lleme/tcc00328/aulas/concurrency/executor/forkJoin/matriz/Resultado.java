@@ -29,10 +29,6 @@ public class Resultado {
         }
     }
 
-    public double getCelula(int i, int j) {
-        return matriz[i][j];
-    }
-
     public double[][] getMatriz() {
         //return clonar(matriz);
         return matriz;

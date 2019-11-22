@@ -7,24 +7,24 @@ import java.util.concurrent.RecursiveAction;
 public class ForkMean extends RecursiveAction {
 
     private int inicio = 0;
-    private int quantidade = 0;
+    private int fim = 0;
     private List<Aluno> alunos = new ArrayList<>();
     protected static int tamanhoJob = 100000;
 
-    public ForkMean(List<Aluno> alunos, int inicio) {
+    public ForkMean(List<Aluno> alunos) {
         this.alunos = alunos;
-        this.inicio = inicio;
-        this.quantidade = alunos.size();
+        this.inicio = 0;
+        this.fim = alunos.size();
     }
 
-    private ForkMean(List<Aluno> alunos, int inicio, int quantidade) {
+    private ForkMean(List<Aluno> alunos, int inicio, int fim) {
         this.alunos = alunos;
         this.inicio = inicio;
-        this.quantidade = quantidade;
+        this.fim = fim;
     }
 
     protected void computeDirectly() {
-        for (int i = inicio; i < inicio + quantidade; i++) {
+        for (int i = inicio; i < fim; i++) {
             Aluno aluno = alunos.get(i);
             aluno.situacao = (aluno.n1 + aluno.n2) / 2 >= 6 ? "aprovado" : "reprovado";
         }
@@ -32,12 +32,12 @@ public class ForkMean extends RecursiveAction {
 
     @Override
     protected void compute() {
-        if (quantidade < tamanhoJob)
+        if (fim < tamanhoJob)
             computeDirectly();
         else {
-            int meio = quantidade / 2;
+            int meio = (inicio + fim) / 2;
             invokeAll(new ForkMean(alunos, inicio, meio),
-                    new ForkMean(alunos, inicio + meio, quantidade - meio));
+                    new ForkMean(alunos, meio, fim));
         }
     }
 }
