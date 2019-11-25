@@ -71,7 +71,14 @@ insert into depto_role values (1,(select oid from pg_catalog.pg_authid where rol
 insert into depto_role values (2,(select oid from pg_catalog.pg_authid where rolname = 'comercial'));
 insert into depto_role values (3,(select oid from pg_catalog.pg_authid where rolname = 'juridico'));
 
-CREATE POLICY regra_funcionario1 ON funcionario to juridico using (departamento in (select departamento from depto_role where "role" = (select oid from pg_catalog.pg_authid where rolname = 'juridico'))) WITH CHECK (false);
+CREATE POLICY regra_funcionario1 ON funcionario to juridico
+    using (departamento in
+            (select departamento
+             from depto_role
+             where "role" = (select oid
+                             from pg_catalog.pg_authid
+                             where rolname = 'juridico')))
+    WITH CHECK (false);
 CREATE POLICY regra_funcionario2 ON funcionario to pessoal using (departamento in (select departamento from depto_role where "role" = (select oid from pg_catalog.pg_authid where rolname = 'pessoal'))) WITH CHECK (false);
 CREATE POLICY regra_funcionario3 ON funcionario to comercial using (departamento in (select departamento from depto_role where "role" = (select oid from pg_catalog.pg_authid where rolname = 'comercial'))) WITH CHECK (false);
 CREATE POLICY regra_funcionario4 ON funcionario to gerente WITH CHECK (true);
