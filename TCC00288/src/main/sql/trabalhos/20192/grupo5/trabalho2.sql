@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS curso CASCADE;
 DROP TABLE IF EXISTS aluno CASCADE;
 DROP TABLE IF EXISTS cursa CASCADE;
 DROP TABLE IF EXISTS requisita CASCADE;
+DROP TABLE IF EXISTS oferta CASCADE;
 
 CREATE TABLE departamento(
     codigo int PRIMARY KEY,
@@ -28,7 +29,6 @@ CREATE TABLE curso(
 CREATE TABLE disciplina(
     codigo int PRIMARY KEY,
     dpt int REFERENCES departamento(codigo),
-    curso int REFERENCES curso(codigo),
     nome text,
     qtdHoras int
 );
@@ -61,6 +61,12 @@ CREATE TABLE requisita(
     disciplina1 int REFERENCES disciplina(codigo),
     disciplina2 int REFERENCES disciplina(codigo),
     PRIMARY KEY (disciplina1, disciplina2)
+);
+
+--CURSO oferta DISCIPLINA
+CREATE TABLE oferta(
+    curso int REFERENCES curso(codigo),
+    disciplina int REFERENCES disciplina(codigo)
 );
 
 
