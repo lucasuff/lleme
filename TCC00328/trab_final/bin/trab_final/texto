@@ -1,0 +1,33 @@
+
+
+   public static void WriteObjectToFile(Object serObj, String filepath) {
+		 
+        try {
+ 
+			FileOutputStream fileOut = new FileOutputStream(filepath);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(serObj);
+            objectOut.close();
+            System.out.println("The Object  was succesfully written to a file");
+ 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+	
+   public Object ReadObjectfromFile(String filepath) {
+	   Object serObj = new Object();
+       try {
+    	   
+		   FileInputStream fileIn = new FileInputStream(filepath);
+           ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+           serObj = objectIn.readObject();
+           objectIn.close();
+           System.out.println("The Object  was succesfully read from a file");
+           
+       } catch (Exception ex) {
+           ex.printStackTrace();
+       }
+       
+	return serObj;
+   }
