@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen;
+package uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen;
 
 import java.util.*;
-import uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.participantes.InteligenciaArtificial;
-import uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.participantes.Mesa;
-import uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.participantes.Participante;
-import uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.participantes.Usuario;
+import uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.participantes.InteligenciaArtificial;
+import uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.participantes.Mesa;
+import uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.participantes.Participante;
+import uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.participantes.Usuario;
 
 /**
  *
@@ -28,7 +28,8 @@ public class Narrador {
     }
 
     public void setMesa(Mesa mesa) {
-        if (this.mesa == null) this.mesa = mesa;
+        if (this.mesa == null)
+            this.mesa = mesa;
     }
 
     public void setUltimaAcao(String acao, Participante autor) {
@@ -71,7 +72,8 @@ public class Narrador {
                 status = mesa.getStatus(participante).split(" ");
                 for (int i = 0; i < status.length; i++) {
                     String statusProcurado = "marcado:" + alvo.getNome();
-                    if (statusProcurado.equals(status[i])) matarParticipante(participantes.get(i));
+                    if (statusProcurado.equals(status[i]))
+                        matarParticipante(participantes.get(i));
                 }
             }
         }
@@ -99,7 +101,8 @@ public class Narrador {
             status = mesa.getStatus(participante).split(" ");
             int quantiaDeVotos = 0;
             for (int i = 0; i < status.length; i++)
-                if ("escolhido".equals(status[i])) quantiaDeVotos++;
+                if ("escolhido".equals(status[i]))
+                    quantiaDeVotos++;
             if (quantiaDeVotos > MaiorQuantiaDeVotos) {
                 participanteComMaisVotos = participante;
                 MaiorQuantiaDeVotos = quantiaDeVotos;
@@ -125,7 +128,8 @@ public class Narrador {
             falouAlgo = ias.get(i).tomadaDeAcao(false);
             i++;
             quantosTiveramOportunidade++;
-            if (i == tamanho) i = 0;
+            if (i == tamanho)
+                i = 0;
         }
         ultimoAFalar = i;
         if (!falouAlgo) {//Se todos falaram nada, uma ia toma uma decisão forçada
@@ -136,7 +140,8 @@ public class Narrador {
     }
 
     private int mod(int i) {//módulo
-        if (i < 0) return -i;
+        if (i < 0)
+            return -i;
         return i;
     }
 
@@ -146,24 +151,24 @@ public class Narrador {
         Scanner entrada = new Scanner(System.in);
         while (entradaInvalida)
             try {
-                System.out.println("Escolha o que fazer:");
-                System.out.println("1- Acusar alguém");
-                System.out.println("2- Apoiar alguém");
-                System.out.println("3- Falar Nada");
-                int ultimaOpcao = 3;
-                if (!"".equals(ultimaAcao)) {
-                    System.out.println("4- Concordar com " + autorDaUltimaAcao.getNome());
-                    System.out.println("5- Discordar de " + autorDaUltimaAcao.getNome());
-                    ultimaOpcao = 5;
-                }
-                opcaoEscolhida = entrada.nextInt();
-                if ((opcaoEscolhida <= ultimaOpcao) && (opcaoEscolhida > 0))
-                    entradaInvalida = false;
-                else
-                    System.out.println("Por favor, entrar com um número entre 0 e " + (ultimaOpcao + 1) + ".");
-            } catch (InputMismatchException e) {
-                System.out.println("Por favor, entrar com um valor inteiro.");
+            System.out.println("Escolha o que fazer:");
+            System.out.println("1- Acusar alguém");
+            System.out.println("2- Apoiar alguém");
+            System.out.println("3- Falar Nada");
+            int ultimaOpcao = 3;
+            if (!"".equals(ultimaAcao)) {
+                System.out.println("4- Concordar com " + autorDaUltimaAcao.getNome());
+                System.out.println("5- Discordar de " + autorDaUltimaAcao.getNome());
+                ultimaOpcao = 5;
             }
+            opcaoEscolhida = entrada.nextInt();
+            if ((opcaoEscolhida <= ultimaOpcao) && (opcaoEscolhida > 0))
+                entradaInvalida = false;
+            else
+                System.out.println("Por favor, entrar com um número entre 0 e " + (ultimaOpcao + 1) + ".");
+        } catch (InputMismatchException e) {
+            System.out.println("Por favor, entrar com um valor inteiro.");
+        }
         entradaInvalida = true;
         List<InteligenciaArtificial> ias = jogador.getMesa().getIA();
         while (entradaInvalida) {
@@ -179,7 +184,8 @@ public class Narrador {
                             System.out.println("Você acusou " + ias.get(escolha).getNome() + ".");
                             jogador.acusar(ias.get(escolha));
                             entradaInvalida = false;
-                        } else System.out.println("Escolha um valor entre 0 e " + ias.size());
+                        } else
+                            System.out.println("Escolha um valor entre 0 e " + ias.size());
                         break;
                     case 2:
                         System.out.println("Escolha quem apoiar: ");
@@ -190,7 +196,8 @@ public class Narrador {
                             System.out.println("Você apoiou " + ias.get(escolha).getNome() + ".");
                             jogador.apoiar(ias.get(escolha));
                             entradaInvalida = false;
-                        } else System.out.println("Escolha um valor entre 0 e " + ias.size());
+                        } else
+                            System.out.println("Escolha um valor entre 0 e " + ias.size());
                         break;
                     case 3:
                         jogador.falarNada();

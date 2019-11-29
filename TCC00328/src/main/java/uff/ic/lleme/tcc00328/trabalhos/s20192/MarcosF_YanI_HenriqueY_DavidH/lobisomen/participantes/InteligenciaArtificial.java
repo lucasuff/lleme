@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.participantes;
+package uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.participantes;
 
 import java.util.*;
-import uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.papeis.Papel;
+import uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.papeis.Papel;
 
 /**
  *
@@ -26,7 +26,8 @@ public class InteligenciaArtificial extends Participante {
     }
 
     private int mod(int i) {//módulo
-        if (i < 0) return -i;
+        if (i < 0)
+            return -i;
         return i;
     }
 
@@ -37,8 +38,10 @@ public class InteligenciaArtificial extends Participante {
         for (i = 0; i < quantidadeDeParticipantes; i++) {
             papelConhecido.put(participantes.get(i), "");
             //se não for ele mesmo
-            if (!this.equals(getMesa().getParticipantes().get(i))) desconfianca.put(participantes.get(i), 0);
-            else desconfianca.put(this, -100);
+            if (!this.equals(getMesa().getParticipantes().get(i)))
+                desconfianca.put(participantes.get(i), 0);
+            else
+                desconfianca.put(this, -100);
         }
     }
 
@@ -64,15 +67,19 @@ public class InteligenciaArtificial extends Participante {
     public void addPapelConhecidoDe(Participante alvo, Participante fonte, String papel) {
         int desconfiancaNaFonte = desconfianca.get(alvo);
         if ("".equals(papelConhecido.get(alvo))) {
-            if (desconfiancaNaFonte < -5) papelConhecido.put(alvo, papel);
+            if (desconfiancaNaFonte < -5)
+                papelConhecido.put(alvo, papel);
         } else if (papel.equals(papelConhecido.get(alvo))) {
             diminuiDesconfiancaEm(fonte, 2);
-            if ("Lobisomem".equals(papel)) aumentaDesconfiancaEm(alvo, 2);
-            else diminuiDesconfiancaEm(alvo, 2);
+            if ("Lobisomem".equals(papel))
+                aumentaDesconfiancaEm(alvo, 2);
+            else
+                diminuiDesconfiancaEm(alvo, 2);
         } else if (desconfiancaNaFonte < -5) {
             papelConhecido.put(alvo, papel);
             aumentaDesconfiancaEm(fonte);
-        } else aumentaDesconfiancaEm(fonte, 4);
+        } else
+            aumentaDesconfiancaEm(fonte, 4);
     }
 
     public void aumentaDesconfiancaEm(Participante key) {
@@ -157,16 +164,20 @@ public class InteligenciaArtificial extends Participante {
                 if (maiorDesconfianca > 5) {
                     acusar(participantes.get(posMaior));
                     return true;
-                } else return falarNada();
+                } else
+                    return falarNada();
             else if (menorDesconfianca < -5) {
                 apoiar(participantes.get(posMenor));
                 return true;
-            } else return falarNada();
+            } else
+                return falarNada();
         else {
             Random gerador = new Random();
             int aleatorio = gerador.nextInt() % 2;
-            if (aleatorio == 1) acusar(participantes.get(posMaior));
-            else apoiar(participantes.get(posMenor));
+            if (aleatorio == 1)
+                acusar(participantes.get(posMaior));
+            else
+                apoiar(participantes.get(posMenor));
             return true;
         }
     }
@@ -241,14 +252,16 @@ public class InteligenciaArtificial extends Participante {
                         diminuiDesconfiancaEm(alvo);
                         discordar(fonte, "Acusar");
                     }
-                    if (desconfiancaNoAlvo == 1) aumentaDesconfiancaEm(alvo);
+                    if (desconfiancaNoAlvo == 1)
+                        aumentaDesconfiancaEm(alvo);
                     break;
                 case 0:
                     if (desconfiancaNoAlvo == 1) {
                         aumentaDesconfiancaEm(alvo);
                         diminuiDesconfiancaEm(fonte);
                     }
-                    if (desconfiancaNoAlvo == -1) aumentaDesconfiancaEm(fonte, 2);
+                    if (desconfiancaNoAlvo == -1)
+                        aumentaDesconfiancaEm(fonte, 2);
                     if (desconfiancaNoAlvo == 0) {
                         aumentaDesconfiancaEm(alvo);
                         aumentaDesconfiancaEm(fonte, 2);
@@ -260,15 +273,18 @@ public class InteligenciaArtificial extends Participante {
                         aumentaDesconfiancaEm(alvo);
                         concordar(fonte, "Acusar");
                     }
-                    if (desconfiancaNoAlvo == -1) aumentaDesconfiancaEm(fonte);
+                    if (desconfiancaNoAlvo == -1)
+                        aumentaDesconfiancaEm(fonte);
                     break;
             }
         }
     }
 
     private int NivelDeDesconfianca(Participante key) {
-        if (desconfianca.get(key) > 5) return 1;
-        if (desconfianca.get(key) < -5) return -1;
+        if (desconfianca.get(key) > 5)
+            return 1;
+        if (desconfianca.get(key) < -5)
+            return -1;
         return 0;
     }
 
@@ -283,11 +299,14 @@ public class InteligenciaArtificial extends Participante {
                         aumentaDesconfiancaEm(fonte);
                         discordar(fonte, "Apoiar");
                     }
-                    if (desconfiancaNoAlvo == -1) aumentaDesconfiancaEm(fonte, 2);
+                    if (desconfiancaNoAlvo == -1)
+                        aumentaDesconfiancaEm(fonte, 2);
                     break;
                 case 0:
-                    if (desconfiancaNoAlvo == 1) aumentaDesconfiancaEm(fonte);
-                    if (desconfiancaNoAlvo == -1) diminuiDesconfiancaEm(fonte);
+                    if (desconfiancaNoAlvo == 1)
+                        aumentaDesconfiancaEm(fonte);
+                    if (desconfiancaNoAlvo == -1)
+                        diminuiDesconfiancaEm(fonte);
                     if (desconfiancaNoAlvo == 0) {
                         aumentaDesconfiancaEm(alvo);
                         aumentaDesconfiancaEm(fonte);
@@ -295,7 +314,8 @@ public class InteligenciaArtificial extends Participante {
                     break;
                 case -1:
                     diminuiDesconfiancaEm(alvo);
-                    if (desconfiancaNoAlvo == 1) aumentaDesconfiancaEm(fonte);
+                    if (desconfiancaNoAlvo == 1)
+                        aumentaDesconfiancaEm(fonte);
                     if (desconfiancaNoAlvo == -1) {
                         diminuiDesconfiancaEm(fonte);
                         concordar(fonte, "Apoiar");
@@ -326,7 +346,8 @@ public class InteligenciaArtificial extends Participante {
                     aumentaDesconfiancaEm(fonte);
                     if (desconfiancaNoAlvo == -1)
                         diminuiDesconfiancaEm(alvo);
-                    if (desconfiancaNoAlvo == 1) aumentaDesconfiancaEm(alvo);
+                    if (desconfiancaNoAlvo == 1)
+                        aumentaDesconfiancaEm(alvo);
                     break;
                 case 0:
                     if (desconfiancaNoAlvo == 1) {
@@ -339,7 +360,8 @@ public class InteligenciaArtificial extends Participante {
                     aumentaDesconfiancaEm(alvo);
                     if (desconfiancaNoAlvo == 1)
                         aumentaDesconfiancaEm(alvo);
-                    if (desconfiancaNoAlvo == -1) aumentaDesconfiancaEm(fonte);
+                    if (desconfiancaNoAlvo == -1)
+                        aumentaDesconfiancaEm(fonte);
                     break;
             }
         }
@@ -354,15 +376,19 @@ public class InteligenciaArtificial extends Participante {
                     aumentaDesconfiancaEm(alvo);
                     if (desconfiancaNoAlvo == 1)
                         aumentaDesconfiancaEm(fonte);
-                    if (desconfiancaNoAlvo == -1) aumentaDesconfiancaEm(fonte, 2);
+                    if (desconfiancaNoAlvo == -1)
+                        aumentaDesconfiancaEm(fonte, 2);
                     break;
                 case 0:
-                    if (desconfiancaNoAlvo == 1) aumentaDesconfiancaEm(fonte);
-                    if (desconfiancaNoAlvo == -1) diminuiDesconfiancaEm(fonte);
+                    if (desconfiancaNoAlvo == 1)
+                        aumentaDesconfiancaEm(fonte);
+                    if (desconfiancaNoAlvo == -1)
+                        diminuiDesconfiancaEm(fonte);
                     break;
                 case -1:
                     diminuiDesconfiancaEm(alvo);
-                    if (desconfiancaNoAlvo == 1) aumentaDesconfiancaEm(fonte);
+                    if (desconfiancaNoAlvo == 1)
+                        aumentaDesconfiancaEm(fonte);
                     if (desconfiancaNoAlvo == -1)
                         diminuiDesconfiancaEm(fonte);
                     break;

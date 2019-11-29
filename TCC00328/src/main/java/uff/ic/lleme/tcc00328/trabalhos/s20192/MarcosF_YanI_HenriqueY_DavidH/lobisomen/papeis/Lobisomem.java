@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.papeis;
+package uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.papeis;
 
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.participantes.InteligenciaArtificial;
-import uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.participantes.Participante;
+import uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.participantes.InteligenciaArtificial;
+import uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.participantes.Participante;
 
 /**
  *
@@ -50,18 +50,18 @@ public class Lobisomem extends Papel {
         boolean entradaIncorreta = true;
         while (entradaIncorreta)
             try {
-                Scanner teclado = new Scanner(System.in);
-                alvo = teclado.nextInt();
-                if ((alvo < dono.getMesa().getParticipantes().size()) && (alvo > 0))
-                    if (!"Lobisomem".equals(dono.getMesa().getParticipantes().get(alvo).getPapel().getId()))
-                        entradaIncorreta = false;
-                    else
-                        System.out.println("O jogador escolhido não pode ser um Lobisomem.");
+            Scanner teclado = new Scanner(System.in);
+            alvo = teclado.nextInt();
+            if ((alvo < dono.getMesa().getParticipantes().size()) && (alvo > 0))
+                if (!"Lobisomem".equals(dono.getMesa().getParticipantes().get(alvo).getPapel().getId()))
+                    entradaIncorreta = false;
                 else
-                    System.out.println("Entre com um numero entre 0 e " + dono.getMesa().getParticipantes().size());
-            } catch (InputMismatchException e) {
-                System.out.println("Entrada inválida, entre com um número inteiro");
-            }
+                    System.out.println("O jogador escolhido não pode ser um Lobisomem.");
+            else
+                System.out.println("Entre com um numero entre 0 e " + dono.getMesa().getParticipantes().size());
+        } catch (InputMismatchException e) {
+            System.out.println("Entrada inválida, entre com um número inteiro");
+        }
         return alvo;
     }
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.participantes;
+package uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.participantes;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -35,12 +35,12 @@ public class Usuario extends Participante {
         boolean entradaIncorreta = true;
         while (entradaIncorreta)
             try {
-                Scanner teclado = new Scanner(System.in);
-                alvo = teclado.nextInt();
-                entradaIncorreta = false;
-            } catch (InputMismatchException e) {
-                System.out.println("Entrada inválida, entre com um número inteiro");
-            }
+            Scanner teclado = new Scanner(System.in);
+            alvo = teclado.nextInt();
+            entradaIncorreta = false;
+        } catch (InputMismatchException e) {
+            System.out.println("Entrada inválida, entre com um número inteiro");
+        }
         return alvo;
     }
 

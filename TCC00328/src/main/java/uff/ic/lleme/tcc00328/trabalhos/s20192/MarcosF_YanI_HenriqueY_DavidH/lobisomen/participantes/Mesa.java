@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.participantes;
+package uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.participantes;
 
 import java.util.*;
-import uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.Narrador;
-import uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.papeis.Aldeao;
-import uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.papeis.Cacador;
-import uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.papeis.Lobisomem;
-import uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.papeis.Medico;
-import uff.ic.lleme.tcc00328.trabalhos.s20192.Marcos_F_Yan_I_Henrique_Y_David_H.Lobisomen.papeis.Vidente;
+import uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.Narrador;
+import uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.papeis.Aldeao;
+import uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.papeis.Cacador;
+import uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.papeis.Lobisomem;
+import uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.papeis.Medico;
+import uff.ic.lleme.tcc00328.trabalhos.s20192.MarcosF_YanI_HenriqueY_DavidH.lobisomen.papeis.Vidente;
 
 /**
  *
@@ -81,14 +81,17 @@ public class Mesa {
     }
 
     private int mod(int i) {//módulo
-        if (i < 0) return -i;
+        if (i < 0)
+            return -i;
         return i;
     }
 
     private void inicializaParticipanteNaMesa(boolean usuario, List<Participante> participantes, Map<Participante, String> status) {
         Participante participanteIniciado;
-        if (usuario) participanteIniciado = new Usuario();
-        else participanteIniciado = new InteligenciaArtificial();
+        if (usuario)
+            participanteIniciado = new Usuario();
+        else
+            participanteIniciado = new InteligenciaArtificial();
 
         participanteIniciado.setMesa(this);
         participantes.add(participanteIniciado);
