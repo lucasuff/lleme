@@ -8,12 +8,12 @@ CREATE TABLE public.vendas (
 );
 
 INSERT INTO public.vendas(anomes, unidade, vendedor, produto, valor) VALUES
-	(1, 1, 1, 'produto1', 100),
-	(2, 1, 1, 'produto1', 150),
-	(3, 1, 1, 'produto1', 200),
-	(4, 1, 1, 'produto1', 400),
-	(5, 1, 1, 'produto1', 450),
-	(6, 1, 1, 'produto1', 500);
+	(201701, 1, 1, 'produto1', 100),
+	(201702, 1, 1, 'produto1', 150),
+	(201703, 1, 1, 'produto1', 200),
+	(201704, 1, 1, 'produto1', 400),
+	(201705, 1, 1, 'produto1', 450),
+	(201706, 1, 1, 'produto1', 500);
 
 CREATE OR REPLACE FUNCTION public.creater(nome text) RETURNS integer[]
     LANGUAGE plpgsql
@@ -125,6 +125,7 @@ BEGIN
 END;
 $$;
 
+DROP FUNCTION resolver(double precision[],double precision[]);
 CREATE OR REPLACE FUNCTION public.resolver(lhs double precision[], rhs double precision[]) RETURNS double precision[]
     LANGUAGE plpgsql
     AS $$
@@ -144,3 +145,5 @@ BEGIN
 	RETURN sol;
 END;
 $$;
+
+SELECT projection(201707);
