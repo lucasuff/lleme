@@ -118,15 +118,15 @@ BEGIN
 		lhs = multiply(xl, x);
 		rhs = multiply(xl, r);
 
-		v = resolver(lhs, rhs);
+		v = solve(lhs, rhs);
 		RETURN QUERY SELECT anomes as ano_mes, nome as nome, (anomes*v[1] + v[2]) as projecao;
 	END LOOP;
 	
 END;
 $$;
 
-DROP FUNCTION IF EXISTS resolver(double precision[],double precision[]);
-CREATE OR REPLACE FUNCTION public.resolver(lhs double precision[], rhs double precision[]) RETURNS double precision[]
+DROP FUNCTION IF EXISTS solve(double precision[],double precision[]);
+CREATE OR REPLACE FUNCTION public.solve(lhs double precision[], rhs double precision[]) RETURNS double precision[]
     LANGUAGE plpgsql
     AS $$
 DECLARE
