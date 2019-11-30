@@ -125,7 +125,7 @@ BEGIN
 END;
 $$;
 
-DROP FUNCTION resolver(double precision[],double precision[]);
+DROP FUNCTION IF EXISTS resolver(double precision[],double precision[]);
 CREATE OR REPLACE FUNCTION public.resolver(lhs double precision[], rhs double precision[]) RETURNS double precision[]
     LANGUAGE plpgsql
     AS $$
