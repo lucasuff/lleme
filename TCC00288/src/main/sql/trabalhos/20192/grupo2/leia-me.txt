@@ -1,0 +1,21 @@
+Banco de Dados II - UFF 2019.2
+
+Grupo 2 - Eduardo Martins, João Gabriel Machado, Lucas de Castro, Marcelo José e Rafael Dantas
+
+A aplicação escolhida é um sistema de vendas eletrônicas (e-commerce), onde clientes poderão
+adicionar produtos de determinadas categorias em um carrinho de compras. Para confirmar sua compra,
+o cliente deverá possuir saldo superior ao valor total da compra. Há a possibilidade de uma categoria
+de produtos estar em promoção, o que acarreta em uma mudança no valor da compra.
+
+Restrições de integridade:
+- Saldo do cliente deve ser maior que o preço total da compra.
+- Um produto deve estar em estoque para poder ser comprado. Se um produto não ter estoque o suficiente, a compra é cancelada.
+- Uma promoção nao poderá ser criada se uma categoria nao tiver produtos cadastrados.
+
+Funções:
+- Atualizar o valor de uma compra em um carrinho (compra_produto) se a categoria daquele produto estiver em promoção.
+- Efetuar uma nova compra
+
+Observações:
+O modelo entidade-relacionamento criado omite, para melhor legibilidade, os atributos identificadores de todas as tabelas.
+As funções e restrições de integridade se encontram em arquivos separados, e em cada um deles estão listadas as tabelas envolvidas.
