@@ -32,7 +32,7 @@ public class ForkMean extends RecursiveAction {
 
     @Override
     protected void compute() {
-        if (fim < tamanhoJob)
+        if (fim - inicio < tamanhoJob)
             computeDirectly();
         else {
             int meio = (inicio + fim) / 2;
