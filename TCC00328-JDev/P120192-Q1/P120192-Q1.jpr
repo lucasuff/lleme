@@ -85,6 +85,7 @@
             <hash>
                <url n="content-folder-url" path="model/p120192q1/"/>
                <list n="pattern-filters">
+                  <string v="+p120192q1/Main.java"/>
                   <string v="+p120192q1/Produto.java"/>
                   <string v="+p120192q1/Item.java"/>
                   <string v="+p120192q1/Carrinho.java"/>

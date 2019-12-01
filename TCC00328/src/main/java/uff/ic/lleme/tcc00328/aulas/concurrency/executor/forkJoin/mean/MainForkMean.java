@@ -35,7 +35,7 @@ public class MainForkMean {
 
         { // Processamento concorrente
             ForkMean fb = new ForkMean(alunos);
-            ForkJoinPool pool = new ForkJoinPool(4);
+            ForkJoinPool pool = new ForkJoinPool();
 
             Date inicio = new Date();
             pool.invoke(fb);
