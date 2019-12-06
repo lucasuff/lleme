@@ -209,5 +209,5 @@ BEGIN
 END;$$ LANGUAGE plpgsql;
 
 
-SELECT public.projecao(201707)
+SELECT public.projecao(201707);
 
