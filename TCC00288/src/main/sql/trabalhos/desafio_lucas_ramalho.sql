@@ -196,6 +196,7 @@ RETURN;
 END;
 $$;
 
+
 DROP FUNCTION IF EXISTS resolve(float[][], float[][]);
 CREATE OR REPLACE FUNCTION resolve(matriz1 float[][], matriz2 float[][])
 RETURNS float[] AS $$
